@@ -133,6 +133,7 @@ export default function Assessment() {
   const [flagged, setFlagged] = useState<boolean[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TOTAL_SECONDS);
+  const [mobilePaletteOpen, setMobilePaletteOpen] = useState(false);
 
   // Reset answers and flags when questions change
   useEffect(() => {
@@ -1097,8 +1098,131 @@ export default function Assessment() {
         </div>
       </div>
 
-      {/* Main layout: question + sidebar */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 260px", gap: 20 }}>
+      {/* Mobile Question Palette Toggle Banner */}
+      <div className="flex lg:hidden mb-4">
+        <button
+          onClick={() => setMobilePaletteOpen(!mobilePaletteOpen)}
+          style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "10px 14px",
+            background: C.surface,
+            border: `1.5px solid ${C.accent}`,
+            borderRadius: 10,
+            color: C.dark,
+            fontSize: 13,
+            fontWeight: 700,
+            cursor: "pointer",
+            boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
+          }}
+        >
+          <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span>📋</span>
+            <span>Question Palette ({answered}/{questions.length} answered)</span>
+          </span>
+          <span style={{ color: C.accent }}>{mobilePaletteOpen ? "▲ Hide" : "▼ View Questions"}</span>
+        </button>
+      </div>
+
+      {/* Mobile Collapsible Question Palette Modal / Dropdown */}
+      {mobilePaletteOpen && (
+        <div className="block lg:hidden mb-4">
+          <div style={{ ...card, padding: "16px 18px", marginBottom: 12 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+              <span style={{ fontSize: 13, fontWeight: 700, color: C.dark }}>Jump to Question</span>
+              <button
+                onClick={() => setMobilePaletteOpen(false)}
+                style={{ background: "transparent", border: "none", fontSize: 14, color: C.muted, cursor: "pointer" }}
+              >
+                ✕ Close
+              </button>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginBottom: 14 }}>
+              {questions.map((_, idx) => {
+                const isCurrent = current === idx;
+                const isAnswered = answers[idx] !== null;
+                const isFlagged = flagged[idx];
+
+                let bg = C.surfaceAlt;
+                let textCol = C.muted;
+                let border = `1px solid ${C.border}`;
+
+                if (isAnswered) {
+                  bg = C.s1;
+                  textCol = "#fff";
+                  border = `1px solid ${C.s1}`;
+                }
+                if (isCurrent) {
+                  border = `2px solid ${C.accent}`;
+                }
+
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setCurrent(idx);
+                      setMobilePaletteOpen(false);
+                    }}
+                    style={{
+                      aspectRatio: "1/1",
+                      minHeight: 44,
+                      borderRadius: 8,
+                      background: bg,
+                      color: textCol,
+                      border,
+                      fontFamily: FONT.mono,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      position: "relative",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {idx + 1}
+                    {isFlagged && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: -3,
+                          right: -3,
+                          width: 8,
+                          height: 8,
+                          borderRadius: "50%",
+                          background: "#9333EA",
+                        }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Legend */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, fontSize: 11, color: C.muted, borderTop: `1px solid ${C.border}`, paddingTop: 10 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <div style={{ width: 8, height: 8, borderRadius: 2, background: C.s1 }} />
+                <span>Answered</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <div style={{ width: 8, height: 8, borderRadius: 2, background: C.surfaceAlt, border: `2px solid ${C.accent}` }} />
+                <span>Current</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#9333EA" }} />
+                <span>Flagged</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main layout: question + desktop sidebar */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px]" style={{ gap: 20 }}>
         {/* Question card */}
         <div style={card}>
           {/* Top Info Row */}
@@ -1146,7 +1270,7 @@ export default function Assessment() {
                 background: flagged[current] ? "#F3E8FF" : "transparent",
                 border: `1px solid ${flagged[current] ? "#9333EA" : C.border}`,
                 borderRadius: 6,
-                padding: "4px 10px",
+                padding: "6px 12px",
                 fontSize: 11.5,
                 fontWeight: 600,
                 color: flagged[current] ? "#9333EA" : C.muted,
@@ -1154,6 +1278,7 @@ export default function Assessment() {
                 display: "flex",
                 alignItems: "center",
                 gap: 4,
+                minHeight: 36,
               }}
             >
               <span>{flagged[current] ? "🚩 Flagged" : "🏳️ Flag for Review"}</span>
@@ -1163,10 +1288,11 @@ export default function Assessment() {
           {/* Question Text */}
           <div
             style={{
-              fontSize: 16,
-              fontWeight: 600,
-              lineHeight: 1.6,
+              fontFamily: FONT.display,
+              fontSize: "clamp(15px, 2.2vw, 17px)",
+              fontWeight: 700,
               color: C.dark,
+              lineHeight: 1.5,
               marginBottom: 22,
             }}
           >
@@ -1193,6 +1319,8 @@ export default function Assessment() {
                     background: isChosen ? "#FAF4E8" : C.surface,
                     cursor: "pointer",
                     transition: "all 0.15s ease",
+                    minHeight: 48,
+                    boxSizing: "border-box",
                   }}
                 >
                   <div
@@ -1212,7 +1340,7 @@ export default function Assessment() {
                   >
                     {letter}
                   </div>
-                  <span style={{ fontSize: 14, color: isChosen ? C.dark : C.dark, fontWeight: isChosen ? 600 : 400, lineHeight: 1.4 }}>
+                  <span style={{ fontSize: 14, color: C.dark, fontWeight: isChosen ? 600 : 400, lineHeight: 1.4 }}>
                     {opt}
                   </span>
                 </div>
@@ -1221,12 +1349,12 @@ export default function Assessment() {
           </div>
 
           {/* Navigation Buttons */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: `1px solid ${C.border}`, paddingTop: 18 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: `1px solid ${C.border}`, paddingTop: 18, flexWrap: "wrap", gap: 10 }}>
             <button
               onClick={() => setCurrent((c) => Math.max(0, c - 1))}
               disabled={current === 0}
               style={{
-                padding: "9px 20px",
+                padding: "10px 20px",
                 borderRadius: 8,
                 border: `1px solid ${C.border}`,
                 background: current === 0 ? C.surfaceAlt : "#fff",
@@ -1235,16 +1363,17 @@ export default function Assessment() {
                 fontSize: 13,
                 fontWeight: 600,
                 cursor: current === 0 ? "not-allowed" : "pointer",
+                minHeight: 44,
               }}
             >
-              ← Previous Question
+              ← Previous
             </button>
 
             {current < questions.length - 1 ? (
               <button
                 onClick={() => setCurrent((c) => Math.min(questions.length - 1, c + 1))}
                 style={{
-                  padding: "9px 24px",
+                  padding: "10px 24px",
                   borderRadius: 8,
                   border: "none",
                   background: C.dark,
@@ -1253,6 +1382,7 @@ export default function Assessment() {
                   fontSize: 13,
                   fontWeight: 700,
                   cursor: "pointer",
+                  minHeight: 44,
                   boxShadow: "0 2px 6px rgba(27, 61, 41, 0.2)",
                 }}
               >
@@ -1262,7 +1392,7 @@ export default function Assessment() {
               <button
                 onClick={handleSubmit}
                 style={{
-                  padding: "9px 26px",
+                  padding: "10px 26px",
                   borderRadius: 8,
                   border: "none",
                   background: C.s1,
@@ -1271,6 +1401,7 @@ export default function Assessment() {
                   fontSize: 13,
                   fontWeight: 700,
                   cursor: "pointer",
+                  minHeight: 44,
                   boxShadow: "0 2px 8px rgba(27, 107, 64, 0.3)",
                 }}
               >
@@ -1280,8 +1411,8 @@ export default function Assessment() {
           </div>
         </div>
 
-        {/* Right Sidebar: Question Palette & Domain Breakdown */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {/* Desktop Sidebar: Question Palette & Domain Breakdown */}
+        <div className="hidden lg:flex flex-col" style={{ gap: 16 }}>
           {/* Question Palette Matrix */}
           <div style={{ ...card, padding: "18px 20px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
@@ -1408,6 +1539,7 @@ export default function Assessment() {
               fontSize: 13.5,
               cursor: "pointer",
               textAlign: "center",
+              minHeight: 44,
               boxShadow: "0 2px 8px rgba(27, 107, 64, 0.25)",
             }}
           >

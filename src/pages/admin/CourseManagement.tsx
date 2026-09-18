@@ -511,120 +511,123 @@ export default function CourseManagement() {
 
       {/* Table */}
       <div style={{ background: C.surface, borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.06)", overflow: "hidden", border: `1px solid ${C.border}` }}>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr style={{ background: C.bg, borderBottom: `1px solid ${C.border}` }}>
-              <th style={{ width: 40, padding: "12px 14px" }}>
-                <input type="checkbox" checked={selected.length === filtered.length && filtered.length > 0} onChange={toggleAll} />
-              </th>
-              {["Course Title", "Source", "Domain", "Level", "Duration", "Enrolled", "Completion", "Status", "Actions"].map((h) => (
-                <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontSize: 12, fontWeight: 600, color: C.muted, letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
-                  {h}
+        <div className="overflow-x-auto w-full">
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 840 }}>
+            <thead>
+              <tr style={{ background: C.bg, borderBottom: `1px solid ${C.border}` }}>
+                <th style={{ width: 40, padding: "12px 14px" }}>
+                  <input type="checkbox" checked={selected.length === filtered.length && filtered.length > 0} onChange={toggleAll} />
                 </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.length === 0 ? (
-              <tr>
-                <td colSpan={9} style={{ padding: "32px", textAlign: "center", color: C.muted, fontSize: 14 }}>
-                  No courses found matching the selected filters.
-                </td>
+                {["Course Title", "Source", "Domain", "Level", "Duration", "Enrolled", "Completion", "Status", "Actions"].map((h) => (
+                  <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontSize: 12, fontWeight: 600, color: C.muted, letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
+                    {h}
+                  </th>
+                ))}
               </tr>
-            ) : (
-              filtered.map((c, i) => (
-                <tr
-                  key={c.id}
-                  style={{
-                    borderBottom: i < filtered.length - 1 ? `1px solid ${C.border}` : "none",
-                    background: selected.includes(c.id) ? "#F0EDE4" : "transparent",
-                    transition: "background 0.15s",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!selected.includes(c.id)) e.currentTarget.style.background = "#FAF8F4";
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!selected.includes(c.id)) e.currentTarget.style.background = "transparent";
-                  }}
-                >
-                  <td style={{ padding: "12px 14px" }}>
-                    <input type="checkbox" checked={selected.includes(c.id)} onChange={() => toggleSelect(c.id)} />
-                  </td>
-                  <td style={{ padding: "12px 14px", fontSize: 13, fontWeight: 600, maxWidth: 260 }}>
-                    <div style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: C.dark }}>{c.title}</div>
-                    <div style={{ fontSize: 11, color: C.muted, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.instructor}</div>
-                  </td>
-                  <td style={{ padding: "12px 14px" }}>
-                    <span
-                      style={{
-                        background: c.source === "Standard" ? "#E8F0FE" : "#F3EDE0",
-                        color: c.source === "Standard" ? "#1A56DB" : C.s2,
-                        borderRadius: 6,
-                        padding: "3px 8px",
-                        fontSize: 12,
-                        fontWeight: 600,
-                      }}
-                    >
-                      {c.source}
-                    </span>
-                  </td>
-                  <td style={{ padding: "12px 14px", fontSize: 13 }}>{c.domain}</td>
-                  <td style={{ padding: "12px 14px", fontSize: 13, color: C.muted }}>{c.level}</td>
-                  <td style={{ padding: "12px 14px", fontSize: 13 }}>{c.duration}</td>
-                  <td style={{ padding: "12px 14px", fontSize: 13, fontWeight: 600 }}>{c.enrolled.toLocaleString()}</td>
-                  <td style={{ padding: "12px 14px", minWidth: 120 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <div style={{ flex: 1, height: 6, borderRadius: 3, background: C.border, overflow: "hidden" }}>
-                        <div
-                          style={{
-                            height: "100%",
-                            width: `${c.completion}%`,
-                            background: c.completion >= 80 ? C.s1 : c.completion >= 50 ? C.s2 : C.s4,
-                            borderRadius: 3,
-                          }}
-                        />
-                      </div>
-                      <span style={{ fontSize: 12, color: C.muted }}>{c.completion}%</span>
-                    </div>
-                  </td>
-                  <td style={{ padding: "12px 14px" }}>
-                    <span style={{ ...STATUS_STYLE[c.status], padding: "3px 10px", borderRadius: 20, fontSize: 12, fontWeight: 600 }}>
-                      {c.status}
-                    </span>
-                  </td>
-                  <td style={{ padding: "12px 14px" }}>
-                    <div style={{ display: "flex", gap: 6 }}>
-                      <button
-                        onClick={() => setPreviewingCourse(c)}
-                        style={{ background: "transparent", border: `1px solid ${C.border}`, borderRadius: 6, padding: "4px 8px", fontSize: 11, color: C.dark, cursor: "pointer", fontFamily: FONT.body }}
-                      >
-                        Preview
-                      </button>
-                      <button
-                        onClick={() => setEditingCourse(c)}
-                        style={{ background: "transparent", border: `1px solid ${C.border}`, borderRadius: 6, padding: "4px 8px", fontSize: 11, color: C.dark, cursor: "pointer", fontFamily: FONT.body }}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleToggleArchive(c)}
-                        style={{ background: "transparent", border: `1px solid ${C.border}`, borderRadius: 6, padding: "4px 8px", fontSize: 11, color: C.muted, cursor: "pointer", fontFamily: FONT.body }}
-                      >
-                        {c.status === "Archived" ? "Restore" : "Archive"}
-                      </button>
-                      <button
-                        onClick={() => setDeletingCourseId(c.id)}
-                        style={{ background: "transparent", border: `1px solid ${C.border}`, borderRadius: 6, padding: "4px 8px", fontSize: 11, color: C.s4, cursor: "pointer", fontFamily: FONT.body }}
-                      >
-                        Delete
-                      </button>
-                    </div>
+            </thead>
+            <tbody>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={9} style={{ padding: "32px", textAlign: "center", color: C.muted, fontSize: 14 }}>
+                    No courses found matching the selected filters.
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                filtered.map((c, i) => (
+                  <tr
+                    key={c.id}
+                    style={{
+                      borderBottom: i < filtered.length - 1 ? `1px solid ${C.border}` : "none",
+                      background: selected.includes(c.id) ? "#F0EDE4" : "transparent",
+                      transition: "background 0.15s",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!selected.includes(c.id)) e.currentTarget.style.background = "#FAF8F4";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!selected.includes(c.id)) e.currentTarget.style.background = "transparent";
+                    }}
+                  >
+                    <td style={{ padding: "12px 14px" }}>
+                      <input type="checkbox" checked={selected.includes(c.id)} onChange={() => toggleSelect(c.id)} />
+                    </td>
+                    <td style={{ padding: "12px 14px", fontSize: 13, fontWeight: 600, maxWidth: 260 }}>
+                      <div style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: C.dark }}>{c.title}</div>
+                      <div style={{ fontSize: 11, color: C.muted, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.instructor}</div>
+                    </td>
+                    <td style={{ padding: "12px 14px" }}>
+                      <span
+                        style={{
+                          background: c.source === "Standard" ? "#E8F0FE" : "#F3EDE0",
+                          color: c.source === "Standard" ? "#1A56DB" : C.s2,
+                          borderRadius: 6,
+                          padding: "3px 8px",
+                          fontSize: 12,
+                          fontWeight: 600,
+                        }}
+                      >
+                        {c.source}
+                      </span>
+                    </td>
+                    <td style={{ padding: "12px 14px", fontSize: 13 }}>{c.domain}</td>
+                    <td style={{ padding: "12px 14px", fontSize: 13, color: C.muted }}>{c.level}</td>
+                    <td style={{ padding: "12px 14px", fontSize: 13 }}>{c.duration}</td>
+                    <td style={{ padding: "12px 14px", fontSize: 13, fontWeight: 600 }}>{c.enrolled.toLocaleString()}</td>
+                    <td style={{ padding: "12px 14px", minWidth: 120 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                        <div style={{ flex: 1, height: 6, borderRadius: 3, background: C.border, overflow: "hidden" }}>
+                          <div
+                            style={{
+                              height: "100%",
+                              width: `${c.completion}%`,
+                              background: c.completion >= 80 ? C.s1 : c.completion >= 50 ? C.s2 : C.s4,
+                            }}
+                          />
+                        </div>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: C.dark }}>{c.completion}%</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: "12px 14px" }}>
+                      <span
+                        style={{
+                          ...STATUS_STYLE[c.status],
+                          borderRadius: 6,
+                          padding: "3px 8px",
+                          fontSize: 12,
+                          fontWeight: 600,
+                        }}
+                      >
+                        {c.status}
+                      </span>
+                    </td>
+                    <td style={{ padding: "12px 14px" }}>
+                      <div style={{ display: "flex", gap: 6 }}>
+                        <button
+                          onClick={() => setEditingCourse(c)}
+                          style={{ background: "transparent", border: `1px solid ${C.border}`, borderRadius: 6, padding: "4px 8px", fontSize: 11, color: C.dark, cursor: "pointer", fontFamily: FONT.body }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleToggleArchive(c)}
+                          style={{ background: "transparent", border: `1px solid ${C.border}`, borderRadius: 6, padding: "4px 8px", fontSize: 11, color: C.muted, cursor: "pointer", fontFamily: FONT.body }}
+                        >
+                          {c.status === "Archived" ? "Restore" : "Archive"}
+                        </button>
+                        <button
+                          onClick={() => setDeletingCourseId(c.id)}
+                          style={{ background: "transparent", border: `1px solid ${C.border}`, borderRadius: 6, padding: "4px 8px", fontSize: 11, color: C.s4, cursor: "pointer", fontFamily: FONT.body }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
         <div style={{ padding: "14px 20px", borderTop: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{ fontSize: 13, color: C.muted }}>
             Showing {filtered.length} of {courses.length} courses
@@ -670,8 +673,8 @@ export default function CourseManagement() {
             </div>
 
             <form onSubmit={handleSaveNewCourse} style={{ padding: "24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 16 }}>
-                <div style={{ gridColumn: "span 2" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
+                <div className="sm:col-span-2">
                   <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 4 }}>Course Title *</label>
                   <input
                     required
@@ -823,8 +826,8 @@ export default function CourseManagement() {
             </div>
 
             <div style={{ padding: "24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 16 }}>
-                <div style={{ gridColumn: "span 2" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
+                <div className="sm:col-span-2">
                   <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 4 }}>Course Title</label>
                   <input
                     value={editingCourse.title}

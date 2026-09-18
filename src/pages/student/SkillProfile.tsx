@@ -451,11 +451,7 @@ export default function SkillProfile() {
 
               {/* 3 Metrics Cards */}
               <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: 12,
-                }}
+                className="grid grid-cols-1 sm:grid-cols-3 gap-3"
               >
                 <div
                   style={{
@@ -685,7 +681,7 @@ export default function SkillProfile() {
           </span>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
           {domainBreakdown.map((d) => {
             const lc = levelColor(d.level);
             const pct = Math.round((d.score / d.target) * 100);

@@ -340,7 +340,10 @@ export default function GapAnalysis() {
   }, [displayedMetrics, userSelectedCourses, ragGapCourses]);
 
   return (
-    <div style={{ fontFamily: FONT.body, color: C.dark, padding: "28px 32px" }}>
+    <div
+      className="p-3.5 sm:p-6 lg:p-8"
+      style={{ fontFamily: FONT.body, color: C.dark }}
+    >
       {/* Clean Header without redundant math formula clutter */}
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
         <div>
@@ -393,7 +396,7 @@ export default function GapAnalysis() {
       </div>
 
       {/* Modern High-Impact Visual KPI Cards Strip */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 16, marginBottom: 24 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14, marginBottom: 24 }}>
         {/* Card 1: Benchmark Readiness */}
         <div
           style={{
@@ -450,11 +453,11 @@ export default function GapAnalysis() {
                 borderRadius: 4,
               }}
             >
-              -{avgGap} pts
+              -{avgGap}% Deficit
             </span>
           </div>
-          <div style={{ fontFamily: FONT.display, fontSize: 26, fontWeight: 800, color: avgGap > 20 ? C.s4 : C.accent, margin: "6px 0 0" }}>
-            {avgGap} <span style={{ fontSize: 15, fontWeight: 600 }}>points</span>
+          <div style={{ fontFamily: FONT.display, fontSize: 26, fontWeight: 800, color: C.s4, margin: "6px 0 0" }}>
+            -{avgGap}%
           </div>
         </div>
 
@@ -466,7 +469,7 @@ export default function GapAnalysis() {
             borderRadius: 12,
             padding: "18px 20px",
             boxShadow: "0 2px 6px rgba(0,0,0,0.03)",
-            borderTop: `3px solid ${C.s4}`,
+            borderTop: `3px solid ${criticalCount > 0 ? C.s4 : C.s1}`,
           }}
         >
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -514,14 +517,9 @@ export default function GapAnalysis() {
 
       {/* Visual Analysis Tab Selector Navigation */}
       <div
+        className="flex flex-wrap sm:flex-nowrap overflow-x-auto max-w-full gap-2 mb-5 p-1 rounded-xl"
         style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          marginBottom: 20,
           background: C.surfaceAlt,
-          padding: "4px 6px",
-          borderRadius: 10,
           border: `1px solid ${C.border}`,
           width: "fit-content",
         }}
@@ -554,7 +552,7 @@ export default function GapAnalysis() {
       </div>
 
       {/* Visual Analytics Grid: Row 1 (Radar Polygon & Dual-Bar Comparison) */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.25fr 1.35fr", gap: 20, marginBottom: 24 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1.35fr] gap-5 mb-6">
         {/* Chart 1: Multi-Axis Competency Radar Chart */}
         <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: 24, boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
@@ -678,7 +676,7 @@ export default function GapAnalysis() {
       </div>
 
       {/* Visual Analytics Grid: Row 2 (Severity Distribution Donut & Learning ROI Efficiency Chart) */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1.5fr", gap: 20, marginBottom: 24 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.5fr] gap-5 mb-6">
         {/* Chart 3: Deficit Severity Donut Breakdown */}
         <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: 24, boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}>
           <div style={{ fontFamily: FONT.display, fontSize: 16.5, fontWeight: 700, color: C.dark, marginBottom: 4 }}>
@@ -959,7 +957,7 @@ export default function GapAnalysis() {
       </div>
 
       {/* Two-Column Bottom Row: Gap Matrix Table & Remedial Course Modules */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1.2fr", gap: 20, marginBottom: 28 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1.2fr] gap-5 mb-7">
         {/* Competency Gap Matrix Table */}
         <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: 24, boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
@@ -972,7 +970,8 @@ export default function GapAnalysis() {
             <span style={{ fontSize: 11, color: C.muted, fontWeight: 600 }}>Ranked by Priority</span>
           </div>
 
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5 }}>
+          <div className="table-responsive-container">
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5 }}>
             <thead>
               <tr>
                 {["Domain", "Score", "Benchmark", "Gap", "Severity"].map((h) => (
@@ -1030,6 +1029,7 @@ export default function GapAnalysis() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
 
         {/* Curated Remedial Courses Mapped to Highest Gaps */}

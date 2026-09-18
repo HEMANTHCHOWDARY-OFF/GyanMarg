@@ -362,7 +362,7 @@ export default function CompetencyAnalytics() {
       </div>
 
       {/* Two Charts */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 24 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
         <div style={{ background: C.surface, borderRadius: 12, padding: "20px 24px", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: `1px solid ${C.border}` }}>
           <div style={{ fontFamily: FONT.display, fontSize: 15, fontWeight: 600, marginBottom: 16 }}>
             Learning Progression Curves ({dateRange})
@@ -411,7 +411,7 @@ export default function CompetencyAnalytics() {
 
       {/* Interactive Gap Analysis Matrix Table */}
       <div style={{ background: C.surface, borderRadius: 12, padding: "20px 24px", marginBottom: 24, boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: `1px solid ${C.border}` }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, flexWrap: "wrap", gap: 10 }}>
           <div>
             <div style={{ fontFamily: FONT.display, fontSize: 16, fontWeight: 700, color: C.dark }}>
               Multi-Stream Competency Gap Matrix
@@ -423,7 +423,8 @@ export default function CompetencyAnalytics() {
           <span style={{ fontSize: 12, color: C.accent, fontWeight: 600 }}>👆 Click Any Domain to Inspect</span>
         </div>
 
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <div className="overflow-x-auto w-full">
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 640 }}>
           <thead>
             <tr style={{ borderBottom: `1px solid ${C.border}`, background: C.bg }}>
               <th style={{ textAlign: "left", padding: "10px 14px", fontSize: 12, fontWeight: 600, color: C.muted }}>Domain Area</th>
@@ -476,7 +477,8 @@ export default function CompetencyAnalytics() {
             })}
           </tbody>
         </table>
-        <div style={{ marginTop: 14, display: "flex", gap: 16, fontSize: 12, color: C.muted }}>
+        </div>
+        <div style={{ marginTop: 14, display: "flex", gap: 16, fontSize: 12, color: C.muted, flexWrap: "wrap" }}>
           <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <span style={{ width: 10, height: 10, background: C.s1, borderRadius: 2 }} /> 80+ Benchmark Met
           </span>
@@ -490,7 +492,7 @@ export default function CompetencyAnalytics() {
       </div>
 
       {/* Top Performers + Needs Attention */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
         <div style={{ background: C.surface, borderRadius: 12, padding: "20px 24px", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: `1px solid ${C.border}` }}>
           <div style={{ fontFamily: FONT.display, fontSize: 15, fontWeight: 600, marginBottom: 14, color: C.s1 }}>
             Top Performing Scholars & Officers
@@ -571,7 +573,7 @@ export default function CompetencyAnalytics() {
             </div>
 
             <div style={{ padding: "24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 20, textAlign: "center" }}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5 text-center">
                 <div style={{ background: C.bg, padding: "10px", borderRadius: 8 }}>
                   <div style={{ fontSize: 10, color: C.muted }}>Benchmark</div>
                   <div style={{ fontSize: 16, fontWeight: 700, color: C.dark, marginTop: 2 }}>{selectedDomain.benchmark}%</div>

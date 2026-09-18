@@ -9,6 +9,8 @@ import Landing              from "@/pages/Landing";
 import Login                from "@/pages/Login";
 import Register             from "@/pages/Register";
 import Onboarding           from "@/pages/Onboarding";
+import PrivacyPolicy        from "@/pages/PrivacyPolicy";
+import TermsOfUse           from "@/pages/TermsOfUse";
 
 import StudentDashboard     from "@/pages/student/Dashboard";
 import InterestedCourses    from "@/pages/student/InterestedCourses";
@@ -41,6 +43,8 @@ export const router = createBrowserRouter([
       { path: "/login",    Component: Login      },
       { path: "/register", Component: Register   },
       { path: "/onboarding", Component: Onboarding },
+      { path: "/privacy",  Component: PrivacyPolicy },
+      { path: "/terms",    Component: TermsOfUse },
     ],
   },
   {

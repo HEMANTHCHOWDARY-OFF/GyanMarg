@@ -791,7 +791,8 @@ export default function StudentManagement() {
 
       {/* Table */}
       <div style={{ background: C.surface, borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.06)", overflow: "hidden", border: `1px solid ${C.border}` }}>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <div className="overflow-x-auto w-full">
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 840 }}>
           <thead>
             <tr style={{ background: C.bg, borderBottom: `1px solid ${C.border}` }}>
               <th style={{ width: 40, padding: "12px 14px" }}>
@@ -941,6 +942,7 @@ export default function StudentManagement() {
             )}
           </tbody>
         </table>
+        </div>
 
         {/* Working Pagination */}
         <div style={{ padding: "14px 20px", borderTop: `1px solid ${C.border}`, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
@@ -1039,8 +1041,8 @@ export default function StudentManagement() {
             </div>
 
             <form onSubmit={handleAddStudent} style={{ padding: "24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-                <div style={{ gridColumn: "span 2" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div className="sm:col-span-2">
                   <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 6 }}>Full Name *</label>
                   <input
                     required
@@ -1077,7 +1079,7 @@ export default function StudentManagement() {
                   </select>
                 </div>
 
-                <div style={{ gridColumn: "span 2" }}>
+                <div className="sm:col-span-2">
                   <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 6 }}>Institution / College / Department *</label>
                   <input
                     required
@@ -1109,7 +1111,7 @@ export default function StudentManagement() {
                   />
                 </div>
 
-                <div style={{ gridColumn: "span 2" }}>
+                <div className="sm:col-span-2">
                   <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 6 }}>Initial Course Assignment</label>
                   <select
                     value={newStudent.initialCourse}
@@ -1196,7 +1198,7 @@ export default function StudentManagement() {
             <div style={{ padding: "24px", overflowY: "auto" }}>
               {/* Profile Details */}
               <div style={{ background: C.bg, borderRadius: 10, padding: "16px", marginBottom: 20 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, fontSize: 13 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ fontSize: 13 }}>
                   <div>
                     <span style={{ color: C.muted }}>Program / Specialization:</span> <strong>{viewingStudent.program}</strong>
                   </div>
@@ -1220,7 +1222,7 @@ export default function StudentManagement() {
                 <div style={{ fontSize: 14, fontWeight: 700, color: C.dark, marginBottom: 12 }}>
                   Demonstrated Competency Profile (Academic & Applied)
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {viewingStudent.competencyScores.map((c) => (
                     <div key={c.domain} style={{ background: C.bg, borderRadius: 8, padding: "10px 12px", border: `1px solid ${C.border}` }}>
                       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, marginBottom: 6 }}>
@@ -1320,7 +1322,7 @@ export default function StudentManagement() {
                   />
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 4 }}>Learner Track</label>
                     <select
@@ -1362,7 +1364,7 @@ export default function StudentManagement() {
                   />
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 4 }}>Status</label>
                     <select

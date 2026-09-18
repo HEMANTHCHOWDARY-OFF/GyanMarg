@@ -1,0 +1,21 @@
+# GyanMarg AI Robots Configuration
+# https://gyanmarg.ai/robots.txt
+
+User-agent: *
+# Allow crawling of public content and legal documentation
+Allow: /$
+Allow: /privacy
+Allow: /terms
+Allow: /llms.txt
+Allow: /sitemap.xml
+
+# Disallow private user dashboards, administrative panels, and authentication flows
+Disallow: /login
+Disallow: /register
+Disallow: /onboarding
+Disallow: /student/
+Disallow: /admin/
+Disallow: /api/
+
+# Production Sitemap location
+Sitemap: https://gyanmarg.ai/sitemap.xml

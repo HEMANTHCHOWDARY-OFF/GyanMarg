@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
+import SEO, { DEFAULT_SITE_TITLE, DEFAULT_SITE_DESCRIPTION } from "@/components/SEO";
 import {
   AreaChart,
   Area,
@@ -380,6 +381,7 @@ export default function Landing() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [pipelineView, setPipelineView] = useState<"circuit" | "vertical">("circuit");
   const [hoveredStage, setHoveredStage] = useState<number | null>(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
     <div
@@ -390,6 +392,36 @@ export default function Landing() {
         overflowX: "hidden",
       }}
     >
+      <SEO
+        title={DEFAULT_SITE_TITLE}
+        description={DEFAULT_SITE_DESCRIPTION}
+        canonicalPath="/"
+        ogType="website"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "EducationalOrganization",
+              "@id": "https://gyanmarg.ai/#organization",
+              "name": "GyanMarg AI",
+              "url": "https://gyanmarg.ai",
+              "logo": "https://gyanmarg.ai/gyanmarg_logo.jpg",
+              "description": "AI-assisted competency development, diagnostic assessment, and adaptive learning platform.",
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://gyanmarg.ai/#website",
+              "url": "https://gyanmarg.ai",
+              "name": "GyanMarg AI",
+              "description": "Personalized Learning & Competency Development Platform",
+              "publisher": {
+                "@id": "https://gyanmarg.ai/#organization",
+              },
+            },
+          ],
+        }}
+      />
+
       {/* ── 1. STICKY NAVBAR ─────────────────────────────────────────────── */}
       <nav
         style={{
@@ -402,7 +434,7 @@ export default function Landing() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          height: 96,
+          minHeight: 70,
           backdropFilter: "blur(12px)",
           boxShadow: "0 2px 12px rgba(0, 0, 0, 0.35)",
         }}
@@ -412,11 +444,10 @@ export default function Landing() {
           style={{
             fontFamily: "'Unbounded', sans-serif",
             fontWeight: 800,
-            fontSize: 28,
             color: "#FFFFFF",
             display: "flex",
             alignItems: "center",
-            gap: 14,
+            gap: 10,
             cursor: "pointer",
             letterSpacing: "-0.02em",
           }}
@@ -426,24 +457,24 @@ export default function Landing() {
             src="/gyanmarg_logo.jpg"
             alt="GyanMarg AI Logo"
             style={{
-              width: 52,
-              height: 52,
+              width: 42,
+              height: 42,
               borderRadius: "50%",
               objectFit: "cover",
               border: "2px solid rgba(198, 133, 27, 0.75)",
-              boxShadow: "0 0 18px rgba(198, 133, 27, 0.45)",
+              boxShadow: "0 0 14px rgba(198, 133, 27, 0.45)",
             }}
           />
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ color: "#FFFFFF" }}>GyanMarg</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{ color: "#FFFFFF", fontSize: "clamp(18px, 2.5vw, 24px)" }}>GyanMarg</span>
             <span
               style={{
                 color: C.accent,
                 background: "rgba(198, 133, 27, 0.22)",
                 border: "1.5px solid rgba(198, 133, 27, 0.5)",
-                borderRadius: 8,
-                padding: "2px 10px",
-                fontSize: 14,
+                borderRadius: 6,
+                padding: "1px 7px",
+                fontSize: 12,
                 fontWeight: 800,
                 letterSpacing: "0.04em",
                 fontFamily: "'Unbounded', sans-serif",
@@ -454,26 +485,25 @@ export default function Landing() {
           </div>
         </div>
 
-
-
-        {/* Right buttons: Direct Module Access & Auth */}
-        <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
+        {/* Desktop Buttons */}
+        <div className="hidden lg:flex" style={{ gap: 12, alignItems: "center" }}>
           {/* Direct Student Portal button */}
           <button
             onClick={() => navigate("/student/dashboard")}
             style={{
               fontFamily: FONT.body,
               fontWeight: 700,
-              fontSize: 15.5,
+              fontSize: 14,
               color: "#fff",
               background: "rgba(42, 79, 58, 0.7)",
               border: "1.5px solid rgba(110, 185, 155, 0.45)",
               borderRadius: 24,
-              padding: "13px 26px",
+              padding: "10px 20px",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              minHeight: 44,
               transition: "all 0.2s",
               boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             }}
@@ -495,16 +525,17 @@ export default function Landing() {
             style={{
               fontFamily: language === "hi" ? "'Noto Sans Devanagari', 'Hind', sans-serif" : FONT.body,
               fontWeight: 700,
-              fontSize: 15.5,
+              fontSize: 14,
               color: "#fff",
               background: "rgba(36, 48, 70, 0.7)",
               border: "1.5px solid rgba(148, 180, 220, 0.45)",
               borderRadius: 24,
-              padding: "13px 26px",
+              padding: "10px 20px",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              minHeight: 44,
               transition: "all 0.2s",
               boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             }}
@@ -526,16 +557,17 @@ export default function Landing() {
             style={{
               fontFamily: FONT.body,
               fontWeight: 700,
-              fontSize: 14.5,
+              fontSize: 13.5,
               color: C.accent,
               background: "rgba(198, 133, 27, 0.16)",
               border: `1.5px solid ${C.accent}60`,
               borderRadius: 24,
-              padding: "11px 20px",
+              padding: "9px 18px",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               gap: 8,
+              minHeight: 44,
               transition: "all 0.2s",
               boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             }}
@@ -559,13 +591,14 @@ export default function Landing() {
             style={{
               fontFamily: FONT.body,
               fontWeight: 700,
-              fontSize: 15.5,
+              fontSize: 14,
               color: "#FFFFFF",
               background: "rgba(255, 255, 255, 0.08)",
               border: "1.5px solid rgba(255, 255, 255, 0.24)",
               borderRadius: 24,
-              padding: "13px 26px",
+              padding: "10px 22px",
               cursor: "pointer",
+              minHeight: 44,
               transition: "all 0.2s",
               boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             }}
@@ -579,18 +612,192 @@ export default function Landing() {
             {t("sign_in")}
           </button>
         </div>
+
+        {/* Mobile Nav Trigger & Compact Controls */}
+        <div className="flex lg:hidden" style={{ alignItems: "center", gap: 10 }}>
+          <LanguageSelector variant="compact" />
+          <button
+            onClick={() => setMobileNavOpen(true)}
+            aria-label="Open navigation menu"
+            style={{
+              background: "rgba(255,255,255,0.08)",
+              border: "1.5px solid rgba(255,255,255,0.25)",
+              borderRadius: 8,
+              width: 40,
+              height: 40,
+              color: "#FFFFFF",
+              fontSize: 20,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+          >
+            ☰
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Slide-Over Drawer */}
+      {mobileNavOpen && (
+        <div
+          className="lg:hidden"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 10000,
+            background: "rgba(14, 24, 19, 0.75)",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)",
+          }}
+          onClick={() => setMobileNavOpen(false)}
+        >
+          <div
+            style={{
+              position: "absolute",
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: 310,
+              maxWidth: "88vw",
+              background: "#0E1813",
+              borderLeft: "1px solid rgba(255,255,255,0.12)",
+              padding: "24px 20px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+              boxShadow: "-8px 0 32px rgba(0,0,0,0.6)",
+              overflowY: "auto",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: 14, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <img src="/gyanmarg_logo.jpg" alt="Logo" style={{ width: 32, height: 32, borderRadius: "50%" }} />
+                <span style={{ color: "#fff", fontWeight: 700, fontSize: 16 }}>GyanMarg AI</span>
+              </div>
+              <button
+                onClick={() => setMobileNavOpen(false)}
+                aria-label="Close menu"
+                style={{
+                  background: "rgba(255,255,255,0.08)",
+                  border: "none",
+                  color: "#fff",
+                  width: 32,
+                  height: 32,
+                  borderRadius: 6,
+                  cursor: "pointer",
+                  fontSize: 16,
+                }}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 6 }}>
+              <button
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  navigate("/student/dashboard");
+                }}
+                style={{
+                  padding: "13px 18px",
+                  borderRadius: 10,
+                  background: "rgba(42, 79, 58, 0.85)",
+                  border: "1.5px solid rgba(110, 185, 155, 0.5)",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: 14.5,
+                  textAlign: "left",
+                  cursor: "pointer",
+                  minHeight: 46,
+                }}
+              >
+                🎓 {t("student_portal_btn")}
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  navigate("/admin/dashboard");
+                }}
+                style={{
+                  padding: "13px 18px",
+                  borderRadius: 10,
+                  background: "rgba(36, 48, 70, 0.85)",
+                  border: "1.5px solid rgba(148, 180, 220, 0.5)",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: 14.5,
+                  textAlign: "left",
+                  cursor: "pointer",
+                  minHeight: 46,
+                }}
+              >
+                🏛 {t("admin_portal_btn")}
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  startTutorial();
+                }}
+                style={{
+                  padding: "13px 18px",
+                  borderRadius: 10,
+                  background: "rgba(198, 133, 27, 0.16)",
+                  border: `1.5px solid ${C.accent}60`,
+                  color: C.accent,
+                  fontWeight: 700,
+                  fontSize: 14,
+                  textAlign: "left",
+                  cursor: "pointer",
+                  minHeight: 46,
+                }}
+              >
+                ⚡ {t("take_tour")}
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  navigate("/login");
+                }}
+                style={{
+                  padding: "13px 18px",
+                  borderRadius: 10,
+                  background: C.accent,
+                  border: "none",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: 14.5,
+                  textAlign: "center",
+                  cursor: "pointer",
+                  minHeight: 46,
+                  boxShadow: "0 2px 8px rgba(198, 133, 27, 0.3)",
+                }}
+              >
+                {t("sign_in")}
+              </button>
+
+              <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 14, marginTop: 8 }}>
+                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginBottom: 10 }}>Select Language:</div>
+                <LanguageSelector variant="navbar" />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── 2. HERO SECTION ──────────────────────────────────────────────── */}
       <section
+        className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]"
         style={{
           background: C.bg,
-          padding: "64px 5% 64px",
-          display: "grid",
-          gridTemplateColumns: "1.1fr 0.9fr",
-          gap: 48,
+          padding: "44px 5% 56px",
+          gap: 36,
           alignItems: "center",
-          minHeight: "86vh",
+          minHeight: "80vh",
         }}
       >
         {/* Left */}
@@ -3458,23 +3665,67 @@ export default function Landing() {
           >
             © 2026 GyanMarg AI. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: 24 }}>
-            {["Privacy Policy", "Terms of Use", "Accessibility", "Documentation"].map(
-              (link) => (
-                <a
-                  key={link}
-                  href="#"
-                  style={{
-                    fontFamily: FONT.body,
-                    fontSize: 13,
-                    color: "#55785e",
-                    textDecoration: "none",
-                  }}
-                >
-                  {link}
-                </a>
-              )
-            )}
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+            <Link
+              to="/privacy"
+              style={{
+                fontFamily: FONT.body,
+                fontSize: 13,
+                color: "#7a9e88",
+                textDecoration: "none",
+                transition: "color 0.15s ease",
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#fff")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#7a9e88")}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms"
+              style={{
+                fontFamily: FONT.body,
+                fontSize: 13,
+                color: "#7a9e88",
+                textDecoration: "none",
+                transition: "color 0.15s ease",
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#fff")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#7a9e88")}
+            >
+              Terms of Use
+            </Link>
+            <a
+              href="/sitemap.xml"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: FONT.body,
+                fontSize: 13,
+                color: "#7a9e88",
+                textDecoration: "none",
+                transition: "color 0.15s ease",
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#fff")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#7a9e88")}
+            >
+              Sitemap
+            </a>
+            <a
+              href="/llms.txt"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: FONT.body,
+                fontSize: 13,
+                color: "#7a9e88",
+                textDecoration: "none",
+                transition: "color 0.15s ease",
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#fff")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#7a9e88")}
+            >
+              AI Documentation
+            </a>
           </div>
         </div>
       </footer>

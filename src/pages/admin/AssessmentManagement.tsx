@@ -463,11 +463,12 @@ export default function AssessmentManagement() {
 
       {/* Tabs Bar */}
       <div
+        className="overflow-x-auto w-full flex items-center"
         style={{
-          display: "flex",
           borderBottom: `1px solid ${C.border}`,
           marginBottom: 24,
           gap: 8,
+          scrollbarWidth: "none",
         }}
       >
         {[
@@ -491,6 +492,8 @@ export default function AssessmentManagement() {
                 fontWeight: isActive ? 700 : 500,
                 color: isActive ? C.dark : C.muted,
                 cursor: "pointer",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
                 transition: "all 0.2s ease",
               }}
             >
@@ -786,14 +789,7 @@ export default function AssessmentManagement() {
                     </div>
 
                     {/* Options list */}
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: 8,
-                        marginBottom: 14,
-                      }}
-                    >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3.5">
                       {q.options.map((opt, oIdx) => {
                         const isCorrect = oIdx === q.correct;
                         return (
@@ -934,7 +930,8 @@ export default function AssessmentManagement() {
               boxShadow: "0 2px 6px rgba(0,0,0,0.03)",
             }}
           >
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <div className="overflow-x-auto w-full">
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 720 }}>
               <thead>
                 <tr style={{ background: C.surfaceAlt, borderBottom: `1px solid ${C.border}` }}>
                   {[
@@ -1068,6 +1065,7 @@ export default function AssessmentManagement() {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       )}

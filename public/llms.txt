@@ -1,0 +1,39 @@
+# GyanMarg AI
+
+> GyanMarg AI is an AI-assisted competency development, diagnostic assessment, and adaptive learning platform. It empowers learners to assess baseline proficiencies, quantify multi-axis skill gaps, and follow dynamically sequenced curriculum roadmaps grounded in syllabus reference materials.
+
+## About
+
+GyanMarg AI bridges the gap between static curriculum delivery and personalized competency growth. By combining diagnostic evaluations, interactive knowledge checks, and curriculum-grounded AI recommendations, the platform delivers closed-loop learning experiences for university scholars, competitive examination aspirants, and civil services learners.
+
+## Core Capabilities
+
+- **Diagnostic Assessments**: Standardized baseline assessments evaluating domain, functional, and analytical competencies against structured frameworks.
+- **Competency-Gap Analysis**: Multi-axis proficiency quantification and radar benchmarking isolating exact conceptual deficits.
+- **Adaptive Learning Paths**: Dynamically sequenced visual milestone pathways connecting foundational courses to remediate diagnosed gaps.
+- **Curated Course Discovery**: Catalog of domain-aligned courses featuring structured modules, syllabus chapters, and learning outcomes.
+- **Interactive Learning Interface**: Instructional lesson viewer with syllabus-grounded knowledge checks and verifiable page-level document citations.
+- **Instant Evaluation & Feedback**: Immediate scoring with detailed rationales and verified competency growth indicators.
+- **AI Learning Mentor**: Contextual study assistance grounded in official course materials.
+- **Learner Progress Analytics**: Live composite skill health scoring, assessment history, and achievement milestones.
+- **Institutional Admin Console**: Cohort heatmaps, competency distribution analytics, student directories, and single-action reporting in Excel/CSV.
+
+## Learner Journey
+
+1. **Discovery**: Exploration of competency frameworks and specialization tracks.
+2. **Assessment**: Adaptive diagnostic evaluation to gauge baseline skills.
+3. **Gap Analysis**: Automated quantification of strengths and skill deficits.
+4. **Learning Path**: Dynamic generation of a targeted milestone study roadmap.
+5. **Courses**: Engaging with modular course lessons and cited knowledge checks.
+6. **Progress & Re-assessment**: Verified competency growth, badge achievements, and continuous recalibration.
+
+## Public Resources
+
+- **Homepage**: https://gyanmarg.ai/
+- **Privacy Policy**: https://gyanmarg.ai/privacy
+- **Terms of Use**: https://gyanmarg.ai/terms
+- **XML Sitemap**: https://gyanmarg.ai/sitemap.xml
+
+## AI Transparency & Disclaimers
+
+GyanMarg AI uses artificial intelligence to assist with personalized recommendations, roadmap sequencing, question synthesis, and educational mentorship. All AI-generated outputs are supplementary educational aids and may contain occasional inaccuracies. Learners should verify important concepts against primary textbooks and official publications. The platform does not guarantee official certification, government appointment, or examination outcomes.

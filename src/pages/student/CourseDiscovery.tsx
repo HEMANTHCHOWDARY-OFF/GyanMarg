@@ -98,12 +98,14 @@ export default function CourseDiscovery() {
   const highestGapMetric = gapMetrics[0];
 
   return (
-    <div style={{ padding: "28px 32px", background: C.bg, minHeight: "100vh", fontFamily: FONT.body, display: "flex", gap: 24 }}>
+    <div
+      className="flex flex-col lg:flex-row gap-6 p-3.5 sm:p-6 lg:p-8"
+      style={{ background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}
+    >
       {/* Left Filter Sidebar */}
       <aside
+        className="w-full lg:w-64 shrink-0"
         style={{
-          width: 250,
-          flexShrink: 0,
           background: C.surface,
           border: `1px solid ${C.border}`,
           borderRadius: 14,
@@ -490,7 +492,7 @@ export default function CourseDiscovery() {
         </div>
 
         {/* Course Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 18 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4.5">
           {catalogResult.courses.map((course) => {
             const isSelected = selectedCourseIds.includes(course.id);
             const isRec = course.aiRecommended;

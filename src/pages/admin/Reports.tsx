@@ -441,7 +441,7 @@ export default function Reports() {
 
         {/* Competency Report Preview */}
         {activeReport === 0 && (
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 24 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-6">
             <div>
               <div style={{ fontSize: 13, color: C.muted, marginBottom: 10 }}>Domain Scores ({dept})</div>
               <ResponsiveContainer width="100%" height={220}>
@@ -456,28 +456,30 @@ export default function Reports() {
             </div>
             <div>
               <div style={{ fontSize: 13, color: C.muted, marginBottom: 10 }}>Summary Rubric Table</div>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-                <thead>
-                  <tr style={{ borderBottom: `1px solid ${C.border}` }}>
-                    {["Domain", "Score", "Evaluation"].map((h) => (
-                      <th key={h} style={{ textAlign: "left", padding: "8px 10px", color: C.muted, fontWeight: 600 }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {dynamicCompetencyData.map((r) => (
-                    <tr key={r.domain} style={{ borderBottom: `1px solid ${C.border}` }}>
-                      <td style={{ padding: "8px 10px" }}>{r.domain}</td>
-                      <td style={{ padding: "8px 10px", fontWeight: 600 }}>{r.score}%</td>
-                      <td style={{ padding: "8px 10px" }}>
-                        <span style={{ color: r.score >= 75 ? C.s1 : r.score >= 60 ? C.s2 : C.s4, fontWeight: 600, fontSize: 11 }}>
-                          {r.score >= 75 ? "Benchmark Met" : r.score >= 60 ? "Average" : "Critical Gap"}
-                        </span>
-                      </td>
+              <div className="overflow-x-auto w-full">
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                  <thead>
+                    <tr style={{ borderBottom: `1px solid ${C.border}` }}>
+                      {["Domain", "Score", "Evaluation"].map((h) => (
+                        <th key={h} style={{ textAlign: "left", padding: "8px 10px", color: C.muted, fontWeight: 600 }}>{h}</th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {dynamicCompetencyData.map((r) => (
+                      <tr key={r.domain} style={{ borderBottom: `1px solid ${C.border}` }}>
+                        <td style={{ padding: "8px 10px" }}>{r.domain}</td>
+                        <td style={{ padding: "8px 10px", fontWeight: 600 }}>{r.score}%</td>
+                        <td style={{ padding: "8px 10px" }}>
+                          <span style={{ color: r.score >= 75 ? C.s1 : r.score >= 60 ? C.s2 : C.s4, fontWeight: 600, fontSize: 11 }}>
+                            {r.score >= 75 ? "Benchmark Met" : r.score >= 60 ? "Average" : "Critical Gap"}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}
@@ -485,7 +487,7 @@ export default function Reports() {
         {/* Enrollment Report Preview */}
         {activeReport === 1 && (
           <div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14, marginBottom: 18 }}>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-4">
               {[{ label: "Total Enrolled", value: "7,920" }, { label: `${month} Cohort`, value: "1,680" }, { label: "Growth Rate", value: "+12.5%" }].map((s) => (
                 <div key={s.label} style={{ background: C.bg, borderRadius: 10, padding: "14px 18px", border: `1px solid ${C.border}` }}>
                   <div style={{ fontSize: 12, color: C.muted }}>{s.label}</div>
@@ -507,7 +509,7 @@ export default function Reports() {
 
         {/* Completion Report Preview */}
         {activeReport === 2 && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <ResponsiveContainer width="100%" height={240}>
               <PieChart>
                 <Pie data={BASE_COMPLETION_PIE} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={95} label={({ name, value }) => `${name}: ${value}%`}>
@@ -518,33 +520,35 @@ export default function Reports() {
                 <Tooltip contentStyle={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 8 }} />
               </PieChart>
             </ResponsiveContainer>
-            <table style={{ fontSize: 12, borderCollapse: "collapse", alignSelf: "center" }}>
-              <thead>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}>
-                  {["Learner Cohort", "Completion Rate", "Certified Students"].map((h) => (
-                    <th key={h} style={{ textAlign: "left", padding: "8px 12px", color: C.muted, fontWeight: 600 }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {BASE_COMPLETION_PIE.map((r, i) => (
-                  <tr key={r.name} style={{ borderBottom: `1px solid ${C.border}` }}>
-                    <td style={{ padding: "8px 12px", display: "flex", alignItems: "center", gap: 6 }}>
-                      <span style={{ width: 8, height: 8, borderRadius: "50%", background: PIE_COLORS[i] }} />
-                      {r.name}
-                    </td>
-                    <td style={{ padding: "8px 12px", fontWeight: 600 }}>{r.value}%</td>
-                    <td style={{ padding: "8px 12px", color: C.muted }}>{r.students.toLocaleString()}</td>
+            <div className="overflow-x-auto w-full self-center">
+              <table style={{ width: "100%", fontSize: 12, borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ borderBottom: `1px solid ${C.border}` }}>
+                    {["Learner Cohort", "Completion Rate", "Certified Students"].map((h) => (
+                      <th key={h} style={{ textAlign: "left", padding: "8px 12px", color: C.muted, fontWeight: 600 }}>{h}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {BASE_COMPLETION_PIE.map((r, i) => (
+                    <tr key={r.name} style={{ borderBottom: `1px solid ${C.border}` }}>
+                      <td style={{ padding: "8px 12px", display: "flex", alignItems: "center", gap: 6 }}>
+                        <span style={{ width: 8, height: 8, borderRadius: "50%", background: PIE_COLORS[i] }} />
+                        {r.name}
+                      </td>
+                      <td style={{ padding: "8px 12px", fontWeight: 600 }}>{r.value}%</td>
+                      <td style={{ padding: "8px 12px", color: C.muted }}>{r.students.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 
         {/* Gap Analysis Preview */}
         {activeReport === 3 && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <ResponsiveContainer width="100%" height={260}>
               <RadarChart data={dynamicGapRadar} cx="50%" cy="50%" outerRadius={100}>
                 <PolarGrid stroke={C.border} />
@@ -556,30 +560,32 @@ export default function Reports() {
             </ResponsiveContainer>
             <div style={{ alignSelf: "center" }}>
               <div style={{ fontSize: 13, color: C.muted, marginBottom: 10 }}>Gap Summary ({dept})</div>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-                <thead>
-                  <tr style={{ borderBottom: `1px solid ${C.border}` }}>
-                    {["Domain", "Required", "Actual", "Deficit"].map((h) => (
-                      <th key={h} style={{ textAlign: "left", padding: "8px 10px", color: C.muted, fontWeight: 600 }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {dynamicGapRadar.map((r) => {
-                    const gap = r.required - r.actual;
-                    return (
-                      <tr key={r.domain} style={{ borderBottom: `1px solid ${C.border}` }}>
-                        <td style={{ padding: "8px 10px" }}>{r.domain}</td>
-                        <td style={{ padding: "8px 10px" }}>{r.required}%</td>
-                        <td style={{ padding: "8px 10px" }}>{r.actual}%</td>
-                        <td style={{ padding: "8px 10px", fontWeight: 600, color: gap > 15 ? C.s4 : gap > 0 ? C.s2 : C.s1 }}>
-                          {gap > 0 ? `-${gap}%` : "Met"}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <div className="overflow-x-auto w-full">
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                  <thead>
+                    <tr style={{ borderBottom: `1px solid ${C.border}` }}>
+                      {["Domain", "Required", "Actual", "Deficit"].map((h) => (
+                        <th key={h} style={{ textAlign: "left", padding: "8px 10px", color: C.muted, fontWeight: 600 }}>{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {dynamicGapRadar.map((r) => {
+                      const gap = r.required - r.actual;
+                      return (
+                        <tr key={r.domain} style={{ borderBottom: `1px solid ${C.border}` }}>
+                          <td style={{ padding: "8px 10px" }}>{r.domain}</td>
+                          <td style={{ padding: "8px 10px" }}>{r.required}%</td>
+                          <td style={{ padding: "8px 10px" }}>{r.actual}%</td>
+                          <td style={{ padding: "8px 10px", fontWeight: 600, color: gap > 15 ? C.s4 : gap > 0 ? C.s2 : C.s1 }}>
+                            {gap > 0 ? `-${gap}%` : "Met"}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}
@@ -590,7 +596,8 @@ export default function Reports() {
         <div style={{ padding: "16px 20px", borderBottom: `1px solid ${C.border}`, fontFamily: FONT.display, fontSize: 15, fontWeight: 600 }}>
           Generated Executive Reports & Archive
         </div>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <div className="overflow-x-auto w-full">
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 720 }}>
           <thead>
             <tr style={{ background: C.bg, borderBottom: `1px solid ${C.border}` }}>
               {["Report Name", "Type", "Focus", "Generated", "Format", "Size", "Action"].map((h) => (
@@ -648,6 +655,7 @@ export default function Reports() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       {/* Generate Report Format Selection Modal (Excel & CSV) */}

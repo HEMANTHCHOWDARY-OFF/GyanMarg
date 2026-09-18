@@ -96,11 +96,9 @@ export default function AssessmentResults() {
     <div style={{ fontFamily: FONT.body, color: C.dark }}>
       {/* Success hero */}
       <div
+        className="flex flex-col sm:flex-row items-center gap-5 sm:gap-8 text-center sm:text-left"
         style={{
           ...card,
-          display: "flex",
-          alignItems: "center",
-          gap: 32,
           marginBottom: 24,
           background: "#1B3D29",
           border: "none",
@@ -167,8 +165,8 @@ export default function AssessmentResults() {
         </div>
 
         {/* Text */}
-        <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 mb-2">
             <span
               style={{
                 fontSize: 11,
@@ -205,27 +203,20 @@ export default function AssessmentResults() {
       </div>
 
       {/* 4 stat cards */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 14,
-          marginBottom: 24,
-        }}
-      >
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 mb-6">
         {stats.map((s) => (
-          <div key={s.label} style={{ ...card, textAlign: "center" }}>
+          <div key={s.label} style={{ ...card, textAlign: "center", padding: "16px 14px" }}>
             <div
               style={{
                 fontFamily: FONT.display,
-                fontSize: 26,
+                fontSize: 24,
                 fontWeight: 800,
                 color: s.color,
               }}
             >
               {s.value}
             </div>
-            <div style={{ fontSize: 12, color: C.faint, marginTop: 4 }}>
+            <div style={{ fontSize: 11.5, color: C.faint, marginTop: 4 }}>
               {s.label}
             </div>
           </div>
@@ -233,14 +224,7 @@ export default function AssessmentResults() {
       </div>
 
       {/* Two-column: domain breakdown + insights */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1.1fr 0.9fr",
-          gap: 20,
-          marginBottom: 24,
-        }}
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-5 mb-6">
         {/* Domain breakdown */}
         <div style={card}>
           <div
@@ -345,18 +329,13 @@ export default function AssessmentResults() {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 12,
+                  gap: 10,
                 }}
               >
                 <div
+                  className="w-28 sm:w-44 text-xs font-semibold shrink-0 truncate"
                   style={{
-                    width: 170,
-                    fontSize: 12,
-                    fontWeight: 600,
                     color: C.dark,
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
                   }}
                   title={d.name}
                 >
@@ -387,6 +366,7 @@ export default function AssessmentResults() {
                     fontSize: 12,
                     fontWeight: 700,
                     color: domainColor(d.currentScore),
+                    flexShrink: 0,
                   }}
                 >
                   {d.currentScore}% <span style={{ fontSize: 10, color: C.muted }}>({d.targetBenchmark}%)</span>
@@ -461,13 +441,7 @@ export default function AssessmentResults() {
           </div>
 
           {/* CTA cards */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 12,
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <button
               onClick={() => navigate("/student/gap-analysis")}
               style={{

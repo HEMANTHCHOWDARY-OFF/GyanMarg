@@ -42,7 +42,10 @@ export default function CourseDetails() {
   const instructorAvatar = course.instructor?.avatar || (course.org ? course.org.slice(0, 2).toUpperCase() : "IG");
 
   return (
-    <div style={{ padding: "28px 32px", background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}>
+    <div
+      className="p-3.5 sm:p-6 lg:p-8"
+      style={{ background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}
+    >
       {/* Breadcrumb */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, fontSize: 13, color: C.muted }}>
         <Link to="/student/courses" style={{ color: C.muted, textDecoration: "none" }}>Courses</Link>
@@ -55,7 +58,7 @@ export default function CourseDetails() {
         style={{
           background: "#1B3D29",
           borderRadius: 16,
-          padding: "28px 32px",
+          padding: "24px 28px",
           marginBottom: 28,
           color: "#fff",
           boxShadow: "0 6px 20px rgba(27, 61, 41, 0.2)",
@@ -122,14 +125,14 @@ export default function CourseDetails() {
           Domain: <strong>{course.domain}</strong> · Provider: <strong>{course.org || "iGOT Karmayogi"}</strong>
         </div>
 
-        <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
           {[
             `⏱️ ${course.duration || 6} hours self-paced`,
             `⭐ ${course.rating || 4.8} / 5.0 rating`,
             `🎯 Competency: ${course.domain}`,
             `🏛️ Ministry/Org: ${course.org || "National Civil Service"}`,
           ].map((label) => (
-            <div key={label} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13.5, color: "#fff" }}>
+            <div key={label} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "#fff" }}>
               <span>{label}</span>
             </div>
           ))}
@@ -137,7 +140,7 @@ export default function CourseDetails() {
       </div>
 
       {/* Split Layout */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 24, alignItems: "start" }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
         {/* Left Content */}
         <div>
           {/* Description */}

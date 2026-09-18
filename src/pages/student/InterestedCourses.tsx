@@ -291,16 +291,10 @@ export default function InterestedCourses() {
     >
       {/* Top Header */}
       <header
+        className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 px-4 sm:px-7 py-3 sticky top-0 z-40"
         style={{
           background: C.surface,
           borderBottom: `1px solid ${C.border}`,
-          padding: "14px 28px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          position: "sticky",
-          top: 0,
-          zIndex: 40,
           boxShadow: "0 1px 4px rgba(0,0,0,0.03)",
         }}
       >
@@ -309,14 +303,15 @@ export default function InterestedCourses() {
             src="/gyanmarg_logo.jpg"
             alt="GyanMarg AI Logo"
             style={{
-              width: 38,
-              height: 38,
+              width: 36,
+              height: 36,
               borderRadius: "50%",
               objectFit: "cover",
               border: "1.5px solid rgba(198, 133, 27, 0.7)",
+              flexShrink: 0,
             }}
           />
-          <div>
+          <div style={{ minWidth: 0 }}>
             <div
               style={{
                 fontFamily: FONT.display,
@@ -330,8 +325,9 @@ export default function InterestedCourses() {
             >
               GyanMarg <span style={{ color: C.accent }}>AI</span>
               <span
+                className="hidden sm:inline"
                 style={{
-                  fontSize: 11,
+                  fontSize: 10.5,
                   fontWeight: 600,
                   padding: "2px 8px",
                   borderRadius: 99,
@@ -342,19 +338,17 @@ export default function InterestedCourses() {
                 CURRICULUM SELECTION
               </span>
             </div>
-            <div style={{ fontSize: 11, color: C.muted }}>
-              iGOT Karmayogi National Catalog ({TOTAL_IGOT_COURSES_COUNT.toLocaleString()} Courses • 47 Domains)
+            <div style={{ fontSize: 11, color: C.muted, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              iGOT Catalog ({TOTAL_IGOT_COURSES_COUNT.toLocaleString()} Courses • 47 Domains)
             </div>
           </div>
         </div>
 
         {/* Section Switcher Tabs */}
         <div
+          className="flex overflow-x-auto p-1 rounded-xl"
           style={{
-            display: "flex",
             background: C.bg,
-            padding: 4,
-            borderRadius: 10,
             border: `1px solid ${C.border}`,
             gap: 4,
           }}
@@ -362,82 +356,84 @@ export default function InterestedCourses() {
           <button
             onClick={() => setActiveSection("manual")}
             style={{
-              padding: "8px 18px",
+              padding: "7px 14px",
               borderRadius: 8,
               border: "none",
               background: activeSection === "manual" ? C.surface : "transparent",
               color: activeSection === "manual" ? C.dark : C.muted,
-              fontSize: 13,
+              fontSize: 12.5,
               fontWeight: activeSection === "manual" ? 700 : 500,
               cursor: "pointer",
               boxShadow: activeSection === "manual" ? "0 1px 4px rgba(0,0,0,0.08)" : "none",
               display: "flex",
               alignItems: "center",
               gap: 6,
+              whiteSpace: "nowrap",
               transition: "all 0.15s ease",
             }}
           >
             <span>🧭</span>
-            <span>Section 1: Browse Catalog Yourself</span>
+            <span>Section 1: Browse Catalog</span>
           </button>
 
           <button
             onClick={() => setActiveSection("ai")}
             style={{
-              padding: "8px 18px",
+              padding: "7px 14px",
               borderRadius: 8,
               border: "none",
               background: activeSection === "ai" ? C.surface : "transparent",
               color: activeSection === "ai" ? C.accent : C.muted,
-              fontSize: 13,
+              fontSize: 12.5,
               fontWeight: activeSection === "ai" ? 700 : 500,
               cursor: "pointer",
               boxShadow: activeSection === "ai" ? "0 1px 4px rgba(0,0,0,0.08)" : "none",
               display: "flex",
               alignItems: "center",
               gap: 6,
+              whiteSpace: "nowrap",
               transition: "all 0.15s ease",
             }}
           >
             <span>✨</span>
-            <span>Section 2: AI Interest Recommender</span>
+            <span>Section 2: AI Recommender</span>
           </button>
         </div>
 
         {/* User initials & Logout */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: "50%",
-              background: "#1B3D29",
-              color: "#fff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 12,
-              fontWeight: 700,
-            }}
-          >
-            {profile?.initials || "ST"}
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                background: "#1B3D29",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 12,
+                fontWeight: 700,
+              }}
+            >
+              {profile?.initials || "ST"}
+            </div>
+            <button
+              onClick={async () => {
+                await signOut();
+                navigate("/login");
+              }}
+              style={{
+                background: "none",
+                border: "none",
+                color: C.muted,
+                fontSize: 12,
+                cursor: "pointer",
+              }}
+            >
+              Sign Out
+            </button>
           </div>
-          <button
-            onClick={async () => {
-              await signOut();
-              navigate("/login");
-            }}
-            style={{
-              background: "none",
-              border: "none",
-              color: C.muted,
-              fontSize: 12,
-              cursor: "pointer",
-            }}
-          >
-            Sign Out
-          </button>
-        </div>
       </header>
 
       {/* Main Content Area */}
@@ -455,21 +451,20 @@ export default function InterestedCourses() {
                 statusMsg.type === "success"
                   ? "#EBF5F0"
                   : statusMsg.type === "error"
-                  ? "#FDECEA"
-                  : "#FFF8E7",
+                    ? "#FDECEA"
+                    : "#FFF8E7",
               color:
                 statusMsg.type === "success"
                   ? C.s1
                   : statusMsg.type === "error"
-                  ? C.s4
-                  : C.accent,
-              border: `1px solid ${
-                statusMsg.type === "success"
+                    ? C.s4
+                    : C.accent,
+              border: `1px solid ${statusMsg.type === "success"
                   ? C.s1 + "40"
                   : statusMsg.type === "error"
-                  ? C.s4 + "40"
-                  : C.accent + "40"
-              }`,
+                    ? C.s4 + "40"
+                    : C.accent + "40"
+                }`,
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
@@ -497,7 +492,7 @@ export default function InterestedCourses() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 24, alignItems: "start" }}>
+            <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 items-start">
               {/* Left Column: Domains & Sub-domains */}
               <div
                 style={{
@@ -743,7 +738,7 @@ export default function InterestedCourses() {
                 </div>
 
                 {/* Courses Grid */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {manualCatalogResult.courses.map((course) => {
                     const isSelected = selectedCourseIds.includes(course.id);
 
@@ -1294,24 +1289,13 @@ export default function InterestedCourses() {
 
       {/* STICKY BOTTOM ACTION BAR / SELECTION DRAWER */}
       <footer
+        className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 shadow-xl"
         style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
           background: C.surface,
           borderTop: `2px solid ${C.accent}60`,
-          padding: "14px 28px",
-          boxShadow: "0 -4px 20px rgba(0,0,0,0.08)",
-          zIndex: 50,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 16,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
           {/* Badge Counter */}
           <div
             style={{

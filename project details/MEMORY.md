@@ -1,8 +1,8 @@
 # GyanMarg AI — Project Memory & Continuity Log
 
 **Location:** `project details/MEMORY.md`  
-**Last Updated:** 2026-09-08  
-**Platform Version:** 1.0.1  
+**Last Updated:** 2026-09-18  
+**Platform Version:** 1.0.2  
 **Current Active Environment:** Local Development (Vite on `http://localhost:8443`)  
 **Backend:** Supabase Cloud (`https://wztsczaaaiceaoerdbfr.supabase.co`)  
 
@@ -504,3 +504,70 @@ Completed **Phase E: Interactive Learning Interface, Instant Evaluation & Learne
 ### Verification
 - `npm run build`: Production compilation passed with code 0 across 746 modules in 19.08s.
 - Tested locally on `http://localhost:8443`.
+
+---
+
+## 16. Production Readiness, Legal Compliance, Search Discovery & AI Discovery (2026-09-18)
+
+### Key Achievements
+1. **Legal Trust Infrastructure**:
+   - Built authentic Privacy Policy (`/privacy` via `src/pages/PrivacyPolicy.tsx`) detailing exact profile attributes (`fullName`, `email`, `role`, `track`, `institution`, `year`), MoSPI FrAC competency assessments, local/session storage keys, Groq AI inference parameters without model training, and user rights under the Digital Personal Data Protection (DPDP) Act 2023.
+   - Built Terms of Use (`/terms` via `src/pages/TermsOfUse.tsx`) with educational disclaimers, AI advisory notices, and jurisdiction in New Delhi, India.
+   - Built semantic, responsive Public Footer (`src/components/PublicFooter.tsx`) integrated across public layouts and Landing footer links.
+
+2. **Search Engine & Social Discovery System**:
+   - Developed lightweight dynamic `<SEO />` controller (`src/components/SEO.tsx`) managing `<title>`, `<meta description>`, canonical links, Open Graph tags (`og:title`, `og:image`), Twitter/X cards, and JSON-LD structured data (`EducationalOrganization` & `SoftwareApplication`).
+   - Zero-leakage private indexing protection: automatically injects `robots="noindex, nofollow"` across all `/student/*` and `/admin/*` views.
+   - Base URL resolver supporting `VITE_SITE_URL` with production fallback to `https://gyanmarg.ai` preventing localhost emission.
+
+3. **Machine-Readable AI & Crawler Configuration**:
+   - `public/robots.txt`: Explicitly permits public routes (`/`, `/privacy`, `/terms`, `/llms.txt`, `/sitemap.xml`) and disallows private app zones (`/student/`, `/admin/`, `/login`, `/register`, `/onboarding`, `/api/`).
+   - `public/sitemap.xml`: Canonical XML sitemap for search crawlers.
+   - `public/llms.txt`: Machine-readable overview for AI crawlers detailing platform purpose, capabilities, and transparency disclaimers.
+   - `public/manifest.webmanifest`: PWA-ready web application manifest with brand emblems and palette.
+
+---
+
+## 17. Production UI/UX Polish & Comprehensive Mobile Optimization Pass (2026-09-18)
+
+### Key Achievements
+1. **Design Tokens & Accessibility Standard (`src/index.css`)**:
+   - Strict adherence to `project details/DESIGN.md`: Institutional Greens (`#123C2B`, `#1B3D29`), Saffron Gold (`#C6851B`), Ivory & Warm Parchment (`#FAF7F0`, `#EDE8D8`), and semantic borders (`#D5CEBC`).
+   - High-contrast `:focus-visible` accessibility rings with gold outline (`#C6851B`).
+   - Standardized touch targets ($\ge 44$px), safe area insets (`env(safe-area-inset-bottom)`), and responsive utility classes (`.table-responsive-container`, `.btn-touch`).
+
+2. **Layouts & Mobile-First Navigation**:
+   - **Student Layout (`src/layouts/StudentLayout.tsx`)**:
+     - Added mobile hamburger menu toggle in top header for screens $< 1024$px.
+     - Added mobile slide-over drawer navigation with backdrop blur and tap-outside closure.
+     - Added sticky mobile bottom navbar (`Dashboard`, `Skill Path`, `Assessments`, `Courses`, `More`) for thumb-friendly one-handed navigation.
+   - **Admin Layout (`src/layouts/AdminLayout.tsx`)**:
+     - Added mobile slide-over sidebar drawer and responsive main padding (`p-4 sm:p-6 lg:p-7`).
+   - **Public Layout (`src/layouts/PublicLayout.tsx`)**:
+     - Wrapped header action buttons cleanly to prevent brand emblem crowding.
+
+3. **Public & Authentication Screens**:
+   - **Landing (`src/pages/Landing.tsx`)**: Responsive mobile drawer, responsive hero grid (`grid-cols-1 lg:grid-cols-2`), and mobile-optimized feature cards.
+   - **Login & Register (`src/pages/Login.tsx`, `src/pages/Register.tsx`)**: Converted desktop-only split screens into responsive stacking cards (`flex-col md:flex-row`) with full-width touch-friendly inputs.
+   - **Onboarding (`src/pages/Onboarding.tsx`)**: Responsive option selection grids (`grid-cols-1 sm:grid-cols-2 md:grid-cols-3`).
+
+4. **Assessment & Learning Experience**:
+   - **Diagnostic Assessment (`src/pages/student/Assessment.tsx`)**: Mobile question-first layout with collapsible palette drawer, 48px+ touch targets on options, and sticky bottom navigation bar.
+   - **Assessment Results (`src/pages/student/AssessmentResults.tsx`)**: Responsive score hero, auto-fitting KPI grid (`grid-cols-2 lg:grid-cols-4`), and stacked action buttons.
+   - **Learning Interface (`src/pages/student/LearningInterface.tsx`)**: Mobile slide-over syllabus drawer with backdrop and adaptive AI Mentor chat modal (`max-w-[360px]`).
+
+5. **Student Portal Core Screens**:
+   - Responsive grids and horizontal scroll wrappers across `Dashboard.tsx`, `InterestedCourses.tsx`, `GapAnalysis.tsx`, `SkillProfile.tsx`, `LearningPath.tsx`, `CourseDiscovery.tsx`, `CourseDetails.tsx`, `Progress.tsx`, `Achievements.tsx`, and `Settings.tsx`.
+   - Prevented table and chart horizontal blowout using `.table-responsive-container` and `overflow-x: auto`.
+
+6. **Admin Portal Core Screens**:
+   - **`StudentManagement.tsx`**: Wrapped 9-column student directory table with `overflow-x-auto` (`min-width: 840px`), and made Add/View/Edit modals responsive (`grid-cols-1 sm:grid-cols-2`).
+   - **`Reports.tsx`**: Made live preview charts responsive and wrapped the generated reports archive table with `overflow-x-auto` (`min-width: 720px`).
+   - **`CourseManagement.tsx`**: Wrapped course catalog table with `overflow-x-auto` (`min-width: 840px`), and made Add/Edit course forms responsive (`grid-cols-1 sm:grid-cols-2`).
+   - **`AssessmentManagement.tsx`**: Made admin tabs horizontally scrollable (`scrollbar-none`), formatted question option cards to stack on mobile (`grid-cols-1 sm:grid-cols-2`), and wrapped Ingested Documents table.
+   - **`CompetencyAnalytics.tsx`**: Made progression charts and top performers rows responsive (`lg:grid-cols-2`), wrapped 7-column Competency Gap Matrix table in `overflow-x-auto`, and made deep-dive modal grid responsive (`grid-cols-2 sm:grid-cols-4`).
+
+### Verification & Quality Assurance
+- **TypeScript Compiler:** `npx tsc --noEmit` exited with code 0 (0 type errors).
+- **Vite Production Build:** `npm run build` bundled all 754 modules cleanly with code 0 into `dist/`.
+- **Zero Regressions:** 100% preservation of existing business logic, scoring formulas, authentication flows, RAG synthesis, and backend APIs.

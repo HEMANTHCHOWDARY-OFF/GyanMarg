@@ -298,7 +298,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Charts Row 1 */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 20, marginBottom: 20 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-5 mb-5">
         <div style={{ background: C.surface, borderRadius: 12, padding: "20px 24px", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: `1px solid ${C.border}` }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
             <div style={{ fontFamily: FONT.display, fontSize: 15, fontWeight: 600, color: C.dark }}>
@@ -350,7 +350,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Charts Row 2 */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-7">
         <div style={{ background: C.surface, borderRadius: 12, padding: "20px 24px", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: `1px solid ${C.border}` }}>
           <div style={{ fontFamily: FONT.display, fontSize: 15, fontWeight: 600, marginBottom: 16, color: C.dark }}>
             Completion Rate by Learner Stream
@@ -438,7 +438,8 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <div className="table-responsive-container">
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ borderBottom: `1px solid ${C.border}`, background: C.bg }}>
               {["Action", "Student / Scholar", "Learner Stream & Institution", "Learning Event", "Timestamp", "Action"].map((h) => (
@@ -497,7 +498,8 @@ export default function AdminDashboard() {
               ))
             )}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
 
       {/* Activity Details Modal */}

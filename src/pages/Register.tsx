@@ -100,17 +100,23 @@ export default function Register() {
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh", fontFamily: FONT.body }}>
+    <div className="flex flex-col md:flex-row min-h-screen" style={{ fontFamily: FONT.body, background: C.bg }}>
 
       {/* Left panel */}
-      <div style={{ width: "42%", flexShrink: 0, background: C.dark, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "48px 52px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={() => navigate("/")}>
+      <div
+        className="w-full md:w-[40%] flex-shrink-0 flex flex-col justify-between"
+        style={{
+          background: C.dark,
+          padding: "32px 28px",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer", marginBottom: 20 }} onClick={() => navigate("/")}>
           <img
             src="/gyanmarg_logo.jpg"
             alt="GyanMarg AI Logo"
             style={{
-              width: 44,
-              height: 44,
+              width: 42,
+              height: 42,
               borderRadius: "50%",
               objectFit: "cover",
               border: "2px solid rgba(198, 133, 27, 0.7)",
@@ -118,16 +124,16 @@ export default function Register() {
             }}
           />
           <div>
-            <div style={{ fontFamily: FONT.display, fontSize: 16, fontWeight: 700, color: "#fff" }}>
+            <div style={{ fontFamily: FONT.display, fontSize: 17, fontWeight: 700, color: "#fff" }}>
               GyanMarg <span style={{ color: C.accent }}>AI</span>
             </div>
-            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.40)" }}>Skill Diagnostic & Adaptive Learning</div>
+            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.40)" }}>Skill Diagnostic &amp; Adaptive Learning</div>
           </div>
         </div>
 
-        <div>
-          <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: C.accent, marginBottom: 20 }}>Empowering Every Learner</div>
-          <h2 style={{ fontFamily: FONT.display, fontSize: "clamp(1.8rem,3vw,2.4rem)", fontWeight: 700, color: "#fff", lineHeight: 1.2, marginBottom: 20 }}>
+        <div className="hidden md:block">
+          <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: C.accent, marginBottom: 16 }}>Empowering Every Learner</div>
+          <h2 style={{ fontFamily: FONT.display, fontSize: "clamp(1.6rem,2.5vw,2.4rem)", fontWeight: 700, color: "#fff", lineHeight: 1.2, marginBottom: 16 }}>
             Your Intelligent<br/>Learning Journey Begins
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -139,17 +145,17 @@ export default function Register() {
             ].map(text => (
               <div key={text} style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.accent, flexShrink: 0 }} />
-                <span style={{ fontSize: 14, color: "rgba(255,255,255,0.75)" }}>{text}</span>
+                <span style={{ fontSize: 13.5, color: "rgba(255,255,255,0.75)" }}>{text}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)" }}>© 2026 GyanMarg AI. All rights reserved.</div>
+        <div className="hidden md:block" style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", marginTop: 24 }}>© 2026 GyanMarg AI. All rights reserved.</div>
       </div>
 
       {/* Right — form */}
-      <div style={{ flex: 1, background: C.bg, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 32px", overflowY: "auto" }}>
+      <div className="flex-1 flex items-center justify-center" style={{ background: C.bg, padding: "32px 20px", overflowY: "auto" }}>
         <div style={{ width: "100%", maxWidth: 440 }}>
 
           {/* Step indicator */}
@@ -245,7 +251,7 @@ export default function Register() {
 
             {step === 2 && (
               <>
-                <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 14, marginBottom: 16 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr]" style={{ gap: 14, marginBottom: 16 }}>
                   <div>
                     <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: C.dark, marginBottom: 6 }}>Learner Track</label>
                     <select value={form.track} onChange={e => f("track", e.target.value)} required style={{ ...inputStyle, appearance: "none" }}>

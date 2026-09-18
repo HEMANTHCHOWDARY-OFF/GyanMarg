@@ -1,0 +1,17 @@
+{
+  "name": "GyanMarg AI — Personalized Learning & Competency Development",
+  "short_name": "GyanMarg AI",
+  "description": "AI-assisted competency development, diagnostic assessment, and adaptive learning platform.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F0",
+  "theme_color": "#1B3D29",
+  "icons": [
+    {
+      "src": "/gyanmarg_logo.jpg",
+      "sizes": "192x192 512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

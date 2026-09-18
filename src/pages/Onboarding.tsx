@@ -259,7 +259,7 @@ export default function Onboarding() {
                 <h2 style={{ fontFamily: FONT.display, fontSize: 26, fontWeight: 700, color: C.dark, marginBottom: 8 }}>What are your learning goals?</h2>
                 <p style={{ fontSize: 14, color: C.muted }}>Select all that apply — you can change these later.</p>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 14 }}>
                 {goals.map(g => {
                   const sel = selectedGoals.includes(g.id);
                   return (
@@ -288,7 +288,7 @@ export default function Onboarding() {
                 <h2 style={{ fontFamily: FONT.display, fontSize: 26, fontWeight: 700, color: C.dark, marginBottom: 8 }}>Which domains do you want to focus on?</h2>
                 <p style={{ fontSize: 14, color: C.muted }}>Select your primary areas for improvement.</p>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3" style={{ gap: 14 }}>
                 {domains.map(d => {
                   const sel = selectedDomains.includes(d.id);
                   return (
@@ -314,7 +314,7 @@ export default function Onboarding() {
                 <h2 style={{ fontFamily: FONT.display, fontSize: 26, fontWeight: 700, color: C.dark, marginBottom: 8 }}>How much time can you dedicate to learning?</h2>
                 <p style={{ fontSize: 14, color: C.muted }}>We'll pace your learning path accordingly.</p>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 16, maxWidth: 500, margin: "0 auto" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 16, maxWidth: 500, margin: "0 auto" }}>
                 {hours.map(h => (
                   <button key={h} onClick={() => setPace(h)} style={{
                     padding: "24px 20px", borderRadius: 14, textAlign: "center", cursor: "pointer",

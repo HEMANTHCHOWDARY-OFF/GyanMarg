@@ -179,17 +179,14 @@ export default function Dashboard() {
       {/* ── 2. Hero Spotlight ("Jump Back In") ────────────────────────── */}
       {heroCourse && (
         <div
+          className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center"
           style={{
             background: "linear-gradient(135deg, #1B3D29 0%, #132B1D 100%)",
             borderRadius: 14,
-            padding: "24px 28px",
+            padding: "22px 24px",
             color: "#fff",
             marginBottom: 24,
             boxShadow: "0 4px 16px rgba(27, 61, 41, 0.15)",
-            display: "grid",
-            gridTemplateColumns: "1fr auto",
-            alignItems: "center",
-            gap: 24,
           }}
         >
           <div>
@@ -421,12 +418,7 @@ export default function Dashboard() {
 
       {/* ── 4. Main Two-Column Layout ──────────────────────────────────── */}
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 360px",
-          gap: 22,
-          alignItems: "start",
-        }}
+        className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 items-start"
       >
         {/* ── LEFT COLUMN: Courses & Competency Chart ────────────────── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>

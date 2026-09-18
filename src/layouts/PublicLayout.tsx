@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import LanguageSelector from "@/components/LanguageSelector";
+import PublicFooter from "@/components/PublicFooter";
 import { TutorialProvider, useTutorial } from "@/context/TutorialContext";
 import { TutorialOverlay } from "@/components/tutorial";
 import { useLanguage } from "@/context/LanguageContext";
@@ -108,23 +109,24 @@ function PublicLayoutContent() {
           </div>
 
           {/* Right Controls: Tour button, Language Selector, Back to Home */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <button
               type="button"
               onClick={() => navigate("/?tour=true")}
+              className="hidden sm:flex"
               style={{
                 background: "rgba(198, 133, 27, 0.16)",
                 border: `1.5px solid ${C.accent}60`,
                 borderRadius: 20,
-                padding: "7px 16px",
+                padding: "6px 14px",
                 fontFamily: FONT.body,
-                fontSize: 13,
+                fontSize: 12.5,
                 fontWeight: 700,
                 color: C.accent,
                 cursor: "pointer",
-                display: "flex",
                 alignItems: "center",
                 gap: 6,
+                minHeight: 38,
                 transition: "all 0.18s ease",
               }}
               onMouseEnter={(e) => {
@@ -149,11 +151,12 @@ function PublicLayoutContent() {
                 border: "none",
                 color: "rgba(255, 255, 255, 0.8)",
                 fontFamily: FONT.body,
-                fontSize: 13.5,
+                fontSize: 13,
                 fontWeight: 600,
                 cursor: "pointer",
-                padding: "6px 12px",
+                padding: "6px 10px",
                 borderRadius: 8,
+                minHeight: 38,
                 transition: "color 0.15s ease",
               }}
               onMouseEnter={(e) => {
@@ -173,6 +176,9 @@ function PublicLayoutContent() {
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <Outlet />
       </div>
+
+      {/* Footer on Legal Public Pages */}
+      {(location.pathname === "/privacy" || location.pathname === "/terms") && <PublicFooter />}
 
       {/* Interactive Guided Tutorial Overlay (Works on all public pages) */}
       <TutorialOverlay />

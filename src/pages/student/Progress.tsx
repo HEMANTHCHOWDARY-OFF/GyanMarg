@@ -234,7 +234,10 @@ export default function Progress() {
   }, [domains, skillHealth, userSelectedCourses]);
 
   return (
-    <div style={{ fontFamily: FONT.body, color: C.dark, padding: "28px 32px" }}>
+    <div
+      className="p-3.5 sm:p-6 lg:p-8"
+      style={{ fontFamily: FONT.body, color: C.dark }}
+    >
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
         <div>
@@ -471,7 +474,7 @@ export default function Progress() {
       </div>
 
       {/* Two side-by-side charts */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 20 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
         {/* Domain scores bar chart */}
         <div
           style={{

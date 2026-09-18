@@ -103,7 +103,10 @@ export default function Achievements() {
   }, [userSelectedCourses, domains, lastAssessment]);
 
   return (
-    <div style={{ padding: "28px 32px", background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}>
+    <div
+      className="p-3.5 sm:p-6 lg:p-8"
+      style={{ background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}
+    >
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
         <div>
@@ -242,7 +245,7 @@ export default function Achievements() {
       </section>
 
       {/* Milestones & Activity Heatmap */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Milestone Tracker */}
         <div
           style={{

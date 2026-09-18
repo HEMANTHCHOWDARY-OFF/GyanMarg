@@ -196,10 +196,10 @@ export default function LearningPath() {
 
   return (
     <div
+      className="p-3.5 sm:p-6 lg:p-8 pb-24"
       style={{
         background: "#F9F8F5", // Clean warm roadmap.sh canvas
         minHeight: "100vh",
-        padding: "24px 32px 100px",
         fontFamily: FONT.body,
         color: "#111",
       }}
@@ -303,7 +303,7 @@ export default function LearningPath() {
           }}
         >
           {/* Scrollable course pills */}
-          <div style={{ display: "flex", gap: 8, overflowX: "auto", maxWidth: "70%", paddingBottom: 4 }}>
+          <div className="flex gap-2 overflow-x-auto max-w-full pb-1">
             <button
               onClick={() => setSelectedCourseFilter("all")}
               style={{
@@ -434,6 +434,7 @@ export default function LearningPath() {
         </div>
       ) : (
         <div
+          className="w-full overflow-x-auto"
           style={{
             maxWidth: 1040,
             margin: "0 auto",

@@ -131,12 +131,14 @@ export default function LearningInterface() {
     }, 600);
   };
 
+  const [mobileSyllabusOpen, setMobileSyllabusOpen] = useState(false);
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "100vh",
+        minHeight: "100vh",
         background: C.bg,
         fontFamily: FONT.body,
         position: "relative",
@@ -152,31 +154,54 @@ export default function LearningInterface() {
           zIndex: 100,
           background: C.surface,
           borderBottom: `1px solid ${C.border}`,
-          padding: "0 24px",
+          padding: "0 16px",
           height: 58,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: 16,
+          gap: 12,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+          <button
+            onClick={() => setMobileSyllabusOpen(true)}
+            className="lg:hidden"
+            style={{
+              padding: "6px 10px",
+              background: C.surfaceAlt,
+              border: `1px solid ${C.border}`,
+              borderRadius: 6,
+              fontSize: 12,
+              fontWeight: 700,
+              color: C.dark,
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+              cursor: "pointer",
+              flexShrink: 0,
+            }}
+            aria-label="Toggle Syllabus"
+          >
+            ☰ <span className="hidden sm:inline">Syllabus</span>
+          </button>
           <Link
             to={`/student/courses/${course.id}`}
             style={{
               color: C.muted,
               textDecoration: "none",
-              fontSize: 13,
+              fontSize: 12.5,
               fontWeight: 600,
               display: "flex",
               alignItems: "center",
               gap: 4,
+              flexShrink: 0,
             }}
           >
-            ← Course Details
+            ← <span className="hidden sm:inline">Details</span>
           </Link>
-          <span style={{ color: C.border }}>|</span>
+          <span className="hidden sm:inline" style={{ color: C.border }}>|</span>
           <span
+            className="hidden sm:inline"
             style={{
               background: C.dark,
               color: "#FAF7F0",
@@ -185,15 +210,26 @@ export default function LearningInterface() {
               padding: "2px 8px",
               borderRadius: 4,
               fontFamily: FONT.mono,
+              flexShrink: 0,
             }}
           >
             {(course as any).courseCode || course.code || course.id}
           </span>
-          <span style={{ fontSize: 13, color: C.dark, fontWeight: 700 }}>
+          <span
+            style={{
+              fontSize: 13,
+              color: C.dark,
+              fontWeight: 700,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
             {course.title}
           </span>
           {course.tpacEndorsed && (
             <span
+              className="hidden md:inline"
               style={{
                 background: "#E6F4EC",
                 color: C.s1,
@@ -201,35 +237,36 @@ export default function LearningInterface() {
                 fontWeight: 700,
                 padding: "2px 8px",
                 borderRadius: 4,
+                flexShrink: 0,
               }}
             >
-              ★ NSSTA TPAC Endorsed
+              ★ TPAC
             </span>
           )}
         </div>
 
         {/* Action Controls */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
           <div
+            className="hidden sm:flex"
             style={{
               background: activeTab === "quiz" ? "#E6F4EC" : C.surfaceAlt,
-              padding: "5px 12px",
+              padding: "5px 10px",
               borderRadius: 20,
-              fontSize: 12,
+              fontSize: 11.5,
               fontWeight: 700,
               color: activeTab === "quiz" ? C.s1 : C.muted,
-              display: "flex",
               alignItems: "center",
               gap: 6,
             }}
           >
-            <span>{activeTab === "quiz" ? "🎯 Knowledge Check Mode" : "📖 Instructional Mode"}</span>
+            <span>{activeTab === "quiz" ? "🎯 Quiz Mode" : "📖 Instructional"}</span>
           </div>
 
           <button
             onClick={() => setShowAI(!showAI)}
             style={{
-              padding: "6px 14px",
+              padding: "6px 12px",
               background: C.accent,
               color: "#fff",
               border: "none",
@@ -240,18 +277,202 @@ export default function LearningInterface() {
               fontFamily: FONT.body,
               display: "flex",
               alignItems: "center",
-              gap: 6,
+              gap: 5,
+              minHeight: 38,
             }}
           >
-            🤖 AI Mentor
+            🤖 <span className="hidden sm:inline">AI Mentor</span>
           </button>
         </div>
       </header>
 
+      {/* Mobile Syllabus Drawer Backdrop & Panel */}
+      {mobileSyllabusOpen && (
+        <div className="fixed inset-0 z-150 flex lg:hidden">
+          <div
+            className="fixed inset-0 bg-black/50 transition-opacity"
+            onClick={() => setMobileSyllabusOpen(false)}
+            aria-hidden="true"
+          />
+          <div
+            className="relative w-80 max-w-[85vw] h-full flex flex-col z-10 shadow-2xl"
+            style={{ background: C.surface, borderRight: `1px solid ${C.border}` }}
+          >
+            <div
+              style={{
+                padding: "16px 18px",
+                borderBottom: `1px solid ${C.border}`,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                background: C.surfaceAlt,
+              }}
+            >
+              <div style={{ fontSize: 13, fontWeight: 700, color: C.dark }}>
+                Course Modules & Syllabus
+              </div>
+              <button
+                onClick={() => setMobileSyllabusOpen(false)}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  fontSize: 18,
+                  color: C.muted,
+                  cursor: "pointer",
+                  padding: 4,
+                }}
+              >
+                ✕
+              </button>
+            </div>
+            <div style={{ flex: 1, overflowY: "auto" }}>
+              <div
+                style={{
+                  padding: "12px 18px",
+                  borderBottom: `1px solid ${C.border}`,
+                  background: "#FAF7F0",
+                }}
+              >
+                <div style={{ fontSize: 11, fontWeight: 700, color: C.muted, textTransform: "uppercase" }}>
+                  FrAC Domain Remediation
+                </div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: C.dark, marginTop: 2 }}>
+                  {courseDomain.name}
+                </div>
+                <div style={{ fontSize: 11, color: C.faint, marginTop: 4 }}>
+                  Current Score: <strong>{courseDomain.currentScore}%</strong> / Target: {courseDomain.targetBenchmark}%
+                </div>
+              </div>
+              <div style={{ padding: "12px 0" }}>
+                {modules.map((m) => (
+                  <div key={m.id} style={{ marginBottom: 12 }}>
+                    <div
+                      style={{
+                        padding: "6px 18px",
+                        fontSize: 11,
+                        fontWeight: 700,
+                        color: C.muted,
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {m.title}
+                    </div>
+                    {m.lessons.map((l) => (
+                      <button
+                        key={l.id}
+                        onClick={() => {
+                          setActiveTab("lesson");
+                          setActiveLessonId(l.id);
+                          setMobileSyllabusOpen(false);
+                        }}
+                        style={{
+                          width: "100%",
+                          padding: "10px 18px",
+                          background:
+                            activeTab === "lesson" && activeLessonId === l.id
+                              ? "#EBF5F0"
+                              : "transparent",
+                          border: "none",
+                          borderLeft:
+                            activeTab === "lesson" && activeLessonId === l.id
+                              ? `3px solid ${C.s1}`
+                              : "3px solid transparent",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 10,
+                          cursor: "pointer",
+                          textAlign: "left",
+                          minHeight: 44,
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: 18,
+                            height: 18,
+                            borderRadius: "50%",
+                            background: l.done ? C.s1 : "transparent",
+                            border: `1.5px solid ${l.done ? C.s1 : C.border}`,
+                            color: "#fff",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: 10,
+                            fontWeight: 700,
+                            flexShrink: 0,
+                          }}
+                        >
+                          {l.done ? "✓" : ""}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: 12.5,
+                            color: activeTab === "lesson" && activeLessonId === l.id ? C.dark : C.muted,
+                            fontWeight: activeTab === "lesson" && activeLessonId === l.id ? 700 : 400,
+                            lineHeight: 1.3,
+                          }}
+                        >
+                          {l.title}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                ))}
+
+                <div style={{ padding: "0 14px", marginTop: 8 }}>
+                  <div
+                    onClick={() => {
+                      setActiveTab("quiz");
+                      setMobileSyllabusOpen(false);
+                    }}
+                    style={{
+                      background: activeTab === "quiz" ? "#FEF3C7" : C.surfaceAlt,
+                      border: `1.5px solid ${activeTab === "quiz" ? C.accent : C.border}`,
+                      borderRadius: 10,
+                      padding: "12px 14px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      minHeight: 48,
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: "50%",
+                        background: C.accent,
+                        color: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 14,
+                        flexShrink: 0,
+                      }}
+                    >
+                      🎯
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 12.5, fontWeight: 700, color: C.dark }}>
+                        Interactive Knowledge Check
+                      </div>
+                      <div style={{ fontSize: 11, color: C.muted, marginTop: 1 }}>
+                        {quizQuestions.length} Cited MCQs • Evaluates Gap
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Main Container */}
       <div style={{ display: "flex", flex: 1, marginTop: 58 }}>
-        {/* Left Sidebar: Syllabus & Quiz Selector */}
+        {/* Left Sidebar: Syllabus & Quiz Selector (Desktop) */}
         <aside
+          className="hidden lg:flex"
           style={{
             width: 280,
             flexShrink: 0,
@@ -261,7 +482,6 @@ export default function LearningInterface() {
             height: "calc(100vh - 58px)",
             position: "sticky",
             top: 58,
-            display: "flex",
             flexDirection: "column",
           }}
         >
@@ -402,7 +622,10 @@ export default function LearningInterface() {
         </aside>
 
         {/* Right Content Area */}
-        <main style={{ flex: 1, overflowY: "auto", padding: "28px 36px" }}>
+        <main
+          className="p-3.5 sm:p-6 lg:p-9"
+          style={{ flex: 1, overflowY: "auto" }}
+        >
           {/* TAB A: INSTRUCTIONAL LESSON VIEWER */}
           {activeTab === "lesson" && (
             <div style={{ maxWidth: 880 }}>
@@ -522,16 +745,13 @@ export default function LearningInterface() {
 
               {/* Action Banner to take Knowledge Check */}
               <div
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
                 style={{
                   background: "#FEF3C7",
                   border: `1px solid ${C.accent}`,
                   borderRadius: 12,
-                  padding: "18px 22px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  padding: "16px 20px",
                   marginBottom: 28,
-                  gap: 16,
                 }}
               >
                 <div>
@@ -542,7 +762,7 @@ export default function LearningInterface() {
                     Finished your modules? Complete this course to directly launch your AI Competency Assessment.
                   </div>
                 </div>
-                <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <div className="flex flex-wrap gap-2.5 sm:shrink-0">
                   <button
                     onClick={() => setActiveTab("quiz")}
                     style={{
@@ -555,7 +775,7 @@ export default function LearningInterface() {
                       fontSize: 12.5,
                       fontWeight: 700,
                       cursor: "pointer",
-                      whiteSpace: "nowrap",
+                      minHeight: 40,
                     }}
                   >
                     Practice Check 🎯
@@ -1082,9 +1302,10 @@ export default function LearningInterface() {
         <div
           style={{
             position: "fixed",
-            bottom: 24,
-            right: 24,
-            width: 340,
+            bottom: 16,
+            right: 16,
+            width: "calc(100vw - 32px)",
+            maxWidth: 360,
             background: C.surface,
             border: `1px solid ${C.border}`,
             borderRadius: 14,
@@ -1093,7 +1314,7 @@ export default function LearningInterface() {
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
-            maxHeight: 460,
+            maxHeight: "calc(100vh - 90px)",
           }}
         >
           <div

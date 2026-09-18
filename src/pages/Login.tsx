@@ -99,22 +99,24 @@ export default function Login() {
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh", fontFamily: FONT.body }}>
+    <div className="flex flex-col md:flex-row min-h-screen" style={{ fontFamily: FONT.body, background: C.bg }}>
 
       {/* Left — brand panel */}
-      <div style={{
-        width: "42%", flexShrink: 0, background: C.dark,
-        display: "flex", flexDirection: "column", justifyContent: "space-between",
-        padding: "48px 52px",
-      }}>
+      <div
+        className="w-full md:w-[40%] flex-shrink-0 flex flex-col justify-between"
+        style={{
+          background: C.dark,
+          padding: "32px 28px",
+        }}
+      >
         {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={() => navigate("/")}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer", marginBottom: 20 }} onClick={() => navigate("/")}>
           <img
             src="/gyanmarg_logo.jpg"
             alt="GyanMarg AI Logo"
             style={{
-              width: 44,
-              height: 44,
+              width: 42,
+              height: 42,
               borderRadius: "50%",
               objectFit: "cover",
               border: "2px solid rgba(198, 133, 27, 0.7)",
@@ -122,44 +124,44 @@ export default function Login() {
             }}
           />
           <div>
-            <div style={{ fontFamily: FONT.display, fontSize: 18, fontWeight: 800, color: "#fff" }}>
+            <div style={{ fontFamily: FONT.display, fontSize: 17, fontWeight: 800, color: "#fff" }}>
               GyanMarg <span style={{ color: C.accent }}>AI</span>
             </div>
             <div style={{ fontSize: 10, color: "rgba(255,255,255,0.45)" }}>Competency Intelligence &amp; Learning Platform</div>
           </div>
         </div>
 
-        {/* Center content */}
-        <div>
-          <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: C.accent, marginBottom: 20 }}>
+        {/* Center content (full on desktop, compact on mobile) */}
+        <div className="hidden md:block">
+          <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: C.accent, marginBottom: 16 }}>
             Unified Learning Access
           </div>
-          <h2 style={{ fontFamily: FONT.display, fontSize: "clamp(1.8rem,3vw,2.6rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, marginBottom: 20 }}>
+          <h2 style={{ fontFamily: FONT.display, fontSize: "clamp(1.6rem,2.5vw,2.4rem)", fontWeight: 700, color: "#fff", lineHeight: 1.2, marginBottom: 16 }}>
             Welcome to<br/>GyanMarg AI
           </h2>
-          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, marginBottom: 36 }}>
+          <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, marginBottom: 28 }}>
             Designed for all learners — students, scholars, aspirants, and administrators. Access your diagnostic results, personalized roadmap, AI mentor, and institutional analytics.
           </p>
 
           {/* Platform Highlights */}
-          <div style={{ display: "flex", gap: 32 }}>
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             {[["100%", "Source Citations"], ["Multi-Axis", "Gap Diagnostics"], ["Adaptive", "Curriculum Paths"]].map(([val, lbl]) => (
               <div key={lbl}>
-                <div style={{ fontFamily: FONT.mono, fontSize: 22, fontWeight: 700, color: C.accent }}>{val}</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{lbl}</div>
+                <div style={{ fontFamily: FONT.mono, fontSize: 20, fontWeight: 700, color: C.accent }}>{val}</div>
+                <div style={{ fontSize: 10.5, color: "rgba(255,255,255,0.45)" }}>{lbl}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Footer note */}
-        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
+        <div className="hidden md:block" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 24 }}>
           © 2026 GyanMarg AI. All rights reserved.
         </div>
       </div>
 
       {/* Right — form */}
-      <div style={{ flex: 1, background: C.bg, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 32px" }}>
+      <div className="flex-1 flex items-center justify-center" style={{ background: C.bg, padding: "32px 20px" }}>
         <div style={{ width: "100%", maxWidth: 420 }}>
 
           <h1 style={{ fontFamily: FONT.display, fontSize: 26, fontWeight: 700, color: C.dark, marginBottom: 6 }}>

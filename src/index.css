@@ -5,4 +5,105 @@ html,
 body,
 #root {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+:root {
+  --color-brand-green: #123c2b;
+  --color-brand-dark: #1b3d29;
+  --color-brand-gold: #c6851b;
+  --color-brand-gold-hover: #a86d10;
+  --color-background: #ede8d8;
+  --color-surface: #faf7f0;
+  --color-surface-alt: #f3ede0;
+  --color-text: #1b241f;
+  --color-text-muted: #5a6b5e;
+  --color-text-faint: #8a9e8e;
+  --color-border: #d5cebc;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+/* Accessible focus outlines */
+:focus-visible {
+  outline: 2px solid var(--color-brand-gold);
+  outline-offset: 2px;
+}
+
+/* Touch targets and smooth scrolling */
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+/* Table container for responsive horizontal scrolling */
+.table-responsive-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.table-responsive-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-responsive-container::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+/* Responsive Grid Primitives */
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+.grid-responsive-dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-dashboard {
+    grid-template-columns: 1fr 360px;
+  }
+}
+
+.grid-responsive-analytics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-analytics {
+    grid-template-columns: 1.25fr 1fr;
+  }
+}
+
+/* Safe bottom padding for pages with mobile bottom nav */
+@media (max-width: 767px) {
+  .mobile-bottom-pad {
+    padding-bottom: 72px !important;
+  }
+}
+

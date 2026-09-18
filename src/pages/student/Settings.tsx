@@ -110,23 +110,30 @@ export default function Settings() {
   ];
 
   return (
-    <div style={{ padding: "28px 32px", background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}>
+    <div
+      className="p-3.5 sm:p-6 lg:p-8"
+      style={{ background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}
+    >
       {/* Header */}
       <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, fontFamily: FONT.display, margin: "0 0 24px" }}>
         Settings
       </h1>
 
       {/* Tabs */}
-      <div style={{ display: "flex", gap: 4, marginBottom: 28, background: C.surface, padding: 4, borderRadius: 10, border: `1px solid ${C.border}`, width: "fit-content" }}>
+      <div
+        className="flex flex-wrap sm:flex-nowrap overflow-x-auto max-w-full gap-1 mb-7 p-1 rounded-xl"
+        style={{ background: C.surface, border: `1px solid ${C.border}`, width: "fit-content" }}
+      >
         {TABS.map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             style={{
-              padding: "8px 18px", border: "none", borderRadius: 8,
+              padding: "8px 16px", border: "none", borderRadius: 8,
               fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: FONT.body,
               background: activeTab === tab ? C.dark : "transparent",
               color: activeTab === tab ? "#fff" : C.muted,
+              whiteSpace: "nowrap",
               transition: "all 0.15s"
             }}
           >
@@ -135,10 +142,12 @@ export default function Settings() {
         ))}
       </div>
 
-      <div style={{
-        background: C.surface, border: `1px solid ${C.border}`, borderRadius: 14, padding: "28px 32px",
-        maxWidth: 700
-      }}>
+      <div
+        className="p-4 sm:p-7 rounded-2xl max-w-2xl"
+        style={{
+          background: C.surface, border: `1px solid ${C.border}`,
+        }}
+      >
         {/* PROFILE TAB */}
         {activeTab === "Profile" && (
           <div>
