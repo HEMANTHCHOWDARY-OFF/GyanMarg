@@ -5,13 +5,13 @@ import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
 
 const learnerTracks = [
-  "Higher Education / University Student",
+  "In-Service Civil Servant / Statistical Officer",
+  "Civil Services & Policy Aspirant",
   "Data Science & AI Scholar",
-  "Public Sector & Policy Aspirant",
-  "Working Professional / Upskiller",
   "Statistical & Economic Researcher",
-  "Civil Servant / Public Administrator",
-  "Other Lifelong Learner",
+  "Working Professional / Upskiller",
+  "Higher Education / University Scholar",
+  "Other Capacity-Building Learner",
 ];
 
 const institutionTypes = [
@@ -104,7 +104,7 @@ export default function Register() {
 
       {/* Left panel */}
       <div
-        className="w-full md:w-[40%] flex-shrink-0 flex flex-col justify-between"
+        className="hidden md:flex md:w-[40%] flex-shrink-0 flex-col justify-between"
         style={{
           background: C.dark,
           padding: "32px 28px",
@@ -314,7 +314,7 @@ export default function Register() {
                     <circle cx="16" cy="17" r="2.5" fill="#fff"/>
                   </svg>
                 </div>
-                Quick Student Assessment Demo
+                Quick Learner Assessment Demo
               </button>
             </>
           )}

@@ -44,7 +44,7 @@ export default function CourseDetails() {
   return (
     <div
       className="p-3.5 sm:p-6 lg:p-8"
-      style={{ background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}
+      style={{ background: C.bg, minHeight: "100dvh", fontFamily: FONT.body }}
     >
       {/* Breadcrumb */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, fontSize: 13, color: C.muted }}>

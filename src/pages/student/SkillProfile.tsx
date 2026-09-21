@@ -35,10 +35,10 @@ export default function SkillProfile() {
   const { user, profile } = useAuth();
   const { domains: defaultContextDomains, getSkillHealthScore, assessmentHistory } = useCompetency();
 
-  const displayName = profile?.fullName || user?.user_metadata?.full_name || "Student Learner";
-  const initials = profile?.initials || displayName.split(" ").map((n: string) => n[0]).join("").slice(0, 2).toUpperCase() || "SL";
-  const studentTrack = profile?.track || "Higher Education / University Student";
-  const studentInstitution = profile?.institution || "Academic Learning Track";
+  const displayName = profile?.fullName || user?.user_metadata?.full_name || "Civil Service Learner";
+  const initials = profile?.initials || displayName.split(" ").map((n: string) => n[0]).join("").slice(0, 2).toUpperCase() || "CS";
+  const studentTrack = profile?.track || "In-Service Civil Servant / Statistical Officer";
+  const studentInstitution = profile?.institution || "Ministry of Statistics & Programme Implementation (MoSPI)";
   const skillHealth = getSkillHealthScore();
 
   // Previous 5 assessments from history
@@ -165,7 +165,7 @@ export default function SkillProfile() {
   }, [domainBreakdown]);
 
   return (
-    <div style={{ padding: "28px 32px", background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}>
+    <div className="p-3.5 sm:p-6 lg:p-8" style={{ background: C.bg, minHeight: "100dvh", fontFamily: FONT.body }}>
       {/* Header */}
       <div
         style={{
@@ -369,13 +369,7 @@ export default function SkillProfile() {
             }}
           >
             <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto 1fr auto",
-                alignItems: "center",
-                gap: 24,
-                flexWrap: "wrap",
-              }}
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
             >
               {/* Score Badge */}
               <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -444,7 +438,7 @@ export default function SkillProfile() {
                     {activeAssessment.title || `Assessment #${previousFiveAssessments.length - selectedAssessmentIndex}`}
                   </h3>
                   <div style={{ fontSize: 12, color: C.muted, marginTop: 2 }}>
-                    Official diagnostic evaluation session recorded under student ID profile
+                    Official diagnostic evaluation session recorded under learner cadre profile
                   </div>
                 </div>
               </div>

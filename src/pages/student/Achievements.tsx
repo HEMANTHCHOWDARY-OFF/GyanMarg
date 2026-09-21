@@ -105,7 +105,7 @@ export default function Achievements() {
   return (
     <div
       className="p-3.5 sm:p-6 lg:p-8"
-      style={{ background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}
+      style={{ background: C.bg, minHeight: "100dvh", fontFamily: FONT.body }}
     >
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
@@ -304,19 +304,21 @@ export default function Achievements() {
           <p style={{ fontSize: 12.5, color: C.muted, margin: "0 0 16px" }}>
             Consistency on your selected capacity-building track
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(10, 1fr)", gap: 6 }}>
-            {heatmapData.map((val, i) => (
-              <div
-                key={i}
-                title={`Day ${i + 1}: ${val === 3 ? "Extensive" : val === 2 ? "Active" : val === 1 ? "Light" : "No"} activity`}
-                style={{
-                  height: 22,
-                  borderRadius: 4,
-                  background: heatColor(val),
-                  cursor: "pointer",
-                }}
-              />
-            ))}
+          <div className="overflow-x-auto pb-1">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(10, 1fr)", minWidth: 280, gap: 6 }}>
+              {heatmapData.map((val, i) => (
+                <div
+                  key={i}
+                  title={`Day ${i + 1}: ${val === 3 ? "Extensive" : val === 2 ? "Active" : val === 1 ? "Light" : "No"} activity`}
+                  style={{
+                    height: 22,
+                    borderRadius: 4,
+                    background: heatColor(val),
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
+            </div>
           </div>
           <div style={{ display: "flex", justifyContent: "flex-end", gap: 12, marginTop: 14, fontSize: 11.5, color: C.muted }}>
             <span style={{ display: "flex", alignItems: "center", gap: 4 }}>

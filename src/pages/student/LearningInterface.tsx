@@ -138,7 +138,7 @@ export default function LearningInterface() {
       style={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
+        minHeight: "100dvh",
         background: C.bg,
         fontFamily: FONT.body,
         position: "relative",
@@ -479,7 +479,7 @@ export default function LearningInterface() {
             background: C.surface,
             borderRight: `1px solid ${C.border}`,
             overflowY: "auto",
-            height: "calc(100vh - 58px)",
+            height: "calc(100dvh - 58px)",
             position: "sticky",
             top: 58,
             flexDirection: "column",
@@ -701,7 +701,7 @@ export default function LearningInterface() {
                 Lesson 1.2: Sampling Frames & Primary Administrative Units
               </h2>
               <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.7, marginBottom: 20 }}>
-                In this module, students and analysts examine how primary sampling units (Census Villages and Urban Enumeration Blocks) are stratified according to the latest administrative updates. Correctly structuring the frame prevents coverage bias and satisfies operational quality benchmarks.
+                In this module, learners, statistical officers, and analysts examine how primary sampling units (Census Villages and Urban Enumeration Blocks) are stratified according to the latest administrative updates. Correctly structuring the frame prevents coverage bias and satisfies operational quality benchmarks.
               </p>
 
               {/* Key Concept Cards */}
@@ -1314,7 +1314,7 @@ export default function LearningInterface() {
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
-            maxHeight: "calc(100vh - 90px)",
+            maxHeight: "calc(100dvh - 90px)",
           }}
         >
           <div

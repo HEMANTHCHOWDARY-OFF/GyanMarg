@@ -32,7 +32,7 @@ function PublicLayoutContent() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         display: "flex",
         flexDirection: "column",
         fontFamily: FONT.body,
@@ -49,11 +49,11 @@ function PublicLayoutContent() {
             zIndex: 100,
             background: "#0E1813",
             borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-            padding: "0 4%",
+            padding: "0 14px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            height: 72,
+            minHeight: 64,
             backdropFilter: "blur(12px)",
             boxShadow: "0 2px 10px rgba(0, 0, 0, 0.25)",
           }}
@@ -64,7 +64,7 @@ function PublicLayoutContent() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 12,
+              gap: 10,
               cursor: "pointer",
             }}
           >
@@ -72,8 +72,8 @@ function PublicLayoutContent() {
               src="/gyanmarg_logo.jpg"
               alt="GyanMarg AI Logo"
               style={{
-                width: 40,
-                height: 40,
+                width: 36,
+                height: 36,
                 borderRadius: "50%",
                 objectFit: "cover",
                 border: "1.5px solid rgba(198, 133, 27, 0.75)",
@@ -83,7 +83,7 @@ function PublicLayoutContent() {
               <span
                 style={{
                   fontFamily: "'Unbounded', sans-serif",
-                  fontSize: 20,
+                  fontSize: "clamp(16px, 3.5vw, 20px)",
                   fontWeight: 800,
                   color: "#FFFFFF",
                   letterSpacing: "-0.02em",
@@ -94,13 +94,13 @@ function PublicLayoutContent() {
               <span
                 style={{
                   fontFamily: "'Unbounded', sans-serif",
-                  fontSize: 12,
+                  fontSize: 11,
                   fontWeight: 800,
                   color: C.accent,
                   background: "rgba(198, 133, 27, 0.22)",
                   border: "1px solid rgba(198, 133, 27, 0.5)",
                   borderRadius: 6,
-                  padding: "1px 6px",
+                  padding: "1px 5px",
                 }}
               >
                 AI
@@ -109,7 +109,7 @@ function PublicLayoutContent() {
           </div>
 
           {/* Right Controls: Tour button, Language Selector, Back to Home */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <button
               type="button"
               onClick={() => navigate("/?tour=true")}
@@ -146,6 +146,7 @@ function PublicLayoutContent() {
             <button
               type="button"
               onClick={() => navigate("/")}
+              aria-label="Back to home"
               style={{
                 background: "transparent",
                 border: "none",
@@ -154,9 +155,11 @@ function PublicLayoutContent() {
                 fontSize: 13,
                 fontWeight: 600,
                 cursor: "pointer",
-                padding: "6px 10px",
+                padding: "6px 8px",
                 borderRadius: 8,
                 minHeight: 38,
+                display: "flex",
+                alignItems: "center",
                 transition: "color 0.15s ease",
               }}
               onMouseEnter={(e) => {
@@ -166,7 +169,8 @@ function PublicLayoutContent() {
                 (e.currentTarget as HTMLButtonElement).style.color = "rgba(255, 255, 255, 0.8)";
               }}
             >
-              {t("back_to_home")}
+              <span className="hidden sm:inline">{t("back_to_home")}</span>
+              <span className="sm:hidden" style={{ fontSize: 16 }}>✕</span>
             </button>
           </div>
         </header>

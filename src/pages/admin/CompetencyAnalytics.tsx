@@ -63,7 +63,7 @@ const DOMAIN_DETAILS: Record<string, DomainDetail> = {
     techScholarScore: 65,
     gapSeverity: "Benchmark Met",
     recommendedCourse: "Foundation Course in Governance & Policy Formulation",
-    targetLearners: "University Students & Technical Scholars",
+    targetLearners: "University Learners & Technical Officers",
     subCompetencies: [
       { name: "Constitutional Framework & Separation of Powers", score: 88, target: 80 },
       { name: "Administrative Structures & Citizen Charters", score: 80, target: 75 },
@@ -80,7 +80,7 @@ const DOMAIN_DETAILS: Record<string, DomainDetail> = {
     techScholarScore: 80,
     gapSeverity: "Benchmark Met",
     recommendedCourse: "Ethics & Integrity in Public Service",
-    targetLearners: "All Student & Candidate Streams",
+    targetLearners: "All Learner & Officer Streams",
     subCompetencies: [
       { name: "Moral Reasoning & Ethical Dilemmas", score: 86, target: 80 },
       { name: "Code of Conduct & Professional Integrity", score: 88, target: 85 },
@@ -114,7 +114,7 @@ const DOMAIN_DETAILS: Record<string, DomainDetail> = {
     techScholarScore: 60,
     gapSeverity: "Minor",
     recommendedCourse: "Public Finance Management & GeM Procurement Mastery",
-    targetLearners: "University Students & Non-Finance Aspirants",
+    targetLearners: "University Learners & Non-Finance Aspirants",
     subCompetencies: [
       { name: "General Financial Rules (GFR 2017)", score: 75, target: 75 },
       { name: "Outcome Budgeting & Financial Auditing", score: 72, target: 70 },
@@ -156,7 +156,7 @@ const GAP_MATRIX = [
 const STREAMS_LIST = ["University", "Aspirants", "CivilServants", "TechScholars"];
 
 const STREAM_DISPLAY_NAMES: Record<string, string> = {
-  University: "University Students",
+  University: "University Learners",
   Aspirants: "Civil Aspirants",
   CivilServants: "Civil Servants",
   TechScholars: "Tech Scholars",
@@ -217,7 +217,7 @@ export default function CompetencyAnalytics() {
 
   // Export Matrix
   const handleExportGapMatrix = () => {
-    const header = "Domain,Benchmark,University Students,Civil Aspirants,In-Service Civil Servants,Tech Scholars\n";
+    const header = "Domain,Benchmark,University Learners,Civil Aspirants,In-Service Civil Servants,Tech Scholars\n";
     const rows = GAP_MATRIX.map((g) => {
       return `"${g.domain}","75","${g.University}","${g.Aspirants}","${g.CivilServants}","${g.TechScholars}"`;
     }).join("\n");
@@ -280,12 +280,12 @@ export default function CompetencyAnalytics() {
             Universal Competency Analytics
           </h1>
           <p style={{ margin: "4px 0 0", fontSize: 14, color: C.muted }}>
-            Multi-stream diagnostic intelligence covering University Students, Competitive Aspirants, Tech Scholars & Civil Servants
+            Multi-stream diagnostic intelligence covering University Learners, Competitive Aspirants, Tech Scholars & Civil Servants
           </p>
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
           <select style={selectStyle} value={stream} onChange={(e) => setStream(e.target.value)}>
-            <option value="All">All Student Streams</option>
+            <option value="All">All Learner Streams</option>
             <option value="University">University & College Scholars</option>
             <option value="Aspirants">Civil Services Aspirants</option>
             <option value="CivilServants">In-Service Civil Servants</option>
@@ -344,7 +344,7 @@ export default function CompetencyAnalytics() {
             <PolarAngleAxis dataKey="domain" tick={{ fontSize: 12, fill: C.muted }} />
             {stream === "All" ? (
               <>
-                <Radar name="University Students" dataKey="University" stroke={C.s1} fill={C.s1} fillOpacity={0.15} strokeWidth={2} />
+                <Radar name="University Learners" dataKey="University" stroke={C.s1} fill={C.s1} fillOpacity={0.15} strokeWidth={2} />
                 <Radar name="Civil Aspirants" dataKey="Aspirants" stroke={C.accent} fill={C.accent} fillOpacity={0.15} strokeWidth={2} />
                 <Radar name="Civil Servants" dataKey="CivilServants" stroke={C.s2} fill={C.s2} fillOpacity={0.15} strokeWidth={2} />
                 <Radar name="Tech Scholars" dataKey="TechScholars" stroke={C.s3} fill={C.s3} fillOpacity={0.15} strokeWidth={2} />
@@ -374,7 +374,7 @@ export default function CompetencyAnalytics() {
               <YAxis domain={[60, 90]} tick={{ fontSize: 12, fill: C.muted }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 8 }} />
               <Legend wrapperStyle={{ fontSize: 12 }} />
-              <Line type="monotone" dataKey="university" name="University Students" stroke={C.s1} strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="university" name="University Learners" stroke={C.s1} strokeWidth={2} dot={false} />
               <Line type="monotone" dataKey="aspirants" name="Civil Aspirants" stroke={C.accent} strokeWidth={2} dot={false} />
               <Line type="monotone" dataKey="civilServants" name="Civil Servants" stroke={C.s2} strokeWidth={2} dot={false} />
             </LineChart>
@@ -423,7 +423,7 @@ export default function CompetencyAnalytics() {
           <span style={{ fontSize: 12, color: C.accent, fontWeight: 600 }}>👆 Click Any Domain to Inspect</span>
         </div>
 
-        <div className="overflow-x-auto w-full">
+        <div className="table-responsive-container w-full">
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 640 }}>
           <thead>
             <tr style={{ borderBottom: `1px solid ${C.border}`, background: C.bg }}>
@@ -552,13 +552,16 @@ export default function CompetencyAnalytics() {
               borderRadius: 14,
               width: "100%",
               maxWidth: 640,
+              maxHeight: "calc(100dvh - 32px)",
+              display: "flex",
+              flexDirection: "column",
               boxShadow: "0 20px 48px rgba(0,0,0,0.25)",
               border: `1px solid ${C.border}`,
               overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0 }}>
               <div>
                 <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: C.accent, letterSpacing: "0.06em" }}>
                   Competency Domain Inspection
@@ -572,7 +575,7 @@ export default function CompetencyAnalytics() {
               </button>
             </div>
 
-            <div style={{ padding: "24px" }}>
+            <div style={{ padding: "24px", overflowY: "auto", flex: 1 }}>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5 text-center">
                 <div style={{ background: C.bg, padding: "10px", borderRadius: 8 }}>
                   <div style={{ fontSize: 10, color: C.muted }}>Benchmark</div>

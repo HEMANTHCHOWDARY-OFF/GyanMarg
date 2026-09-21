@@ -9,7 +9,7 @@ export default function TermsOfUse() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         background: C.bg,
         fontFamily: FONT.body,
         color: C.dark,
@@ -31,7 +31,7 @@ export default function TermsOfUse() {
           maxWidth: 900,
           width: "100%",
           margin: "0 auto",
-          padding: "48px 24px 80px",
+          padding: "32px 16px 64px",
         }}
       >
         {/* Breadcrumb Navigation */}
@@ -281,7 +281,7 @@ export default function TermsOfUse() {
               <li>Abuse, spam, or overwhelm platform APIs, AI endpoints, or database infrastructure</li>
               <li>Deploy automated bots, spiders, or scrapers against the platform without authorization</li>
               <li>Upload or inject malicious code, scripts, or vulnerabilities</li>
-              <li>Impersonate any student, instructor, administrator, or institutional authority</li>
+              <li>Impersonate any learner, civil servant, instructor, administrator, or institutional authority</li>
             </ul>
           </section>
 

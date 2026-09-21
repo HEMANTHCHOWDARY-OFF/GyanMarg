@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GyanMarg AI - Complete System Architecture</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #111827;
+      --border-color: #1f2937;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-cyan: #06b6d4;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #10b981, #06b6d4, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .diagram-container {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      width: 100%;
+      max-width: 1300px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      overflow-x: auto;
+    }
+    .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+    .image-preview {
+      margin-top: 30px;
+      max-width: 1300px;
+      width: 100%;
+      text-align: center;
+    }
+    .image-preview img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GyanMarg AI — Complete System Architecture</h1>
+    <p class="subtitle">iGOT Karmayogi Civil Services Learning & Competency Platform</p>
+  </header>
+
+  <div class="diagram-container">
+    <pre class="mermaid">
+flowchart TD
+    %% ==========================================
+    %% 1. ACTORS & USERS
+    %% ==========================================
+    subgraph USERS ["1. Actors & User Roles"]
+        U_STU["👨‍🎓 Student / Civil Servant<br/>(Learner)"]
+        U_MEN["👨‍🏫 Mentor / Supervisor<br/>(Guidance)"]
+        U_ADM["⚙️ Admin / Content Manager<br/>(Governance & HITL)"]
+    end
+
+    %% ==========================================
+    %% 2. PRESENTATION LAYER (FRONTEND)
+    %% ==========================================
+    subgraph PRESENTATION ["2. Presentation Layer (React 19 + TypeScript + Vite 8)"]
+        subgraph FE_STUDENT ["Student Module"]
+            FE_ONBOARD["Course Onboarding & Discovery<br/>(5,400+ Catalog, Interest Prefs)"]
+            FE_DASH["Learner Progress Dashboard<br/>(Skill Health 0–100, Radar & Bar Charts)"]
+            FE_ASSESS["Adaptive Assessment Engine<br/>(MoSPI Manual Citations, Instant Scoring)"]
+            FE_GAP["Competency & Gap Analysis<br/>(Demonstrated vs Benchmark Levels)"]
+            FE_PATH["Interactive Learning Path<br/>(roadmap.sh Visual Connected Spine)"]
+            FE_LEARN["Interactive Course Workstation<br/>(Lectures, Study Notes, Embedded Quizzes)"]
+        end
+
+        subgraph FE_MENTOR ["Mentor Module"]
+            FE_M_DASH["Mentorship Command Center<br/>(Assigned Student Cohort)"]
+            FE_M_TRACK["Student Competency & Gap Tracker"]
+            FE_M_GUIDE["Personalized Feedback & Guidance"]
+        end
+
+        subgraph FE_ADMIN ["Admin & Governance Module"]
+            FE_A_INGEST["Document Ingestion Pipeline<br/>(PDFs, Manuals, Table of Contents)"]
+            FE_A_SYNTH["AI Question Synthesizer"]
+            FE_A_HITL["Human-in-the-Loop (HITL) Dashboard<br/>(Review, Edit, Approve/Reject)"]
+        end
+
+        subgraph FE_CORE ["Cross-Cutting Client Services"]
+            CORE_STORE["Reactive Context Store<br/>(CompetencyContext, Auth, Persistent Storage)"]
+            CORE_I18N["Centralized i18n Engine<br/>(English, Hindi, Telugu, Tamil)"]
+            CORE_TOUR["6-Stage Quest Tour Engine<br/>(SVG Spotlight Cutout, Clamped Viewport)"]
+        end
+    end
+
+    %% ==========================================
+    %% 3. APPLICATION & LOGIC ORCHESTRATION
+    %% ==========================================
+    subgraph LOGIC_LAYER ["3. Application Logic & Orchestration Layer"]
+        AUTH_ROUTER["Auth Session Guard & Role Routing<br/>(Protected Routes, Session Tracking)"]
+        
+        DET_ENGINE["Deterministic Engine (Non-AI Logic)<br/>• Composite Health Scoring<br/>• Skill Gap Priority Matrix (Req vs Curr)<br/>• Milestone Mastery Derivation"]
+        
+        RAG_ORCH["RAG Knowledge Layer & Context Assembler<br/>• 384-dim Query Semantic Embeddings<br/>• Threshold Scoring & Grounding Guardrails<br/>• Dual Retrieval Execution Engine"]
+    end
+
+    %% ==========================================
+    %% 4. BACKEND & PERSISTENCE (SUPABASE)
+    %% ==========================================
+    subgraph BACKEND_STORAGE ["4. Data, Security & Storage Layer (Supabase)"]
+        subgraph SUPABASE_AUTH ["Identity & Authorization"]
+            SB_AUTH["Supabase Auth (JWT, Google OAuth 2.0)"]
+            SB_RLS["PostgreSQL Row Level Security (RLS Policies)"]
+        end
+
+        subgraph PG_DATA ["Relational Database (PostgreSQL)"]
+            DB_USERS[("Users, Roles & Profiles")]
+            DB_ASSESS[("Assessments, Questions & Responses")]
+            DB_COMP[("Competency Taxonomy & Gap Records")]
+            DB_COURSES[("5,400+ Courses, Syllabi & Modules")]
+            DB_CREDS[("Certificates & Growth History")]
+        end
+
+        subgraph VECTOR_STORE ["Vector & Knowledge Store"]
+            PG_VECTOR[("pgvector HNSW Cosine Index<br/>(match_courses RPC)")]
+            LOCAL_INDEX[("In-Memory Vector Cache<br/>(5,408 Pre-Embedded Courses)")]
+            SB_BUCKET[("Supabase Storage Buckets<br/>(PDF Manuals, Transcripts, Media)")]
+        end
+    end
+
+    %% ==========================================
+    %% 5. AI INFERENCE LAYER (GROQ)
+    %% ==========================================
+    subgraph AI_LAYER ["5. AI Inference Layer (Groq Cloud API)"]
+        AI_GATEWAY["Secure AI Gateway & Prompt Constructor<br/>(Role-Specific Templates & Strict Constraints)"]
+        
+        subgraph GROQ_LLM ["Groq High-Speed LLM Inference (Llama 3.3 70B / 8B)"]
+            LLM_HITL["Grounded Question Generation<br/>(Document, Chapter, Page Citations)"]
+            LLM_REC["Personalized Course Recommendations<br/>(Bridging Measured Deficits)"]
+            LLM_PATH["Dynamic Learning Path Milestones"]
+            LLM_ASSIST["AI Learning Assistant & Mentor Support"]
+        end
+    end
+
+    %% ==========================================
+    %% DATA FLOWS & RELATIONSHIPS
+    %% ==========================================
+    U_STU --> FE_STUDENT
+    U_MEN --> FE_MENTOR
+    U_ADM --> FE_ADMIN
+
+    FE_STUDENT & FE_MENTOR & FE_ADMIN --> CORE_STORE
+    CORE_STORE --> AUTH_ROUTER
+    AUTH_ROUTER --> SB_AUTH
+    SB_AUTH --> SB_RLS
+
+    FE_ASSESS --> DET_ENGINE
+    DET_ENGINE --> DB_ASSESS & DB_COMP
+    FE_GAP & FE_DASH --> DET_ENGINE
+    FE_LEARN --> DET_ENGINE
+
+    FE_A_INGEST --> SB_BUCKET
+    SB_BUCKET --> RAG_ORCH
+    FE_A_SYNTH --> RAG_ORCH
+    FE_PATH & FE_ONBOARD --> RAG_ORCH
+
+    RAG_ORCH -->|Primary Remote Search| PG_VECTOR
+    RAG_ORCH -.->|Fallback Local Index| LOCAL_INDEX
+
+    RAG_ORCH --> AI_GATEWAY
+    AI_GATEWAY --> GROQ_LLM
+
+    GROQ_LLM --> LLM_HITL & LLM_REC & LLM_PATH & LLM_ASSIST
+
+    LLM_HITL --> FE_A_HITL
+    FE_A_HITL -->|Approve / Commit| DB_ASSESS
+
+    LLM_REC --> FE_DASH & FE_ONBOARD
+    LLM_PATH --> FE_PATH
+    LLM_ASSIST --> FE_STUDENT & FE_MENTOR
+
+    SB_RLS --> DB_USERS & DB_ASSESS & DB_COMP & DB_COURSES & DB_CREDS
+    </pre>
+  </div>
+
+  <div class="image-preview">
+    <h2 style="font-size: 20px; margin-bottom: 12px; color: var(--text-main);">Visual High-Resolution Diagram</h2>
+    <img src="./complete_architecture_diagram.png" alt="Complete System Architecture Diagram" />
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        darkMode: true,
+        background: '#111827',
+        primaryColor: '#10b981',
+        primaryBorderColor: '#059669',
+        primaryTextColor: '#f3f4f6',
+        secondaryColor: '#06b6d4',
+        tertiaryColor: '#1f2937',
+        lineColor: '#38bdf8',
+        fontFamily: 'system-ui, sans-serif'
+      }
+    });
+  </script>
+</body>
+</html>

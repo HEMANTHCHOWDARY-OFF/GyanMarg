@@ -123,7 +123,7 @@ export default function Dashboard() {
   };
 
   const displayName =
-    profile?.fullName || user?.user_metadata?.full_name || user?.email?.split("@")[0] || "Student Learner";
+    profile?.fullName || user?.user_metadata?.full_name || user?.email?.split("@")[0] || "Civil Service Learner";
 
   return (
     <div style={{ fontFamily: FONT.body, color: C.dark, paddingBottom: 48, maxWidth: 1280, margin: "0 auto" }}>
@@ -295,7 +295,7 @@ export default function Dashboard() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
           gap: 14,
           marginBottom: 26,
         }}

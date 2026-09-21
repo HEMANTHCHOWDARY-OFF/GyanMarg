@@ -52,9 +52,9 @@ export default function Settings() {
   const [profile, setProfile] = useState({
     name: authProfile?.fullName || "Priya Sharma",
     email: authProfile?.email || "priya.sharma@example.gov.in",
-    service: authProfile?.track || "Higher Education / University Student",
+    service: authProfile?.track || "In-Service Civil Servant / Statistical Officer",
     batch: authProfile?.year || "2024",
-    ministry: authProfile?.institution || "Indian Institute of Public Administration",
+    ministry: authProfile?.institution || "Ministry of Statistics & Programme Implementation (MoSPI)",
     phone: "+91 98765 43210",
     bio: "Learner committed to domain mastery and continuous competency development.",
   });
@@ -112,7 +112,7 @@ export default function Settings() {
   return (
     <div
       className="p-3.5 sm:p-6 lg:p-8"
-      style={{ background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}
+      style={{ background: C.bg, minHeight: "100dvh", fontFamily: FONT.body }}
     >
       {/* Header */}
       <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, fontFamily: FONT.display, margin: "0 0 24px" }}>
@@ -174,7 +174,7 @@ export default function Settings() {
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 20px" }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-1">
               <FormField label="Full Name">
                 <input
                   value={profile.name}

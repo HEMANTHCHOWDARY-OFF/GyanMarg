@@ -757,54 +757,56 @@ export default function Progress() {
       </div>
 
       {/* Activity Feed + Insights */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 20 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-5">
         {/* Activity Feed */}
         <div
           style={{
             background: C.surface,
             border: `1px solid ${C.border}`,
             borderRadius: 12,
-            padding: 24,
+            padding: "20px 16px",
           }}
         >
           <div style={{ fontFamily: FONT.display, fontSize: 16, fontWeight: 700, marginBottom: 16, color: C.dark }}>
             Recent Activity Feed
           </div>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-            <thead>
-              <tr>
-                {["Activity", "Description", "Date", "Status"].map((h) => (
-                  <th
-                    key={h}
-                    style={{
-                      textAlign: "left",
-                      padding: "6px 8px",
-                      color: C.faint,
-                      fontWeight: 600,
-                      borderBottom: `1px solid ${C.border}`,
-                    }}
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {activities.map((act, i) => (
-                <tr key={i} style={{ borderBottom: `1px solid ${C.border}` }}>
-                  <td style={{ padding: "10px 8px", whiteSpace: "nowrap" }}>
-                    <span style={{ fontSize: 18 }}>{act.icon}</span>
-                    <span style={{ marginLeft: 6, color: C.dark, fontWeight: 600 }}>{act.type}</span>
-                  </td>
-                  <td style={{ padding: "10px 8px", color: C.muted, lineHeight: 1.4 }}>{act.desc}</td>
-                  <td style={{ padding: "10px 8px", color: C.faint, whiteSpace: "nowrap" }}>{act.date}</td>
-                  <td style={{ padding: "10px 8px", fontWeight: 700, color: act.score === "Completed" ? C.s1 : C.accent }}>
-                    {act.score}
-                  </td>
+          <div className="table-responsive-container">
+            <table style={{ width: "100%", minWidth: 480, borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr>
+                  {["Activity", "Description", "Date", "Status"].map((h) => (
+                    <th
+                      key={h}
+                      style={{
+                        textAlign: "left",
+                        padding: "6px 8px",
+                        color: C.faint,
+                        fontWeight: 600,
+                        borderBottom: `1px solid ${C.border}`,
+                      }}
+                    >
+                      {h}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {activities.map((act, i) => (
+                  <tr key={i} style={{ borderBottom: `1px solid ${C.border}` }}>
+                    <td style={{ padding: "10px 8px", whiteSpace: "nowrap" }}>
+                      <span style={{ fontSize: 18 }}>{act.icon}</span>
+                      <span style={{ marginLeft: 6, color: C.dark, fontWeight: 600 }}>{act.type}</span>
+                    </td>
+                    <td style={{ padding: "10px 8px", color: C.muted, lineHeight: 1.4 }}>{act.desc}</td>
+                    <td style={{ padding: "10px 8px", color: C.faint, whiteSpace: "nowrap" }}>{act.date}</td>
+                    <td style={{ padding: "10px 8px", fontWeight: 700, color: act.score === "Completed" ? C.s1 : C.accent }}>
+                      {act.score}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* Improvement Insights */}

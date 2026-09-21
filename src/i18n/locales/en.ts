@@ -19,7 +19,7 @@ export const en: TranslationDictionary = {
   // ── Navbar ──────────────────────────────────────────────────────────────────
   brand_name: "GyanMarg",
   brand_ai: "AI",
-  student_portal_btn: "Student Portal",
+  student_portal_btn: "Learner Portal",
   admin_portal_btn: "Admin Portal",
   sign_in: "Sign In",
   get_started: "Get Started →",
@@ -30,7 +30,7 @@ export const en: TranslationDictionary = {
   hero_h1_1: "Diagnose Skill Gaps.",
   hero_h1_2: "Master Core Competencies.",
   hero_h1_3: "For Every Learner.",
-  hero_desc: "An intelligent skill assessment and learning platform engineered for students, scholars, and lifelong learners. Conduct baseline diagnostics, quantify proficiency gaps against structured competency benchmarks, generate source-cited practice quizzes from course literature, and advance through personalized adaptive pathways.",
+  hero_desc: "An intelligent skill assessment and learning platform engineered for civil servants, statistical officers, and capacity-building learners. Conduct baseline diagnostics, quantify proficiency gaps against structured competency benchmarks, generate source-cited practice quizzes from course literature, and advance through personalized adaptive pathways.",
   hero_pill_comp: "Competency Matrix",
   hero_pill_quizzes: "Source-Cited Quizzes",
   hero_pill_roadmaps: "Adaptive Roadmaps",
@@ -40,7 +40,7 @@ export const en: TranslationDictionary = {
   trust_strip: "CONTINUOUS DIAGNOSTIC BASELINE, SOURCE-CITED QUIZZES & ADAPTIVE PATHWAYS",
 
   // ── Stats Bar ───────────────────────────────────────────────────────────────
-  stat_learners: "Active Learners & Students",
+  stat_learners: "Active Learners & Civil Servants",
   stat_courses: "Courses Mapped to Standards",
   stat_rate: "Completion & Success Rate",
   stat_assessments: "Diagnostic AI Assessments",
@@ -77,7 +77,7 @@ export const en: TranslationDictionary = {
   portals_badge: "Dual Stakeholder Ecosystem",
   portals_heading: "Purpose-Built for Learners and Educators",
   student_portal_title: "Learner Experience Portal",
-  student_portal_desc: "Personalized competency tracking, dynamic roadmaps, adaptive quizzes, and 24/7 AI mentoring for students.",
+  student_portal_desc: "Personalized competency tracking, dynamic roadmaps, adaptive quizzes, and 24/7 AI mentoring for civil servants and learners.",
   admin_portal_title: "Admin & Faculty Analytics",
   admin_portal_desc: "Institutional oversight, cohort competency heatmaps, syllabus ingestion studio, and curriculum gap analytics.",
 
@@ -96,7 +96,7 @@ export const en: TranslationDictionary = {
   cta_banner_btn: "Begin Diagnostic Assessment →",
 
   // ── Section 11: Footer ──────────────────────────────────────────────────────
-  footer_desc: "An intelligent competency diagnostic and adaptive learning platform for students, researchers, and professional learners. Identifies skill deficits, generates source-cited practice assessments, and accelerates mastery through personalized learning pathways.",
+  footer_desc: "An intelligent competency diagnostic and adaptive learning platform for civil servants, statistical officers, and capacity-building learners. Identifies skill deficits, generates source-cited practice assessments, and accelerates mastery through personalized learning pathways.",
   footer_learner_portal: "Learner Portal",
   footer_admin_console: "Admin Console",
   footer_capabilities: "Key Capabilities",
@@ -114,12 +114,12 @@ export const en: TranslationDictionary = {
   auth_password_placeholder: "Enter your password",
   auth_name_label: "Full Name",
   auth_name_placeholder: "e.g. Rahul Sharma",
-  auth_role_student: "Learner / Student",
+  auth_role_student: "Learner / Civil Servant",
   auth_role_admin: "Admin / Faculty",
   auth_sign_in_btn: "Sign In →",
   auth_register_btn: "Create Account →",
   auth_demo_header: "Instant Demo Access (No Credentials Needed)",
-  auth_demo_student: "🚀 Enter as Student",
+  auth_demo_student: "🚀 Enter as Learner (Civil Servant)",
   auth_demo_admin: "⚡ Enter as Admin",
   auth_or_continue: "or continue with",
   auth_google_btn: "Continue with Google",

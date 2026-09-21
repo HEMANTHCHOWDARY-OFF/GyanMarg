@@ -98,7 +98,7 @@ export default function GapAnalysis() {
 
   const [activeTab, setActiveTab] = useState<"all" | "enrolled" | "spectrum" | "roi">("all");
 
-  const studentTrack = profile?.track || "Higher Education / University Student";
+  const studentTrack = profile?.track || "In-Service Civil Servant / Statistical Officer";
   const rawGapMetrics = getGapMetrics();
 
   // Selected courses resolved from profile

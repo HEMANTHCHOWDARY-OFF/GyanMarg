@@ -621,12 +621,7 @@ export default function AssessmentResults() {
 
                 {/* Answer Summary */}
                 <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: isCorrect ? "1fr" : "1fr 1fr",
-                    gap: 10,
-                    marginBottom: 14,
-                  }}
+                  className={isCorrect ? "grid grid-cols-1 gap-2.5 mb-3.5" : "grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3.5"}
                 >
                   {!isCorrect && (
                     <div

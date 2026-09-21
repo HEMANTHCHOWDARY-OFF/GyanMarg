@@ -77,7 +77,7 @@ const INITIAL_RECENT_REPORTS: ReportItem[] = [
   { id: "rep-1", name: "Universal Competency Audit — August 2026", type: "Competency", date: "Sep 1, 2026", format: "PDF", size: "2.4 MB", department: "All Learner Cohorts", month: "August" },
   { id: "rep-2", name: "Higher Ed & Tech Enrollment Report — Q2 2026", type: "Enrollment", date: "Aug 15, 2026", format: "Excel", size: "1.1 MB", department: "Higher Education / University", month: "July" },
   { id: "rep-3", name: "Civil Services & Public Policy Gap Analysis", type: "Gap Analysis", date: "Aug 10, 2026", format: "PDF", size: "3.2 MB", department: "Civil Services & Policy Aspirants", month: "August" },
-  { id: "rep-4", name: "All-Student Completion Metrics — July 2026", type: "Completion", date: "Aug 5, 2026", format: "CSV", size: "0.8 MB", department: "All Learner Cohorts", month: "July" },
+  { id: "rep-4", name: "All-Learner Completion Metrics — July 2026", type: "Completion", date: "Aug 5, 2026", format: "CSV", size: "0.8 MB", department: "All Learner Cohorts", month: "July" },
   { id: "rep-5", name: "AI & Tech Scholars Skill Benchmark — Q1 2026", type: "Competency", date: "Apr 30, 2026", format: "PDF", size: "2.9 MB", department: "Data Science & AI Scholars", month: "April" },
 ];
 
@@ -456,7 +456,7 @@ export default function Reports() {
             </div>
             <div>
               <div style={{ fontSize: 13, color: C.muted, marginBottom: 10 }}>Summary Rubric Table</div>
-              <div className="overflow-x-auto w-full">
+              <div className="table-responsive-container w-full">
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
                   <thead>
                     <tr style={{ borderBottom: `1px solid ${C.border}` }}>
@@ -501,7 +501,7 @@ export default function Reports() {
                 <XAxis dataKey="month" tick={{ fontSize: 12, fill: C.muted }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 12, fill: C.muted }} axisLine={false} tickLine={false} />
                 <Tooltip contentStyle={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 8 }} />
-                <Line type="monotone" dataKey="count" name="Enrolled Students" stroke={C.s1} strokeWidth={2.5} dot={{ r: 4, fill: C.s1 }} />
+                <Line type="monotone" dataKey="count" name="Enrolled Learners" stroke={C.s1} strokeWidth={2.5} dot={{ r: 4, fill: C.s1 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -520,11 +520,11 @@ export default function Reports() {
                 <Tooltip contentStyle={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 8 }} />
               </PieChart>
             </ResponsiveContainer>
-            <div className="overflow-x-auto w-full self-center">
+            <div className="table-responsive-container w-full self-center">
               <table style={{ width: "100%", fontSize: 12, borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ borderBottom: `1px solid ${C.border}` }}>
-                    {["Learner Cohort", "Completion Rate", "Certified Students"].map((h) => (
+                    {["Learner Cohort", "Completion Rate", "Certified Civil Servants / Learners"].map((h) => (
                       <th key={h} style={{ textAlign: "left", padding: "8px 12px", color: C.muted, fontWeight: 600 }}>{h}</th>
                     ))}
                   </tr>
@@ -560,7 +560,7 @@ export default function Reports() {
             </ResponsiveContainer>
             <div style={{ alignSelf: "center" }}>
               <div style={{ fontSize: 13, color: C.muted, marginBottom: 10 }}>Gap Summary ({dept})</div>
-              <div className="overflow-x-auto w-full">
+              <div className="table-responsive-container w-full">
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
                   <thead>
                     <tr style={{ borderBottom: `1px solid ${C.border}` }}>
@@ -596,7 +596,7 @@ export default function Reports() {
         <div style={{ padding: "16px 20px", borderBottom: `1px solid ${C.border}`, fontFamily: FONT.display, fontSize: 15, fontWeight: 600 }}>
           Generated Executive Reports & Archive
         </div>
-        <div className="overflow-x-auto w-full">
+        <div className="table-responsive-container w-full">
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 720 }}>
           <thead>
             <tr style={{ background: C.bg, borderBottom: `1px solid ${C.border}` }}>
@@ -679,10 +679,11 @@ export default function Reports() {
               background: C.surface,
               borderRadius: 16,
               width: "100%",
-              maxWidth: 480,
+              maxWidth: "min(94vw, 480px)",
+              maxHeight: "calc(100dvh - 32px)",
+              overflowY: "auto",
               boxShadow: "0 24px 60px rgba(0,0,0,0.3)",
               border: `1px solid ${C.border}`,
-              overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -708,7 +709,7 @@ export default function Reports() {
                 Select export format:
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-5">
                 {/* Excel Option */}
                 <div
                   onClick={() => handleGenerateReport("Excel")}

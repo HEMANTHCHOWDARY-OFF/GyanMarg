@@ -487,70 +487,6 @@ export default function Landing() {
 
         {/* Desktop Buttons */}
         <div className="hidden lg:flex" style={{ gap: 12, alignItems: "center" }}>
-          {/* Direct Student Portal button */}
-          <button
-            onClick={() => navigate("/student/dashboard")}
-            style={{
-              fontFamily: FONT.body,
-              fontWeight: 700,
-              fontSize: 14,
-              color: "#fff",
-              background: "rgba(42, 79, 58, 0.7)",
-              border: "1.5px solid rgba(110, 185, 155, 0.45)",
-              borderRadius: 24,
-              padding: "10px 20px",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: 44,
-              transition: "all 0.2s",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "rgba(42, 79, 58, 1)";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = C.accent;
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "rgba(42, 79, 58, 0.7)";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(110, 185, 155, 0.45)";
-            }}
-          >
-            <span>{t("student_portal_btn")}</span>
-          </button>
-
-          {/* Direct Admin Portal button */}
-          <button
-            onClick={() => navigate("/admin/dashboard")}
-            style={{
-              fontFamily: language === "hi" ? "'Noto Sans Devanagari', 'Hind', sans-serif" : FONT.body,
-              fontWeight: 700,
-              fontSize: 14,
-              color: "#fff",
-              background: "rgba(36, 48, 70, 0.7)",
-              border: "1.5px solid rgba(148, 180, 220, 0.45)",
-              borderRadius: 24,
-              padding: "10px 20px",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: 44,
-              transition: "all 0.2s",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "rgba(36, 48, 70, 1)";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "#94B4DC";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "rgba(36, 48, 70, 0.7)";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(148, 180, 220, 0.45)";
-            }}
-          >
-            <span>{t("admin_portal_btn")}</span>
-          </button>
-
           {/* Take a Tour Button */}
           <button
             onClick={startTutorial}
@@ -695,48 +631,6 @@ export default function Landing() {
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 6 }}>
-              <button
-                onClick={() => {
-                  setMobileNavOpen(false);
-                  navigate("/student/dashboard");
-                }}
-                style={{
-                  padding: "13px 18px",
-                  borderRadius: 10,
-                  background: "rgba(42, 79, 58, 0.85)",
-                  border: "1.5px solid rgba(110, 185, 155, 0.5)",
-                  color: "#fff",
-                  fontWeight: 700,
-                  fontSize: 14.5,
-                  textAlign: "left",
-                  cursor: "pointer",
-                  minHeight: 46,
-                }}
-              >
-                🎓 {t("student_portal_btn")}
-              </button>
-
-              <button
-                onClick={() => {
-                  setMobileNavOpen(false);
-                  navigate("/admin/dashboard");
-                }}
-                style={{
-                  padding: "13px 18px",
-                  borderRadius: 10,
-                  background: "rgba(36, 48, 70, 0.85)",
-                  border: "1.5px solid rgba(148, 180, 220, 0.5)",
-                  color: "#fff",
-                  fontWeight: 700,
-                  fontSize: 14.5,
-                  textAlign: "left",
-                  cursor: "pointer",
-                  minHeight: 46,
-                }}
-              >
-                🏛 {t("admin_portal_btn")}
-              </button>
-
               <button
                 onClick={() => {
                   setMobileNavOpen(false);
@@ -926,7 +820,7 @@ export default function Landing() {
         >
           <img
             src="/hero-illustration.png"
-            alt="Students and Learners on GyanMarg AI"
+            alt="Civil Servants and Learners on GyanMarg AI"
             style={{
               width: "100%",
               maxWidth: 580,
@@ -983,6 +877,139 @@ export default function Landing() {
       </section>
 
 
+
+      {/* ── 4. HOW IT WORKS ──────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: C.surface,
+          padding: "80px 5%",
+          borderBottom: `1px solid ${C.border}`,
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 60 }}>
+          <p
+            style={{
+              fontFamily: FONT.body,
+              fontSize: 12,
+              fontWeight: 700,
+              color: C.accent,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              marginBottom: 12,
+            }}
+          >
+            Simple Process
+          </p>
+          <h2
+            style={{
+              fontFamily: FONT.display,
+              fontSize: 38,
+              fontWeight: 800,
+              color: C.dark,
+              marginBottom: 16,
+            }}
+          >
+            How It Works
+          </h2>
+          <p
+            style={{
+              fontFamily: FONT.body,
+              fontSize: 17,
+              color: C.muted,
+              maxWidth: 540,
+              margin: "0 auto",
+              lineHeight: 1.6,
+            }}
+          >
+            A structured four-stage intelligence workflow transforming course literature and diagnostic benchmarks into verified skill mastery.
+          </p>
+        </div>
+
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative"
+        >
+          {/* Connector line (desktop only) */}
+          <div
+            className="hidden lg:block"
+            style={{
+              position: "absolute",
+              top: 40,
+              left: "12.5%",
+              right: "12.5%",
+              height: 2,
+              background: `linear-gradient(to right, ${C.dark}, ${C.accent}, ${C.dark}, ${C.accent})`,
+              zIndex: 0,
+              opacity: 0.3,
+            }}
+          />
+
+          {steps.map((step) => (
+            <div
+              key={step.num}
+              style={{
+                background: C.surface,
+                border: `1px solid ${C.border}`,
+                borderRadius: 16,
+                padding: "32px 24px",
+                textAlign: "center",
+                position: "relative",
+                zIndex: 1,
+              }}
+            >
+              {/* Circle */}
+              <div
+                style={{
+                  width: 72,
+                  height: 72,
+                  borderRadius: "50%",
+                  background: step.accent,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "0 auto 20px",
+                  boxShadow: `0 8px 24px ${step.accent}40`,
+                }}
+              >
+                {step.icon}
+              </div>
+
+              <div
+                style={{
+                  fontFamily: FONT.mono,
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: step.accent,
+                  letterSpacing: "0.1em",
+                  marginBottom: 8,
+                }}
+              >
+                STEP {step.num}
+              </div>
+              <h3
+                style={{
+                  fontFamily: FONT.display,
+                  fontSize: 18,
+                  fontWeight: 700,
+                  color: C.dark,
+                  marginBottom: 10,
+                }}
+              >
+                {step.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: FONT.body,
+                  fontSize: 14,
+                  color: C.muted,
+                  lineHeight: 1.6,
+                }}
+              >
+                {step.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ── CYCLIC COMPETENCY WORKFLOW (BOX-SHAPED CLOSED-LOOP) ───────────── */}
       <section
@@ -1112,12 +1139,7 @@ export default function Landing() {
               }}
             >
               <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "28px 24px",
-                  alignItems: "stretch",
-                }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
               >
                 {/* ── STAGE 01 (Row 1, Col 1) ── */}
                 <div
@@ -2121,151 +2143,12 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── 4. HOW IT WORKS ──────────────────────────────────────────────── */}
+      {/* ── 6. CURRICULUM-GROUNDED DIAGNOSTIC ENGINE ────────────────────────────── */}
       <section
-        style={{
-          background: C.surface,
-          padding: "80px 5%",
-        }}
-      >
-        <div style={{ textAlign: "center", marginBottom: 60 }}>
-          <p
-            style={{
-              fontFamily: FONT.body,
-              fontSize: 12,
-              fontWeight: 700,
-              color: C.accent,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              marginBottom: 12,
-            }}
-          >
-            Simple Process
-          </p>
-          <h2
-            style={{
-              fontFamily: FONT.display,
-              fontSize: 38,
-              fontWeight: 800,
-              color: C.dark,
-              marginBottom: 16,
-            }}
-          >
-            How It Works
-          </h2>
-          <p
-            style={{
-              fontFamily: FONT.body,
-              fontSize: 17,
-              color: C.muted,
-              maxWidth: 540,
-              margin: "0 auto",
-              lineHeight: 1.6,
-            }}
-          >
-            A structured four-stage intelligence workflow transforming course literature and diagnostic benchmarks into verified skill mastery.
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 24,
-            position: "relative",
-          }}
-        >
-          {/* Connector line */}
-          <div
-            style={{
-              position: "absolute",
-              top: 40,
-              left: "12.5%",
-              right: "12.5%",
-              height: 2,
-              background: `linear-gradient(to right, ${C.dark}, ${C.accent}, ${C.dark}, ${C.accent})`,
-              zIndex: 0,
-              opacity: 0.3,
-            }}
-          />
-
-          {steps.map((step) => (
-            <div
-              key={step.num}
-              style={{
-                background: C.surface,
-                border: `1px solid ${C.border}`,
-                borderRadius: 16,
-                padding: "32px 24px",
-                textAlign: "center",
-                position: "relative",
-                zIndex: 1,
-              }}
-            >
-              {/* Circle */}
-              <div
-                style={{
-                  width: 72,
-                  height: 72,
-                  borderRadius: "50%",
-                  background: step.accent,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 20px",
-                  boxShadow: `0 8px 24px ${step.accent}40`,
-                }}
-              >
-                {step.icon}
-              </div>
-
-              <div
-                style={{
-                  fontFamily: FONT.mono,
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: step.accent,
-                  letterSpacing: "0.1em",
-                  marginBottom: 8,
-                }}
-              >
-                STEP {step.num}
-              </div>
-              <h3
-                style={{
-                  fontFamily: FONT.display,
-                  fontSize: 18,
-                  fontWeight: 700,
-                  color: C.dark,
-                  marginBottom: 10,
-                }}
-              >
-                {step.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: FONT.body,
-                  fontSize: 14,
-                  color: C.muted,
-                  lineHeight: 1.6,
-                }}
-              >
-                {step.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 6. QUIZ GENERATOR ────────────────────────────────────────────── */}
-      <section
+        className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center"
         style={{
           background: C.dark,
-          padding: "80px 5%",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 60,
-          alignItems: "center",
+          padding: "54px 5%",
         }}
       >
         {/* Left text */}
@@ -2281,7 +2164,7 @@ export default function Landing() {
               marginBottom: 14,
             }}
           >
-            AI Quiz Generator
+            AI Diagnostic Engine
           </p>
           <h2
             style={{
@@ -2293,9 +2176,9 @@ export default function Landing() {
               lineHeight: 1.15,
             }}
           >
-            Ingest Curricular Materials.
+            Curriculum-Grounded Diagnostics.
             <br />
-            <span style={{ color: C.accent }}>Generate Verified Diagnostic Assessments.</span>
+            <span style={{ color: C.accent }}>Verified Questions with Real-Time Citations.</span>
           </h2>
           <p
             style={{
@@ -2306,15 +2189,15 @@ export default function Landing() {
               marginBottom: 32,
             }}
           >
-            Transform syllabus documents, textbooks, academic research papers, or technical guidelines into verified diagnostic questions with precise page-level citations.
+            Evaluates knowledge against official MoSPI, NSSTA, and civil service capacity-building frameworks. Every question features deterministic page-level citations, instant explanations, and deep competency scoring.
           </p>
 
           <ul style={{ listStyle: "none", padding: 0, marginBottom: 36 }}>
             {[
-              "Ingests course PDFs, textbooks, syllabi, and lecture materials up to 25MB",
-              "Multimodal engine extracts core analytical concepts, formulas, and definitions",
+              "Pre-grounded in official MoSPI, NSSTA, and civil service training manuals",
               "Deterministic page and section citations embedded directly into every question",
-              "Diagnostic responses instantly sync to recalculate learner competency baselines",
+              "Multimodal engine evaluates conceptual understanding and analytical depth",
+              "Diagnostic outcomes instantly sync to quantify competency gaps and adapt learning paths",
             ].map((point) => (
               <li
                 key={point}
@@ -2348,7 +2231,7 @@ export default function Landing() {
               cursor: "pointer",
             }}
           >
-            Try Quiz Generator →
+            Take Diagnostic Assessment →
           </button>
         </div>
 
@@ -2372,7 +2255,7 @@ export default function Landing() {
               borderRadius: 10,
             }}
           >
-            {["Upload", "Preview Questions", "Results"].map((tab, i) => (
+            {["Curriculum Grounding", "Sample Question", "Diagnostic Results"].map((tab, i) => (
               <button
                 key={tab}
                 onClick={() => setQuizTab(i)}
@@ -2396,89 +2279,106 @@ export default function Landing() {
           </div>
 
           <div style={{ padding: 20 }}>
-            {/* Tab 0: Upload */}
+            {/* Tab 0: Curriculum Grounding */}
             {quizTab === 0 && (
               <div>
                 <div
                   style={{
-                    border: `2px dashed ${C.accent}55`,
+                    border: `1px solid ${C.accent}40`,
                     borderRadius: 12,
-                    padding: "32px 20px",
-                    textAlign: "center",
-                    marginBottom: 20,
-                    background: C.accent + "08",
+                    padding: "20px",
+                    marginBottom: 18,
+                    background: "rgba(198, 133, 27, 0.08)",
                   }}
                 >
-                  <div style={{ width: 44, height: 44, margin: "0 auto 10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <svg viewBox="0 0 24 24" width={36} height={36} fill="none" stroke={C.accent} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                      <polyline points="14 2 14 8 20 8" />
-                      <line x1="12" y1="18" x2="12" y2="12" />
-                      <line x1="9" y1="15" x2="15" y2="15" />
-                    </svg>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                    <span style={{ fontSize: 20 }}>🏛️</span>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", fontFamily: FONT.body }}>
+                        Official Training Curriculum Integration
+                      </div>
+                      <div style={{ fontSize: 11, color: C.accent, fontWeight: 600 }}>
+                        Domain: Applied Statistics & Official Survey Frameworks
+                      </div>
+                    </div>
                   </div>
                   <p
                     style={{
                       fontFamily: FONT.body,
-                      fontSize: 14,
-                      color: C.faint,
-                      marginBottom: 4,
+                      fontSize: 13,
+                      color: "#b8cebe",
+                      lineHeight: 1.5,
+                      margin: 0,
                     }}
                   >
-                    Drop your textbook, PDF, or syllabus document here
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: FONT.body,
-                      fontSize: 12,
-                      color: "#55785e",
-                    }}
-                  >
-                    PDF, DOCX, PPTX — up to 25MB
+                    Questions are deterministically indexed from authenticated government statistical manuals, including the <em>MoSPI Survey Methodology & Sampling Handbook (Vol. II)</em> and NSSTA official training syllabi.
                   </p>
                 </div>
 
-                {[
-                  { label: "Material Uploaded: Applied Statistics Handbook.pdf", done: true },
-                  { label: "Extracting Statistical Formulas & Principles", done: true },
-                  { label: "Synthesizing Questions with Source Citations", done: true },
-                  { label: "Citation Verification & Standard Alignment", done: true },
-                  { label: "Ready for Practice & Competency Assessment", done: true },
-                ].map((step) => (
-                  <div
-                    key={step.label}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 12,
-                      marginBottom: 10,
-                    }}
-                  >
-                    <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.s1 }} />
-                    <span
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 18 }}>
+                  {[
+                    { label: "MoSPI & NSSTA Cadre Training Manuals Integrated", done: true },
+                    { label: "Deterministic Chapter & Page Citations (p. 42)", done: true },
+                    { label: "Calibrated to Measure Analytical & Applied Proficiency", done: true },
+                    { label: "Instant Reasoning Verification & Conceptual Explanations", done: true },
+                    { label: "Direct Sync to Competency Gap Analysis & Learning Paths", done: true },
+                  ].map((step) => (
+                    <div
+                      key={step.label}
                       style={{
-                        fontFamily: FONT.body,
-                        fontSize: 13,
-                        color: step.done ? "#c5d9cb" : "#55785e",
-                        flex: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 12,
                       }}
                     >
-                      {step.label}
-                    </span>
-                    {step.done && (
+                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.s1 }} />
                       <span
                         style={{
-                          fontFamily: FONT.mono,
-                          fontSize: 11,
-                          color: C.s1,
-                          fontWeight: 700,
+                          fontFamily: FONT.body,
+                          fontSize: 13,
+                          color: step.done ? "#c5d9cb" : "#55785e",
+                          flex: 1,
                         }}
                       >
-                        ✓
+                        {step.label}
                       </span>
-                    )}
-                  </div>
-                ))}
+                      {step.done && (
+                        <span
+                          style={{
+                            fontFamily: FONT.mono,
+                            fontSize: 11,
+                            color: C.s1,
+                            fontWeight: 700,
+                          }}
+                        >
+                          ✓
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setQuizTab(1)}
+                  style={{
+                    width: "100%",
+                    background: "rgba(110, 185, 155, 0.18)",
+                    border: "1px solid rgba(110, 185, 155, 0.4)",
+                    borderRadius: 8,
+                    padding: "10px",
+                    color: "#a0d4b0",
+                    fontWeight: 600,
+                    fontSize: 13,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 6,
+                    fontFamily: FONT.body,
+                  }}
+                >
+                  <span>Attempt Sample Question →</span>
+                </button>
               </div>
             )}
 
@@ -2595,6 +2495,46 @@ export default function Landing() {
                     </span>
                   </button>
                 ))}
+
+                {selectedOption !== null && (
+                  <div
+                    style={{
+                      marginTop: 12,
+                      background: selectedOption === quizQuestion.correct ? "rgba(30, 107, 66, 0.2)" : "rgba(192, 57, 43, 0.2)",
+                      border: `1px solid ${selectedOption === quizQuestion.correct ? C.s1 : C.s4}`,
+                      borderRadius: 8,
+                      padding: "10px 14px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ fontSize: 12, color: "#e0ece3", lineHeight: 1.4 }}>
+                      {selectedOption === quizQuestion.correct ? (
+                        <span><strong>✓ Correct!</strong> Sample allocation is proportional to stratum standard deviation (Neyman Allocation).</span>
+                      ) : (
+                        <span><strong>✕ Incorrect.</strong> Option B is correct based on MoSPI Sampling Handbook, p. 42.</span>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => setQuizTab(2)}
+                      style={{
+                        background: C.accent,
+                        color: C.dark,
+                        border: "none",
+                        borderRadius: 6,
+                        padding: "6px 12px",
+                        fontSize: 11,
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        whiteSpace: "nowrap",
+                        marginLeft: 10,
+                      }}
+                    >
+                      View Results →
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -2620,7 +2560,7 @@ export default function Landing() {
                       color: "#7a9e88",
                     }}
                   >
-                    Overall Score · 10 of 12 Correct
+                    Overall Diagnostic Score · 10 of 12 Correct
                   </p>
                 </div>
 
@@ -2717,13 +2657,10 @@ export default function Landing() {
       <section
         id="courses"
         data-tutorial="courses"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center"
         style={{
           background: C.surface,
-          padding: "80px 5%",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 60,
-          alignItems: "center",
+          padding: "54px 5%",
         }}
       >
         {/* Left: Course Cards Grid */}
@@ -2742,11 +2679,7 @@ export default function Landing() {
             Curated Competency Courses
           </p>
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 16,
-            }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
             {curatedCourses.map((course) => (
               <div
@@ -2966,20 +2899,14 @@ export default function Landing() {
         </div>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 28,
-            maxWidth: 1000,
-            margin: "0 auto",
-          }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto"
         >
           {/* Student Portal Card */}
           <div
             style={{
               background: "#132419",
               borderRadius: 20,
-              padding: "40px 36px",
+              padding: "28px 22px",
               color: "#fff",
               border: "1.5px solid rgba(198, 133, 27, 0.4)",
               boxShadow: "0 16px 40px rgba(0,0,0,0.15)",
@@ -3004,7 +2931,7 @@ export default function Landing() {
                   marginBottom: 6,
                 }}
               >
-                Student / Learner Module
+                Learner / Civil Servant Module
               </h3>
               <p
                 style={{
@@ -3015,7 +2942,7 @@ export default function Landing() {
                   marginBottom: 20,
                 }}
               >
-                For Students, University Scholars, Aspirants &amp; Upskillers
+                For In-Service Civil Servants, Statistical Officers, Aspirants &amp; Upskillers
               </p>
               <ul style={{ listStyle: "none", padding: 0, marginBottom: 32 }}>
                 {[
@@ -3062,7 +2989,7 @@ export default function Landing() {
                 onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = C.accentHov)}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = C.accent)}
               >
-                Enter Student Portal →
+                Enter Learner Portal →
               </button>
               <button
                 onClick={() => navigate("/login")}
@@ -3092,7 +3019,7 @@ export default function Landing() {
               background: "#1A2533",
               border: `1.5px solid rgba(148, 180, 220, 0.4)`,
               borderRadius: 20,
-              padding: "40px 36px",
+              padding: "28px 22px",
               color: "#fff",
               boxShadow: "0 16px 40px rgba(0,0,0,0.15)",
               display: "flex",
@@ -3132,7 +3059,7 @@ export default function Landing() {
                 {[
                   "Macro Competency Heatmaps & regional skill distribution",
                   "Predictive talent shortage detection in emerging tech",
-                  "Student & Cohort Management with progress drill-downs",
+                  "Civil Servant & Cohort Management with progress drill-downs",
                   "Human-in-the-loop AI Quiz Review & Authoring Studio",
                   "Empirical course effectiveness & training ROI analytics",
                 ].map((point) => (
@@ -3246,11 +3173,7 @@ export default function Landing() {
         </div>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 24,
-          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {platformPillars.map((p) => (
             <div
@@ -3418,7 +3341,7 @@ export default function Landing() {
               ((e.currentTarget as HTMLButtonElement).style.opacity = "1")
             }
           >
-            Launch Student Portal →
+            Launch Learner Portal →
           </button>
           <button
             onClick={() => navigate("/admin/dashboard")}
@@ -3455,12 +3378,7 @@ export default function Landing() {
         }}
       >
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr 1fr 1fr",
-            gap: 48,
-            marginBottom: 48,
-          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-10"
         >
           {/* Brand */}
           <div>
@@ -3588,7 +3506,7 @@ export default function Landing() {
               links: [
                 "Institutional Dashboard",
                 "Cohort Heatmaps",
-                "Student Directory",
+                "Civil Servant Directory",
                 "Quiz Review Studio",
                 "Curriculum Analytics",
               ],

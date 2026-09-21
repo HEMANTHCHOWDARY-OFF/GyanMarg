@@ -48,7 +48,7 @@ export default function StudentLayout() {
             <div style={{ fontFamily: FONT.display, fontSize: 13, fontWeight: 700, color: "#fff", lineHeight: 1.1 }}>
               GyanMarg <span style={{ color: C.accent }}>AI</span>
             </div>
-            <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.35)" }}>Student Portal</div>
+            <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.35)" }}>Learner Portal</div>
           </div>
         </div>
         {/* Mobile close button */}
@@ -90,10 +90,10 @@ export default function StudentLayout() {
         </div>
         <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: 12, fontWeight: 600, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            {profile?.fullName || "Student Learner"}
+            {profile?.fullName || "Civil Service Learner"}
           </div>
           <div style={{ fontSize: 10, color: "rgba(255,255,255,0.40)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            {profile?.track || "University Scholar"} {isDemo && <span style={{ color: C.accent, fontSize: 9 }}>(Demo)</span>}
+            {profile?.track || "Statistical Officer / Learner"} {isDemo && <span style={{ color: C.accent, fontSize: 9 }}>(Demo)</span>}
           </div>
         </div>
       </div>
@@ -163,8 +163,8 @@ export default function StudentLayout() {
   );
 
   return (
-    <div style={{ display: "flex", height: "100vh", fontFamily: FONT.body, background: C.bg, overflow: "hidden" }}>
-      <SEO title="Student Portal | GyanMarg AI" robots="noindex, nofollow" />
+    <div style={{ display: "flex", height: "100dvh", fontFamily: FONT.body, background: C.bg, overflow: "hidden" }}>
+      <SEO title="Learner Portal | GyanMarg AI" robots="noindex, nofollow" />
 
       {/* ── Desktop Sidebar ──────────────────────────────────────────── */}
       <aside
@@ -218,13 +218,13 @@ export default function StudentLayout() {
           height: 56, flexShrink: 0,
           background: C.surface, borderBottom: `1px solid ${C.border}`,
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "0 16px",
+          padding: "0 14px",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0, flex: 1 }}>
             {/* Hamburger Button (mobile only) */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden"
+              className="flex md:hidden items-center justify-center"
               aria-label="Open navigation menu"
               style={{
                 background: "transparent",
@@ -232,9 +232,6 @@ export default function StudentLayout() {
                 borderRadius: 8,
                 width: 38,
                 height: 38,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 color: C.dark,
                 cursor: "pointer",
                 fontSize: 18,
@@ -245,7 +242,7 @@ export default function StudentLayout() {
             </button>
 
             <div style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0, overflow: "hidden" }}>
-              <span className="hidden sm:inline" style={{ fontSize: 12, color: C.faint }}>Student Portal</span>
+              <span className="hidden sm:inline" style={{ fontSize: 12, color: C.faint }}>Learner Portal</span>
               <span className="hidden sm:inline" style={{ color: C.border }}>›</span>
               <span style={{ fontSize: 13, fontWeight: 700, color: C.dark, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 GyanMarg AI
@@ -253,7 +250,7 @@ export default function StudentLayout() {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
             <LanguageSelector variant="compact" />
             <div
               onClick={() => navigate("/student/settings")}
@@ -282,27 +279,25 @@ export default function StudentLayout() {
             flex: 1,
             overflowY: "auto",
             overflowX: "hidden",
-            padding: "20px 16px",
+            padding: "16px 14px",
             boxSizing: "border-box",
           }}
         >
           <Outlet />
         </main>
 
-        {/* ── Mobile Bottom Navigation Bar (Thumb Reach) ─────────────── */}
+        {/* ── Mobile Bottom Navigation Bar (Thumb Reach & Safe Area) ── */}
         <nav
-          className="md:hidden"
+          className="flex md:hidden items-center justify-around"
           style={{
             position: "fixed",
             bottom: 0,
             left: 0,
             right: 0,
-            height: 58,
+            height: "calc(58px + env(safe-area-inset-bottom, 0px))",
+            paddingBottom: "env(safe-area-inset-bottom, 0px)",
             background: C.surface,
             borderTop: `1px solid ${C.border}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
             zIndex: 9000,
             boxShadow: "0 -2px 10px rgba(0,0,0,0.06)",
           }}

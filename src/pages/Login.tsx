@@ -103,7 +103,7 @@ export default function Login() {
 
       {/* Left — brand panel */}
       <div
-        className="w-full md:w-[40%] flex-shrink-0 flex flex-col justify-between"
+        className="hidden md:flex md:w-[40%] flex-shrink-0 flex-col justify-between"
         style={{
           background: C.dark,
           padding: "32px 28px",
@@ -140,7 +140,7 @@ export default function Login() {
             Welcome to<br/>GyanMarg AI
           </h2>
           <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, marginBottom: 28 }}>
-            Designed for all learners — students, scholars, aspirants, and administrators. Access your diagnostic results, personalized roadmap, AI mentor, and institutional analytics.
+            Designed for all civil servants, statistical officers, and capacity-building learners. Access your diagnostic results, personalized roadmap, AI mentor, and institutional analytics.
           </p>
 
           {/* Platform Highlights */}
@@ -360,7 +360,7 @@ export default function Login() {
                   onMouseEnter={e => (e.currentTarget.style.borderColor = C.accent)}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = C.border)}
                 >
-                  Student Demo
+                  Learner Demo (Civil Servant)
                 </button>
               ) : (
                 <button

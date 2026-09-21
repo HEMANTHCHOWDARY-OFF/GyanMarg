@@ -160,47 +160,47 @@ export default function Onboarding() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: C.bg, display: "flex", flexDirection: "column", fontFamily: FONT.body }}>
+    <div style={{ minHeight: "100dvh", background: C.bg, display: "flex", flexDirection: "column", fontFamily: FONT.body }}>
 
       {/* Top progress bar */}
-      <div style={{ background: C.surface, borderBottom: `1px solid ${C.border}`, padding: "16px 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 34, height: 34, borderRadius: "50%", background: C.dark, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg viewBox="0 0 32 32" fill="none" width={18} height={18}>
+      <div style={{ background: C.surface, borderBottom: `1px solid ${C.border}`, padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+          <div style={{ width: 32, height: 32, borderRadius: "50%", background: C.dark, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg viewBox="0 0 32 32" fill="none" width={16} height={16}>
               <path d="M16 3C16 3 8 9 8 17a8 8 0 0016 0C24 9 16 3 16 3z" fill={C.accent}/>
               <circle cx="16" cy="17" r="3" fill="#fff"/>
             </svg>
           </div>
-          <span style={{ fontFamily: FONT.display, fontSize: 15, fontWeight: 700, color: C.dark }}>
+          <span className="hidden xs:inline" style={{ fontFamily: FONT.display, fontSize: 14, fontWeight: 700, color: C.dark }}>
             GyanMarg <span style={{ color: C.accent }}>AI</span>
           </span>
         </div>
 
         {/* Step pills */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
           {steps.map((s, i) => (
-            <div key={s} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <div key={s} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <div style={{
-                  width: 24, height: 24, borderRadius: "50%",
+                  width: 22, height: 22, borderRadius: "50%",
                   background: i < step ? C.s1 : i === step ? C.dark : C.border,
                   color: i <= step ? "#fff" : C.faint,
-                  display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700,
+                  display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700,
                 }}>{i < step ? "✓" : i + 1}</div>
-                <span style={{ fontSize: 12, fontWeight: i === step ? 600 : 400, color: i === step ? C.dark : C.faint }}>{s}</span>
+                <span className="hidden md:inline" style={{ fontSize: 12, fontWeight: i === step ? 600 : 400, color: i === step ? C.dark : C.faint }}>{s}</span>
               </div>
-              {i < steps.length - 1 && <div style={{ width: 24, height: 1, background: C.border }} />}
+              {i < steps.length - 1 && <div className="hidden sm:block" style={{ width: 16, height: 1, background: C.border }} />}
             </div>
           ))}
         </div>
 
-        <button onClick={() => navigate("/student/dashboard")} style={{ fontSize: 13, color: C.faint, background: "none", border: "none", cursor: "pointer" }}>
-          Skip for now →
+        <button onClick={() => navigate("/student/dashboard")} style={{ fontSize: 12, color: C.faint, background: "none", border: "none", cursor: "pointer", flexShrink: 0 }}>
+          Skip →
         </button>
       </div>
 
       {/* Content */}
-      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 24px" }}>
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "28px 16px" }}>
         <div style={{ maxWidth: 700, width: "100%" }}>
 
           {step === 0 && (

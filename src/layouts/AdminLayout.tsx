@@ -8,7 +8,7 @@ import SEO from "@/components/SEO";
 
 const nav = [
   { to: "/admin/dashboard",   icon: "⊞", label: "Dashboard"              },
-  { to: "/admin/students",    icon: "◎", label: "Student Management"     },
+  { to: "/admin/students",    icon: "◎", label: "Civil Servant Management" },
   { to: "/admin/analytics",   icon: "↗", label: "Competency Analytics"   },
   { to: "/admin/courses",     icon: "⊟", label: "Course Management"      },
   { to: "/admin/assessments", icon: "✎", label: "Assessment Management"  },
@@ -64,7 +64,7 @@ export default function AdminLayout() {
     ];
 
     if (format === "excel") {
-      exportToExcel(`GyanMarg_Universal_Student_Executive_Brief_${timestamp}`, [
+      exportToExcel(`GyanMarg_Universal_Learner_Executive_Brief_${timestamp}`, [
         {
           sheetName: "Executive Summary",
           headers: kpiRows[0] as string[],
@@ -85,8 +85,8 @@ export default function AdminLayout() {
     } else if (format === "csv") {
       const allHeaders = ["Category", "Metric", "Value", "Benchmark", "Learner Cohort", "Status"];
       const allRows = [
-        ["Students", "Total Enrolled", 12840, 12000, "All Learner Streams", "Exceeded"],
-        ["Students", "Active Learners", 8420, 8000, "All Learner Streams", "Healthy"],
+        ["Learners", "Total Enrolled", 12840, 12000, "All Learner Streams", "Exceeded"],
+        ["Learners", "Active Civil Servants", 8420, 8000, "All Learner Streams", "Healthy"],
         ["Academics", "Average Completion Rate", "94%", "90%", "All Learner Streams", "Exceeded"],
         ["Competency", "Ethics & Integrity", "84%", "80%", "Civil Services & University", "Met"],
         ["Competency", "Governance & Policy", "78%", "75%", "Civil Services & Policy Aspirants", "Met"],
@@ -97,16 +97,16 @@ export default function AdminLayout() {
         ["Certifications", "Certificates Issued", 3420, 3000, "All Learner Streams", "Exceeded"],
       ];
 
-      exportToCSV(`GyanMarg_Universal_Student_Executive_Brief_${timestamp}`, allHeaders, allRows);
+      exportToCSV(`GyanMarg_Universal_Learner_Executive_Brief_${timestamp}`, allHeaders, allRows);
       triggerToast("Downloaded Executive Brief in CSV (.csv) format.");
     } else {
       const jsonReport = {
-        title: "GyanMarg AI — Comprehensive Institutional & Student Competency Brief",
+        title: "GyanMarg AI — Comprehensive Institutional & Civil Servant Competency Brief",
         generatedAt: new Date().toISOString(),
         author: profile?.fullName || "Dr. Anand Kumar",
         institution: profile?.institution || "Director of Learning & Competency",
         kpis: {
-          totalStudents: 12840,
+          totalLearners: 12840,
           activeLearners: 8420,
           avgCompletionRate: "94%",
           certificatesIssued: 3420,
@@ -131,7 +131,7 @@ export default function AdminLayout() {
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.setAttribute("href", url);
-      link.setAttribute("download", `GyanMarg_Student_Competency_Brief_${timestamp}.json`);
+      link.setAttribute("download", `GyanMarg_Learner_Competency_Brief_${timestamp}.json`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -165,7 +165,7 @@ export default function AdminLayout() {
         {/* Mobile close button */}
         <button
           onClick={closeDrawer}
-          className="md:hidden"
+          className="flex md:hidden items-center justify-center"
           aria-label="Close navigation drawer"
           style={{
             background: "rgba(255,255,255,0.08)",
@@ -175,9 +175,6 @@ export default function AdminLayout() {
             height: 32,
             borderRadius: 6,
             cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
             fontSize: 16,
           }}
         >
@@ -251,7 +248,7 @@ export default function AdminLayout() {
   );
 
   return (
-    <div style={{ display: "flex", height: "100vh", fontFamily: FONT.body, background: C.bg, overflow: "hidden" }}>
+    <div style={{ display: "flex", height: "100dvh", fontFamily: FONT.body, background: C.bg, overflow: "hidden" }}>
       <SEO title="Admin Console | GyanMarg AI" robots="noindex, nofollow" />
 
       {/* ── Desktop Sidebar ──────────────────────────────────────────── */}
@@ -305,13 +302,13 @@ export default function AdminLayout() {
           height: 56, flexShrink: 0,
           background: C.surface, borderBottom: `1px solid ${C.border}`,
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "0 16px",
+          padding: "0 14px",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0, flex: 1 }}>
             {/* Hamburger Button (mobile only) */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden"
+              className="flex md:hidden items-center justify-center"
               aria-label="Open navigation menu"
               style={{
                 background: "transparent",
@@ -319,9 +316,6 @@ export default function AdminLayout() {
                 borderRadius: 8,
                 width: 38,
                 height: 38,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 color: C.dark,
                 cursor: "pointer",
                 fontSize: 18,
@@ -339,7 +333,7 @@ export default function AdminLayout() {
               </span>
             </div>
           </div>
-          <div style={{ display: "flex", gap: 10, alignItems: "center", flexShrink: 0 }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "center", flexShrink: 0 }}>
             <LanguageSelector variant="compact" />
             <button
               onClick={() => setShowExportModal(true)}
@@ -347,7 +341,7 @@ export default function AdminLayout() {
                 background: C.bg,
                 border: `1px solid ${C.border}`,
                 borderRadius: 8,
-                padding: "6px 14px",
+                padding: "6px 12px",
                 fontSize: 12,
                 fontWeight: 600,
                 color: C.dark,
@@ -355,12 +349,14 @@ export default function AdminLayout() {
                 display: "flex",
                 alignItems: "center",
                 gap: 6,
+                minHeight: 36,
                 transition: "background 0.15s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "#EBE5D8")}
               onMouseLeave={(e) => (e.currentTarget.style.background = C.bg)}
             >
-              <span>⚡</span> Generate Report
+              <span>⚡</span>
+              <span className="hidden sm:inline">Generate Report</span>
             </button>
             <div
               title={profile?.fullName || "Admin Profile"}
@@ -368,7 +364,7 @@ export default function AdminLayout() {
                 width: 32, height: 32, borderRadius: "50%", background: C.accent,
                 display: "flex", alignItems: "center", justifyContent: "center",
                 fontSize: 12, fontWeight: 700, color: "#fff",
-                overflow: "hidden",
+                overflow: "hidden", flexShrink: 0,
               }}
             >
               {profile?.avatarUrl ? (
@@ -386,7 +382,10 @@ export default function AdminLayout() {
             style={{
               position: "absolute",
               top: 68,
-              right: 28,
+              right: 16,
+              left: 16,
+              maxWidth: 400,
+              marginLeft: "auto",
               zIndex: 9999,
               background: C.dark,
               color: "#fff",
@@ -401,7 +400,7 @@ export default function AdminLayout() {
             }}
           >
             <span style={{ color: C.s1, fontSize: 16 }}>✓</span>
-            <span>{toast}</span>
+            <span style={{ flex: 1 }}>{toast}</span>
             <button
               onClick={() => setToast(null)}
               style={{ background: "transparent", border: "none", color: "#aaa", cursor: "pointer", marginLeft: 8, fontSize: 14 }}
@@ -416,7 +415,7 @@ export default function AdminLayout() {
             flex: 1,
             overflowY: "auto",
             overflowX: "hidden",
-            padding: "20px 16px",
+            padding: "16px 14px",
             boxSizing: "border-box",
           }}
         >
@@ -436,7 +435,7 @@ export default function AdminLayout() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: 20,
+            padding: 16,
           }}
           onClick={() => setShowExportModal(false)}
         >
@@ -446,35 +445,36 @@ export default function AdminLayout() {
               borderRadius: 14,
               width: "100%",
               maxWidth: 480,
+              maxHeight: "calc(100dvh - 32px)",
+              overflowY: "auto",
               boxShadow: "0 20px 48px rgba(0,0,0,0.25)",
               border: `1px solid ${C.border}`,
-              overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ padding: "16px 20px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
-                <h2 style={{ fontFamily: FONT.display, fontSize: 18, fontWeight: 700, margin: 0, color: C.dark }}>
+                <h2 style={{ fontFamily: FONT.display, fontSize: 17, fontWeight: 700, margin: 0, color: C.dark }}>
                   Generate Report
                 </h2>
                 <p style={{ margin: "4px 0 0", fontSize: 12, color: C.muted }}>
-                  Extract executive capacity & student metrics
+                  Extract executive capacity & civil servant metrics
                 </p>
               </div>
               <button
                 onClick={() => setShowExportModal(false)}
-                style={{ background: "transparent", border: "none", fontSize: 18, cursor: "pointer", color: C.muted }}
+                style={{ background: "transparent", border: "none", fontSize: 18, cursor: "pointer", color: C.muted, padding: 4 }}
               >
                 ✕
               </button>
             </div>
 
-            <div style={{ padding: "20px 24px" }}>
-              <div style={{ fontSize: 13, color: C.muted, marginBottom: 16 }}>
+            <div style={{ padding: "16px 20px" }}>
+              <div style={{ fontSize: 13, color: C.muted, marginBottom: 14 }}>
                 Select export format:
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 20 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginBottom: 20 }}>
                 {/* Excel Option */}
                 <div
                   onClick={() => handleQuickExport("excel")}

@@ -511,7 +511,7 @@ export default function CourseManagement() {
 
       {/* Table */}
       <div style={{ background: C.surface, borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.06)", overflow: "hidden", border: `1px solid ${C.border}` }}>
-        <div className="overflow-x-auto w-full">
+        <div className="table-responsive-container w-full">
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 840 }}>
             <thead>
               <tr style={{ background: C.bg, borderBottom: `1px solid ${C.border}` }}>
@@ -657,13 +657,16 @@ export default function CourseManagement() {
               borderRadius: 14,
               width: "100%",
               maxWidth: 600,
+              maxHeight: "calc(100dvh - 32px)",
+              display: "flex",
+              flexDirection: "column",
               boxShadow: "0 20px 48px rgba(0,0,0,0.25)",
               border: `1px solid ${C.border}`,
               overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0 }}>
               <h2 style={{ fontFamily: FONT.display, fontSize: 18, fontWeight: 700, margin: 0, color: C.dark }}>
                 Add New Course to Catalog
               </h2>
@@ -672,7 +675,7 @@ export default function CourseManagement() {
               </button>
             </div>
 
-            <form onSubmit={handleSaveNewCourse} style={{ padding: "24px" }}>
+            <form onSubmit={handleSaveNewCourse} style={{ padding: "24px", overflowY: "auto", flex: 1 }}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
                 <div className="sm:col-span-2">
                   <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 4 }}>Course Title *</label>
@@ -810,13 +813,16 @@ export default function CourseManagement() {
               borderRadius: 14,
               width: "100%",
               maxWidth: 560,
+              maxHeight: "calc(100dvh - 32px)",
+              display: "flex",
+              flexDirection: "column",
               boxShadow: "0 20px 48px rgba(0,0,0,0.25)",
               border: `1px solid ${C.border}`,
               overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0 }}>
               <h2 style={{ fontFamily: FONT.display, fontSize: 18, fontWeight: 700, margin: 0, color: C.dark }}>
                 Edit Course Details
               </h2>
@@ -825,7 +831,7 @@ export default function CourseManagement() {
               </button>
             </div>
 
-            <div style={{ padding: "24px" }}>
+            <div style={{ padding: "24px", overflowY: "auto", flex: 1 }}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
                 <div className="sm:col-span-2">
                   <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 4 }}>Course Title</label>
@@ -935,13 +941,16 @@ export default function CourseManagement() {
               borderRadius: 14,
               width: "100%",
               maxWidth: 600,
+              maxHeight: "calc(100dvh - 32px)",
+              display: "flex",
+              flexDirection: "column",
               boxShadow: "0 20px 48px rgba(0,0,0,0.25)",
               border: `1px solid ${C.border}`,
               overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <span
                   style={{
@@ -962,7 +971,7 @@ export default function CourseManagement() {
               </button>
             </div>
 
-            <div style={{ padding: "24px" }}>
+            <div style={{ padding: "24px", overflowY: "auto", flex: 1 }}>
               <h2 style={{ fontFamily: FONT.display, fontSize: 20, fontWeight: 700, margin: "0 0 8px", color: C.dark }}>
                 {previewingCourse.title}
               </h2>
@@ -971,7 +980,7 @@ export default function CourseManagement() {
               </div>
 
               <div style={{ background: C.bg, borderRadius: 10, padding: "16px", marginBottom: 20 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, textAlign: "center" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(110px, 1fr))", gap: 12, textAlign: "center" }}>
                   <div>
                     <div style={{ fontSize: 11, color: C.muted }}>Duration</div>
                     <div style={{ fontSize: 15, fontWeight: 700, color: C.dark, marginTop: 2 }}>{previewingCourse.duration}</div>
@@ -1007,7 +1016,7 @@ export default function CourseManagement() {
               </div>
             </div>
 
-            <div style={{ padding: "14px 24px", background: C.bg, borderTop: `1px solid ${C.border}`, display: "flex", justifyContent: "flex-end" }}>
+            <div style={{ padding: "14px 24px", background: C.bg, borderTop: `1px solid ${C.border}`, display: "flex", justifyContent: "flex-end", flexShrink: 0 }}>
               <button
                 onClick={() => setPreviewingCourse(null)}
                 style={{ background: C.accent, color: "#fff", border: "none", borderRadius: 8, padding: "8px 20px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}

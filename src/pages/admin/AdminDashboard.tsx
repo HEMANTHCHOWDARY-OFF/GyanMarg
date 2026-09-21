@@ -20,18 +20,18 @@ interface ActivityItem {
 }
 
 const ALL_ACTIVITIES: ActivityItem[] = [
-  { id: 1, action: "Student Enrolled", name: "Aarav Sharma", detail: "Data-Driven Decision Making & Analytics", time: "2 min ago", type: "enroll", track: "University / College", institution: "IIT Delhi (B.Tech Data Science)" },
-  { id: 2, action: "Assessment Completed", name: "Ananya Iyer", detail: "Applied Statistics & Sampling — Score: 94%", time: "8 min ago", type: "assess", track: "University / College", institution: "Delhi University (M.Sc Statistics)", score: 94 },
+  { id: 1, action: "Learner Enrolled", name: "Aarav Sharma", detail: "Data-Driven Decision Making & Analytics", time: "2 min ago", type: "enroll", track: "University / Higher Ed", institution: "IIT Delhi (B.Tech Data Science)" },
+  { id: 2, action: "Assessment Completed", name: "Ananya Iyer", detail: "Applied Statistics & Sampling — Score: 94%", time: "8 min ago", type: "assess", track: "University / Higher Ed", institution: "Delhi University (M.Sc Statistics)", score: 94 },
   { id: 3, action: "Certificate Issued", name: "Rohan Verma", detail: "Constitutional Law & Administration", time: "15 min ago", type: "cert", track: "Civil Services Aspirant", institution: "UPSC Comprehensive Prep (Jamia Millia)", certId: "CERT-GOV-2026-8941" },
   { id: 4, action: "Course Enrolled", name: "Priya Sharma", detail: "Public Finance Management", time: "22 min ago", type: "enroll", track: "In-Service Civil Servant", institution: "Ministry of Finance (IAS Cadre)" },
   { id: 5, action: "Assessment Completed", name: "Sneha Kulkarni", detail: "Python for Data Science — Score: 96%", time: "31 min ago", type: "assess", track: "Tech & Professional", institution: "Pune University (AI & ML Lab)", score: 96 },
-  { id: 6, action: "Student Enrolled", name: "Vikram Singh", detail: "Leadership & Change Management", time: "45 min ago", type: "enroll", track: "In-Service Civil Servant", institution: "Ministry of Home (IPS Cadre)" },
+  { id: 6, action: "Civil Servant Enrolled", name: "Vikram Singh", detail: "Leadership & Change Management", time: "45 min ago", type: "enroll", track: "In-Service Civil Servant", institution: "Ministry of Home (IPS Cadre)" },
   { id: 7, action: "Certificate Issued", name: "Deepa Reddy", detail: "Ethics & Integrity in Public Service", time: "1 hr ago", type: "cert", track: "Civil Services Aspirant", institution: "State PSC Academy (Hyderabad)", certId: "CERT-ETH-2026-3392" },
-  { id: 8, action: "Assessment Completed", name: "Tanmay Deshmukh", detail: "Digital Governance & India Stack — Score: 88%", time: "1.5 hr ago", type: "assess", track: "University / College", institution: "Anna University (B.Tech IT)", score: 88 },
+  { id: 8, action: "Assessment Completed", name: "Tanmay Deshmukh", detail: "Digital Governance & India Stack — Score: 88%", time: "1.5 hr ago", type: "assess", track: "University / Higher Ed", institution: "Anna University (B.Tech IT)", score: 88 },
   { id: 9, action: "Course Enrolled", name: "Kavita Rao", detail: "Advanced Sampling Theory & Official Statistics", time: "2 hr ago", type: "enroll", track: "In-Service Civil Servant", institution: "MoSPI (ISS Cadre)" },
   { id: 10, action: "Certificate Issued", name: "Meera Nair", detail: "Policy Analysis & Formulation", time: "2.5 hr ago", type: "cert", track: "Tech & Professional", institution: "Public Policy Research Lab (Bengaluru)", certId: "CERT-POL-2026-1184" },
   { id: 11, action: "Assessment Completed", name: "Rajesh Kumar", detail: "Ethics & Integrity — Score: 88%", time: "3 hr ago", type: "assess", track: "In-Service Civil Servant", institution: "MHA (IPS Cadre)", score: 88 },
-  { id: 12, action: "Student Enrolled", name: "Karthik Raja", detail: "GIS & Spatial Governance", time: "4 hr ago", type: "enroll", track: "University / College", institution: "BHU (Varanasi - Geospatial Sciences)" },
+  { id: 12, action: "Learner Enrolled", name: "Karthik Raja", detail: "GIS & Spatial Governance", time: "4 hr ago", type: "enroll", track: "University / Higher Ed", institution: "BHU (Varanasi - Geospatial Sciences)" },
 ];
 
 const PERIOD_METRICS: Record<string, { total: string; active: string; comp: string; assess: string; certs: string; multiplier: number }> = {
@@ -49,9 +49,9 @@ const BASE_ENROLLMENT = [
   { month: "Sep", enrolled: 1680, completed: 1480 },
 ];
 
-// Learner Track Distribution across all learning students
+// Learner Track Distribution across all enrolled learners
 const TRACK_DISTRIBUTION = [
-  { name: "University & College Students", value: 38 },
+  { name: "University & Higher Ed Learners", value: 38 },
   { name: "Competitive & Civil Aspirants", value: 26 },
   { name: "In-Service Civil Servants", value: 18 },
   { name: "Data Science & AI Scholars", value: 12 },
@@ -280,7 +280,7 @@ export default function AdminDashboard() {
       {/* Dynamic KPI Row */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 28 }}>
         {[
-          { label: "Total Enrolled Students", value: currentMetrics.total, sub: trackFilter === "All Learner Tracks" ? "Higher Ed, Aspirants & Civil Servants" : `${trackFilter} Cohort`, color: C.s1 },
+          { label: "Total Enrolled Learners", value: currentMetrics.total, sub: trackFilter === "All Learner Tracks" ? "Higher Ed, Aspirants & Civil Servants" : `${trackFilter} Cohort`, color: C.s1 },
           { label: "Active Daily Learners", value: currentMetrics.active, sub: "65.6% active engagement rate", color: C.s2 },
           { label: "Avg Course Completion", value: currentMetrics.comp, sub: "+2.1% improvement vs target", color: C.s3 },
           { label: "Diagnostic Assessments", value: currentMetrics.assess, sub: "evaluated across academic & FrAC domains", color: C.s4 },
@@ -302,7 +302,7 @@ export default function AdminDashboard() {
         <div style={{ background: C.surface, borderRadius: 12, padding: "20px 24px", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: `1px solid ${C.border}` }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
             <div style={{ fontFamily: FONT.display, fontSize: 15, fontWeight: 600, color: C.dark }}>
-              Monthly Student Enrollments & Completions ({period})
+              Monthly Learner Enrollments & Completions ({period})
             </div>
             <span style={{ fontSize: 11, color: C.muted, background: C.bg, padding: "3px 8px", borderRadius: 6 }}>
               Target: 90%
@@ -421,7 +421,7 @@ export default function AdminDashboard() {
 
             {/* Search */}
             <input
-              placeholder="Search student or institution..."
+              placeholder="Search civil servant or learner..."
               value={activitySearch}
               onChange={(e) => setActivitySearch(e.target.value)}
               style={{
@@ -442,7 +442,7 @@ export default function AdminDashboard() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ borderBottom: `1px solid ${C.border}`, background: C.bg }}>
-              {["Action", "Student / Scholar", "Learner Stream & Institution", "Learning Event", "Timestamp", "Action"].map((h) => (
+              {["Action", "Learner / Officer", "Learner Stream & Institution", "Learning Event", "Timestamp", "Action"].map((h) => (
                 <th key={h} style={{ textAlign: "left", padding: "10px 12px", fontSize: 12, fontWeight: 600, color: C.muted, letterSpacing: "0.04em" }}>{h}</th>
               ))}
             </tr>
@@ -451,7 +451,7 @@ export default function AdminDashboard() {
             {filteredActivities.length === 0 ? (
               <tr>
                 <td colSpan={6} style={{ padding: "24px", textAlign: "center", color: C.muted, fontSize: 13 }}>
-                  No student activity found matching the selected filters.
+                  No learner or officer activity found matching the selected filters.
                 </td>
               </tr>
             ) : (
@@ -523,31 +523,32 @@ export default function AdminDashboard() {
               background: C.surface,
               borderRadius: 14,
               width: "100%",
-              maxWidth: 520,
+              maxWidth: "min(94vw, 520px)",
+              maxHeight: "calc(100dvh - 32px)",
+              overflowY: "auto",
               boxShadow: "0 20px 48px rgba(0,0,0,0.25)",
               border: `1px solid ${C.border}`,
-              overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ padding: "16px 20px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={{ width: 10, height: 10, borderRadius: "50%", background: ACTION_TYPE_COLOR[selectedActivity.type] }} />
-                <h2 style={{ fontFamily: FONT.display, fontSize: 17, fontWeight: 700, margin: 0, color: C.dark }}>
-                  {selectedActivity.action} Record
-                </h2>
+                <span style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", color: ACTION_TYPE_COLOR[selectedActivity.type] }}>
+                  {ACTION_TYPE_LABEL[selectedActivity.type]} Details
+                </span>
               </div>
               <button
                 onClick={() => setSelectedActivity(null)}
-                style={{ background: "transparent", border: "none", fontSize: 18, cursor: "pointer", color: C.muted }}
+                style={{ background: "transparent", border: "none", fontSize: 18, cursor: "pointer", color: C.muted, padding: 4 }}
               >
                 ✕
               </button>
             </div>
 
-            <div style={{ padding: "24px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-                <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.dark, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700 }}>
+            <div style={{ padding: "18px 20px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 18 }}>
+                <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.dark, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, flexShrink: 0 }}>
                   {selectedActivity.name.split(" ").map(n => n[0]).join("")}
                 </div>
                 <div>
@@ -558,8 +559,8 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              <div style={{ background: C.bg, borderRadius: 10, padding: "16px", marginBottom: 20 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div style={{ background: C.bg, borderRadius: 10, padding: "14px", marginBottom: 20 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <div style={{ fontSize: 11, color: C.muted, textTransform: "uppercase" }}>Learner Track</div>
                     <div style={{ fontSize: 13, fontWeight: 600, color: C.dark, marginTop: 2 }}>{selectedActivity.track}</div>
@@ -568,7 +569,7 @@ export default function AdminDashboard() {
                     <div style={{ fontSize: 11, color: C.muted, textTransform: "uppercase" }}>Recorded Time</div>
                     <div style={{ fontSize: 13, fontWeight: 600, color: C.dark, marginTop: 2 }}>{selectedActivity.time}</div>
                   </div>
-                  <div style={{ gridColumn: "span 2" }}>
+                  <div className="sm:col-span-2">
                     <div style={{ fontSize: 11, color: C.muted, textTransform: "uppercase" }}>Event Summary</div>
                     <div style={{ fontSize: 14, fontWeight: 500, color: C.dark, marginTop: 2 }}>{selectedActivity.detail}</div>
                   </div>
@@ -579,7 +580,7 @@ export default function AdminDashboard() {
                     </div>
                   )}
                   {selectedActivity.certId && (
-                    <div style={{ gridColumn: "span 2" }}>
+                    <div className="sm:col-span-2">
                       <div style={{ fontSize: 11, color: C.muted, textTransform: "uppercase" }}>Credential Verification ID</div>
                       <div style={{ fontSize: 12, fontFamily: "monospace", color: C.accent, marginTop: 2 }}>{selectedActivity.certId}</div>
                     </div>

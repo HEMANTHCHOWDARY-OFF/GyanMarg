@@ -100,7 +100,7 @@ export default function CourseDiscovery() {
   return (
     <div
       className="flex flex-col lg:flex-row gap-6 p-3.5 sm:p-6 lg:p-8"
-      style={{ background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}
+      style={{ background: C.bg, minHeight: "100dvh", fontFamily: FONT.body }}
     >
       {/* Left Filter Sidebar */}
       <aside
@@ -113,7 +113,7 @@ export default function CourseDiscovery() {
           alignSelf: "flex-start",
           position: "sticky",
           top: 24,
-          maxHeight: "calc(100vh - 48px)",
+          maxHeight: "calc(100dvh - 48px)",
           overflowY: "auto",
         }}
       >

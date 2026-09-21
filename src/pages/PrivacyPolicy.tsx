@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         background: C.bg,
         fontFamily: FONT.body,
         color: C.dark,
@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
           maxWidth: 900,
           width: "100%",
           margin: "0 auto",
-          padding: "48px 24px 80px",
+          padding: "32px 16px 64px",
         }}
       >
         {/* Breadcrumb Navigation */}

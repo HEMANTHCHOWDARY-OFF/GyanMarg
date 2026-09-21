@@ -1111,7 +1111,7 @@ export default function AssessmentManagement() {
 
             <hr style={{ border: "none", borderTop: `1px solid ${C.border}`, margin: "18px 0" }} />
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* Document selector */}
               <div style={{ gridColumn: "1/-1" }}>
                 <label style={{ fontSize: 12, fontWeight: 700, color: C.dark, display: "block", marginBottom: 6 }}>
@@ -1552,6 +1552,8 @@ export default function AssessmentManagement() {
               border: `1px solid ${C.border}`,
               width: "100%",
               maxWidth: 580,
+              maxHeight: "calc(100dvh - 32px)",
+              overflowY: "auto",
               padding: "24px 28px",
               boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
             }}
@@ -1584,11 +1586,11 @@ export default function AssessmentManagement() {
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div>
                 <label style={{ fontSize: 12, fontWeight: 700, color: C.dark, display: "block", marginBottom: 4 }}>
-                  Document Title / Standard Operating Procedure *
+                  Document Name / Title *
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. MoSPI Price Statistics Compilation Manual (Vol II)"
+                  placeholder="e.g. Statistical Handbook of India 2024"
                   value={uploadFormData.name}
                   onChange={(e) => setUploadFormData({ ...uploadFormData, name: e.target.value })}
                   style={{
@@ -1606,7 +1608,7 @@ export default function AssessmentManagement() {
                 />
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 700, color: C.dark, display: "block", marginBottom: 4 }}>
                     FrAC Competency Domain *
@@ -1890,7 +1892,7 @@ export default function AssessmentManagement() {
               maxWidth: 640,
               padding: "24px 28px",
               boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
-              maxHeight: "90vh",
+              maxHeight: "calc(100dvh - 32px)",
               overflowY: "auto",
             }}
           >
@@ -1990,7 +1992,7 @@ export default function AssessmentManagement() {
                 <div style={{ fontSize: 12, fontWeight: 700, color: C.dark, marginBottom: 8 }}>
                   Verifiable Source Citation
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <div style={{ gridColumn: "1/-1" }}>
                     <input
                       type="text"

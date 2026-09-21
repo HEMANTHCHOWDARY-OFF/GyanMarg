@@ -199,7 +199,7 @@ export default function LearningPath() {
       className="p-3.5 sm:p-6 lg:p-8 pb-24"
       style={{
         background: "#F9F8F5", // Clean warm roadmap.sh canvas
-        minHeight: "100vh",
+        minHeight: "100dvh",
         fontFamily: FONT.body,
         color: "#111",
       }}
@@ -434,7 +434,7 @@ export default function LearningPath() {
         </div>
       ) : (
         <div
-          className="w-full overflow-x-auto"
+          className="w-full overflow-x-auto table-responsive-container"
           style={{
             maxWidth: 1040,
             margin: "0 auto",
@@ -442,19 +442,20 @@ export default function LearningPath() {
             padding: "20px 0 60px",
           }}
         >
-          {/* Continuous Central Spine Vertical Line */}
-          <div
-            style={{
-              position: "absolute",
-              top: 40,
-              bottom: 40,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: 3,
-              background: "#111111",
-              zIndex: 0,
-            }}
-          />
+          <div style={{ minWidth: 680, position: "relative" }}>
+            {/* Continuous Central Spine Vertical Line */}
+            <div
+              style={{
+                position: "absolute",
+                top: 40,
+                bottom: 40,
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: 3,
+                background: "#111111",
+                zIndex: 0,
+              }}
+            />
 
           {/* Sequential Blocks */}
           <div style={{ display: "flex", flexDirection: "column", gap: 54, position: "relative", zIndex: 1 }}>
@@ -781,19 +782,12 @@ export default function LearningPath() {
             })}
           </div>
         </div>
+      </div>
       )}
 
-      {/* FLOATING BOTTOM AI TUTOR BAR (Exact style of roadmap.sh reference screenshot) */}
+      {/* FLOATING BOTTOM AI TUTOR BAR */}
       <div
-        style={{
-          position: "fixed",
-          bottom: 24,
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 100,
-          width: "90%",
-          maxWidth: 640,
-        }}
+        className="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-[640px]"
       >
         <form
           onSubmit={handleAskAITutor}

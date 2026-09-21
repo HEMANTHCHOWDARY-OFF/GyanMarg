@@ -309,7 +309,7 @@ export default function Assessment() {
               {fromCompletion ? "🎉 Post-Course Competency Validation" : "📋 Assessment Briefing & Examination Indications"}
             </span>
             <span style={{ fontSize: 12.5, color: C.muted }}>
-              Track: <strong>{profile?.track || "Higher Education / University Student"}</strong>
+              Track: <strong>{profile?.track || "In-Service Civil Servant / Statistical Officer"}</strong>
             </span>
           </div>
 
@@ -599,7 +599,7 @@ export default function Assessment() {
           <div style={{ fontFamily: FONT.display, fontSize: 15.5, fontWeight: 700, color: C.dark, marginBottom: 12 }}>
             Official Candidate Instructions & Exam Integrity Rules
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, fontSize: 12.5, color: C.muted }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ fontSize: 12.5, color: C.muted }}>
             <div style={{ display: "flex", gap: 8 }}>
               <span>✓</span>
               <span><strong>Timed Session:</strong> Once started, the 20-minute countdown cannot be paused. Automatic submission occurs when time expires.</span>
@@ -821,7 +821,7 @@ export default function Assessment() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         background: C.bg,
         fontFamily: FONT.body,
         color: C.dark,
@@ -839,7 +839,7 @@ export default function Assessment() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "0 28px",
+            padding: "0 14px",
             boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
             flexShrink: 0,
           }}
@@ -967,7 +967,7 @@ export default function Assessment() {
               >
                 Active AI Assessment Session
               </span>
-              <span style={{ fontSize: 12, color: C.muted }}>Track: {profile?.track || "Higher Education / University Student"}</span>
+              <span style={{ fontSize: 12, color: C.muted }}>Track: {profile?.track || "In-Service Civil Servant / Statistical Officer"}</span>
             </div>
             <h1
               style={{
@@ -1140,7 +1140,7 @@ export default function Assessment() {
               </button>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginBottom: 14 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(44px, 1fr))", gap: 8, marginBottom: 14 }}>
               {questions.map((_, idx) => {
                 const isCurrent = current === idx;
                 const isAnswered = answers[idx] !== null;
@@ -1420,7 +1420,7 @@ export default function Assessment() {
               <span style={{ fontSize: 11, color: C.muted }}>{answered}/{questions.length} done</span>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginBottom: 14 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(36px, 1fr))", gap: 8, marginBottom: 14 }}>
               {questions.map((_, idx) => {
                 const isCurrent = current === idx;
                 const isAnswered = answers[idx] !== null;

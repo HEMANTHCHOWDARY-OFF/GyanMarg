@@ -280,7 +280,7 @@ export default function InterestedCourses() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         background: C.bg,
         display: "flex",
         flexDirection: "column",
@@ -505,7 +505,7 @@ export default function InterestedCourses() {
                   gap: 14,
                   position: "sticky",
                   top: 80,
-                  maxHeight: "calc(100vh - 180px)",
+                  maxHeight: "calc(100dvh - 180px)",
                   overflowY: "auto",
                 }}
               >
@@ -1148,7 +1148,7 @@ export default function InterestedCourses() {
                     </div>
                   )}
 
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {aiResult.recommendedCourses?.map((rc, idx) => {
                       const directCourse = rc.courseId ? getCourseById(rc.courseId) : undefined;
                       const matched = directCourse || manualCatalogResult.courses.find(

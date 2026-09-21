@@ -52,7 +52,15 @@ export default function Certificates() {
   }, [userSelectedCourses]);
 
   return (
-    <div style={{ padding: "28px 32px", background: C.bg, minHeight: "100vh", fontFamily: FONT.body }}>
+    <div
+      className="p-4 sm:p-6 lg:p-8"
+      style={{
+        background: C.bg,
+        minHeight: "100dvh",
+        paddingBottom: "calc(80px + var(--sab, 0px))",
+        fontFamily: FONT.body,
+      }}
+    >
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
         <div>

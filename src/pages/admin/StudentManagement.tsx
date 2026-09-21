@@ -557,7 +557,7 @@ export default function StudentManagement() {
     if (deletingStudentId === null) return;
     setStudents((prev) => prev.filter((s) => s.id !== deletingStudentId));
     setSelected((prev) => prev.filter((id) => id !== deletingStudentId));
-    showToast(`Student profile successfully removed.`);
+    showToast(`Learner profile successfully removed.`);
     setDeletingStudentId(null);
   };
 
@@ -580,7 +580,7 @@ export default function StudentManagement() {
         return s;
       })
     );
-    showToast(`Enrolled ${selected.length} student(s) into "${courseToAssign}".`);
+    showToast(`Enrolled ${selected.length} learner(s) into "${courseToAssign}".`);
     setShowBulkAssignModal(false);
     setSelected([]);
   };
@@ -590,7 +590,7 @@ export default function StudentManagement() {
     setStudents((prev) =>
       prev.map((s) => (selected.includes(s.id) ? { ...s, status } : s))
     );
-    showToast(`Set status to "${status}" for ${selected.length} student(s).`);
+    showToast(`Set status to "${status}" for ${selected.length} learner(s).`);
     setSelected([]);
   };
 
@@ -636,10 +636,10 @@ export default function StudentManagement() {
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
         <div>
           <h1 style={{ fontFamily: FONT.display, fontSize: 28, fontWeight: 700, margin: 0 }}>
-            Student & Learner Management
+            Civil Servant & Learner Management
           </h1>
           <p style={{ margin: "4px 0 0", fontSize: 14, color: C.muted }}>
-            Universal management covering {students.length} students across Higher Education, Civil Services Aspirants & Public Administration
+            Universal management covering {students.length} officers and learners across MoSPI, Civil Services & Public Administration
           </p>
         </div>
         <button
@@ -659,7 +659,7 @@ export default function StudentManagement() {
             gap: 6,
           }}
         >
-          <span>+ Add Student / Learner</span>
+          <span>+ Add Learner / Officer</span>
         </button>
       </div>
 
@@ -684,7 +684,7 @@ export default function StudentManagement() {
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16, alignItems: "center" }}>
         <input
           style={{ ...inputStyle, width: 240 }}
-          placeholder="Search student, college, email, degree..."
+          placeholder="Search civil servant, learner, ministry, cadre..."
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
@@ -752,7 +752,7 @@ export default function StudentManagement() {
       {/* Bulk action toolbar */}
       {selected.length > 0 && (
         <div style={{ background: C.dark, color: "#fff", borderRadius: 8, padding: "10px 16px", marginBottom: 12, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-          <span style={{ fontSize: 13, fontWeight: 600 }}>{selected.length} student(s) selected</span>
+          <span style={{ fontSize: 13, fontWeight: 600 }}>{selected.length} learner(s) selected</span>
           <button
             onClick={() => setShowBulkAssignModal(true)}
             style={{ background: C.accent, color: "#fff", border: "none", borderRadius: 6, padding: "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: FONT.body, fontWeight: 600 }}
@@ -774,7 +774,7 @@ export default function StudentManagement() {
           <button
             onClick={() => {
               const selectedStudents = students.filter((s) => selected.includes(s.id));
-              handleExportCSV(selectedStudents, "selected_students.csv");
+              handleExportCSV(selectedStudents, "selected_learners.csv");
             }}
             style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "none", borderRadius: 6, padding: "6px 12px", fontSize: 12, cursor: "pointer" }}
           >
@@ -791,7 +791,7 @@ export default function StudentManagement() {
 
       {/* Table */}
       <div style={{ background: C.surface, borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.06)", overflow: "hidden", border: `1px solid ${C.border}` }}>
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto w-full table-responsive-container">
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 840 }}>
           <thead>
             <tr style={{ background: C.bg, borderBottom: `1px solid ${C.border}` }}>
@@ -802,7 +802,7 @@ export default function StudentManagement() {
                   onChange={toggleAll}
                 />
               </th>
-              {["Student / Scholar", "Learner Track", "Institution / University", "Program / Focus", "Year", "Courses", "Avg Progress", "Status", "Actions"].map((h) => (
+              {["Learner / Officer", "Learner Track", "Institution / University", "Program / Focus", "Year", "Courses", "Avg Progress", "Status", "Actions"].map((h) => (
                 <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontSize: 12, fontWeight: 600, color: C.muted, letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
                   {h}
                 </th>
@@ -947,7 +947,7 @@ export default function StudentManagement() {
         {/* Working Pagination */}
         <div style={{ padding: "14px 20px", borderTop: `1px solid ${C.border}`, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
           <span style={{ fontSize: 13, color: C.muted }}>
-            Showing {filtered.length > 0 ? startIndex + 1 : 0}–{Math.min(startIndex + pageSize, filtered.length)} of {filtered.length} students & scholars
+            Showing {filtered.length > 0 ? startIndex + 1 : 0}–{Math.min(startIndex + pageSize, filtered.length)} of {filtered.length} learners & officers
           </span>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
             <button
@@ -1033,7 +1033,7 @@ export default function StudentManagement() {
           >
             <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <h2 style={{ fontFamily: FONT.display, fontSize: 18, fontWeight: 700, margin: 0, color: C.dark }}>
-                Register Student / Scholar
+                Register Learner / Officer
               </h2>
               <button onClick={() => setShowAddModal(false)} style={{ background: "transparent", border: "none", fontSize: 18, cursor: "pointer", color: C.muted }}>
                 ✕
@@ -1094,7 +1094,7 @@ export default function StudentManagement() {
                   <label style={{ fontSize: 12, fontWeight: 600, color: C.dark, display: "block", marginBottom: 6 }}>Email Address</label>
                   <input
                     type="email"
-                    placeholder="student@university.edu"
+                    placeholder="officer.learner@gov.in"
                     value={newStudent.email}
                     onChange={(e) => setNewStudent({ ...newStudent, email: e.target.value })}
                     style={{ ...inputStyle, width: "100%", boxSizing: "border-box" }}
@@ -1438,7 +1438,7 @@ export default function StudentManagement() {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ fontSize: 18, fontWeight: 700, color: C.dark, marginBottom: 8 }}>Remove Student Record?</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: C.dark, marginBottom: 8 }}>Remove Learner Record?</div>
             <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.5, margin: "0 0 20px" }}>
               Are you sure you want to remove this learner from the roster? This action will archive their course enrollments and diagnostic progress.
             </p>
@@ -1499,7 +1499,7 @@ export default function StudentManagement() {
 
             <div style={{ padding: "24px" }}>
               <div style={{ fontSize: 13, color: C.muted, marginBottom: 14 }}>
-                Enroll the {selected.length} selected student(s) into a standard curriculum module:
+                Enroll the {selected.length} selected learner(s) into a standard curriculum module:
               </div>
               <select
                 value={courseToAssign}
@@ -1551,20 +1551,21 @@ export default function StudentManagement() {
               background: C.surface,
               borderRadius: 16,
               width: "100%",
-              maxWidth: 460,
+              maxWidth: "min(94vw, 460px)",
+              maxHeight: "calc(100dvh - 32px)",
+              overflowY: "auto",
               boxShadow: "0 24px 60px rgba(0,0,0,0.3)",
               border: `1px solid ${C.border}`,
-              overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ padding: "16px 20px", borderBottom: `1px solid ${C.border}`, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div>
-                <h2 style={{ fontFamily: FONT.display, fontSize: 18, fontWeight: 700, margin: 0, color: C.dark }}>
+                <h2 style={{ fontFamily: FONT.display, fontSize: 17, fontWeight: 700, margin: 0, color: C.dark }}>
                   Generate Report
                 </h2>
-                <p style={{ margin: "4px 0 0", fontSize: 12, color: C.muted }}>
-                  Extracting roster for {filtered.length} active students
+                <p style={{ margin: "3px 0 0", fontSize: 12, color: C.muted }}>
+                  Extract universal cohort roster across all streams
                 </p>
               </div>
               <button
@@ -1575,16 +1576,16 @@ export default function StudentManagement() {
               </button>
             </div>
 
-            <div style={{ padding: "24px" }}>
+            <div style={{ padding: "20px" }}>
               <div style={{ fontSize: 13, color: C.dark, fontWeight: 600, marginBottom: 16 }}>
                 Select extraction format:
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 20 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-5">
                 {/* Excel Option */}
                 <div
                   onClick={() => {
-                    handleExportExcel(filtered, "universal_student_roster.xlsx");
+                    handleExportExcel(filtered, "universal_learner_roster.xlsx");
                     setShowReportModal(false);
                   }}
                   style={{
@@ -1631,7 +1632,7 @@ export default function StudentManagement() {
                 {/* CSV Option */}
                 <div
                   onClick={() => {
-                    handleExportCSV(filtered, "universal_student_roster.csv");
+                    handleExportCSV(filtered, "universal_learner_roster.csv");
                     setShowReportModal(false);
                   }}
                   style={{
