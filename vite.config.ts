@@ -20,6 +20,9 @@ export default defineConfig({
     },
     dedupe: ['react', 'react-dom', 'react-is'],
   },
+  build: {
+    emptyOutDir: true,
+  },
   server: {
     host: '0.0.0.0',
     port: parseInt(process.env.PORT || '8443'),
